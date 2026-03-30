@@ -65,6 +65,7 @@
   body.a11y .part-trigger h3 { color: #000; }
   body.a11y .chevron { display: none; }
   body.a11y .part-body { display: block !important; }
+  body.a11y .part > .part-body { display: block !important; }
   body.a11y .case-header { background: #000; }
   body.a11y .case-header h3 { color: #fff; }
   body.a11y .scenario-block { background: #f2f2f2; border-color: #000; border-left-color: #000; }
@@ -261,6 +262,7 @@
     font-size: .875rem; color: rgba(255,255,255,.92);
     max-width: 680px;
   }
+  .header-note strong { color: #fff; }
 
   /* ── PAGES ── */
   .page { display: none; }
@@ -343,9 +345,9 @@
   }
   .part-trigger h3 { margin: 0; font-size: .95rem; font-weight: 600; color: var(--ocean); }
   .chevron { color: var(--teal); font-size: 1rem; transition: transform .25s; flex-shrink: 0; }
-  .part[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  .part[aria-expanded="true"] > .part-trigger > .chevron { transform: rotate(180deg); }
   .part-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border); }
-  .part[aria-expanded="true"] .part-body { display: block; }
+  .part[aria-expanded="true"] > .part-body { display: block; }
   .part-inner { padding-top: 1.1rem; }
   .part-inner p { font-size: .9rem; }
   .part-inner h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); font-weight: 700; margin: 1.25rem 0 .5rem; }
@@ -701,55 +703,77 @@
     </div>
     <p>Plan the structure of your paper, including the key points that you will be making and how everything will be organized.</p>
 
-    <h3 style="margin-top:1.5rem; margin-bottom:.4rem;">How to structure your outline</h3>
-    <p>Your paper will have sections. Just like you group sentences into paragraphs, you'll group paragraphs into sections. Here is an example of how to section your paper:</p>
-    <div class="outline-box">
-      <ol>
-        <li>Introduction</li>
-        <li>The Dilemma</li>
-        <li>My Contribution <em style="font-weight:400;">(this is where your main argument goes)</em></li>
-        <li>Possible Objections</li>
-        <li>Responses to Objections</li>
-        <li>Conclusion</li>
-      </ol>
-    </div>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.4rem;">What to put in each section</h3>
-    <p>In each section, bullet out all of the important thoughts you want to get across relating to that topic. For example <em>(using a Kantian approach to Case A):</em></p>
-    <div class="outline-box">
-      <ol start="2">
-        <li>The Dilemma
-          <ul>
-            <li>The basic situation (in everyday language)</li>
-            <li>Explain the principle of humanity</li>
-            <li>Describe how the principle of humanity could be seen as saying ___</li>
-            <li>Describe how, alternatively, it could also be seen as saying ___</li>
-            <li>Drive home the point (i.e. what is the problem you'll solve): there is more than one way to apply the principle which might all seem reasonable at first, but I'm going to explain which one is correct</li>
-          </ul>
-        </li>
-      </ol>
-    </div>
-
-    <p style="margin-top:.75rem;">Here is the same section outlined using a consequentialist approach:</p>
-    <div class="outline-box">
-      <ol start="2">
-        <li>The Dilemma
-          <ul>
-            <li>The basic situation (in everyday language)</li>
-            <li>What consequentialism is</li>
-            <li>What intrinsic and instrumental value are</li>
-            <li>Describe the variety of things that are instrumentally valuable in this case</li>
-            <li>Explain that there is a tension about which is more valuable, and that's why this is a dilemma that needs to be solved</li>
-          </ul>
-        </li>
-      </ol>
-    </div>
-
-    <p style="margin-top:.75rem;">Each of these deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
-    <p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
-
-    <!-- EXPANDABLE: what belongs in each section -->
+    <!-- EXPANDABLE 1: How to structure your outline -->
     <div class="part" aria-expanded="false" style="margin-top:1.25rem;">
+      <button class="part-trigger" aria-controls="outline-structure-body" onclick="togglePart(this)">
+        <div class="trigger-left">
+          <h3 id="outline-structure-h">How to structure your outline</h3>
+        </div>
+        <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div class="part-body" id="outline-structure-body" role="region" aria-labelledby="outline-structure-h">
+        <div class="part-inner">
+          <p>Your paper will have sections. Just like you group sentences into paragraphs, you'll group paragraphs into sections. Here is an example of how to section your paper:</p>
+          <div class="outline-box">
+            <ol>
+              <li>Introduction</li>
+              <li>The Dilemma</li>
+              <li>My Contribution <em style="font-weight:400;">(this is where your main argument goes)</em></li>
+              <li>Possible Objections</li>
+              <li>Responses to Objections</li>
+              <li>Conclusion</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPANDABLE 2: A couple quick examples -->
+    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
+      <button class="part-trigger" aria-controls="outline-examples-body" onclick="togglePart(this)">
+        <div class="trigger-left">
+          <h3 id="outline-examples-h">A couple quick examples</h3>
+        </div>
+        <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div class="part-body" id="outline-examples-body" role="region" aria-labelledby="outline-examples-h">
+        <div class="part-inner">
+          <p>In each section, bullet out all of the important thoughts you want to get across relating to that topic. Here is what the Dilemma section might look like using a Kantian approach:</p>
+          <div class="outline-box">
+            <ol start="2">
+              <li>The Dilemma
+                <ul>
+                  <li>The basic situation (in everyday language)</li>
+                  <li>Explain the principle of humanity</li>
+                  <li>Describe how the principle of humanity could be seen as saying ___</li>
+                  <li>Describe how, alternatively, it could also be seen as saying ___</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): there is more than one way to apply the principle which might all seem reasonable at first, but I'm going to explain which one is correct</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p style="margin-top:.75rem;">And here is the same section using a consequentialist approach:</p>
+          <div class="outline-box">
+            <ol start="2">
+              <li>The Dilemma
+                <ul>
+                  <li>The basic situation (in everyday language)</li>
+                  <li>What consequentialism is</li>
+                  <li>What intrinsic and instrumental value are</li>
+                  <li>Describe the variety of things that are instrumentally valuable in this case</li>
+                  <li>Explain that there is a tension about which is more valuable, and that's why this is a dilemma that needs to be solved</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p style="margin-top:.75rem;">Each of these deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
+          <p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPANDABLE 3: What belongs in each section (with nested expandables per section) -->
+    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
       <button class="part-trigger" aria-controls="outline-detail-body" onclick="togglePart(this)">
         <div class="trigger-left">
           <h3 id="outline-detail-h">What belongs in each section of the paper</h3>
@@ -759,49 +783,99 @@
       <div class="part-body" id="outline-detail-body" role="region" aria-labelledby="outline-detail-h">
         <div class="part-inner">
 
-          <h4>Introduction</h4>
-          <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize — give the reader a reason to keep reading.</p>
+          <div class="part" aria-expanded="false">
+            <button class="part-trigger" aria-controls="sec-intro-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-intro-h">Introduction</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-intro-body" role="region" aria-labelledby="sec-intro-h">
+              <div class="part-inner">
+                <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize — give the reader a reason to keep reading.</p>
+              </div>
+            </div>
+          </div>
 
-          <h4>The Dilemma</h4>
-          <p>Explain the scenario and identify what makes it philosophically puzzling.</p>
-          <ul class="inline-list">
-            <li>Describe the scenario in your own words — don't just copy the prompt</li>
-            <li>Identify the specific philosophical question you need to answer</li>
-            <li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
-          </ul>
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-dilemma-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-dilemma-h">The Dilemma</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-dilemma-body" role="region" aria-labelledby="sec-dilemma-h">
+              <div class="part-inner">
+                <p>Explain the scenario and identify what makes it philosophically puzzling. Part of doing this well is explaining the theoretical lens you're using — that's what makes the dilemma visible in the first place.</p>
+                <ul class="inline-list">
+                  <li>Describe the scenario in your own words — don't just copy the prompt</li>
+                  <li>Identify the specific philosophical question you need to answer</li>
+                  <li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
+                  <li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
+                  <li>Explain why these particular concepts are relevant: What do they help us understand about the puzzle?</li>
+                  <li>Show how these concepts connect to the question you identified</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-          <h4>My Contribution — Explain the relevant concepts</h4>
-          <p>Explain the concepts relevant to whichever theory you chose — consequentialism or Kantian ethics.</p>
-          <ul class="inline-list">
-            <li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
-            <li>Explain why these particular concepts are relevant: What do they help us understand about the puzzle?</li>
-            <li>Show how these concepts connect to the question you identified</li>
-          </ul>
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-analysis-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-analysis-h">My Contribution</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-analysis-body" role="region" aria-labelledby="sec-analysis-h">
+              <div class="part-inner">
+                <p>Apply the concepts of your chosen theory to work through the question.</p>
+                <ul class="inline-list">
+                  <li>What are the key considerations your theory identifies in this case?</li>
+                  <li>Are those considerations in tension? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
+                  <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
+                  <li>Given your analysis — what is the right or best thing to do, and why?</li>
+                  <li>You may briefly acknowledge what the other theory might say, but your analysis should be grounded in the one you chose</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-          <h4>My Contribution — Analyze using those concepts</h4>
-          <p>Apply the concepts of your chosen theory to work through the question.</p>
-          <ul class="inline-list">
-            <li>What are the key considerations your theory identifies in this case?</li>
-            <li>Are those considerations in tension? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
-            <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
-            <li>Given your analysis — what is the right or best thing to do, and why?</li>
-            <li>You may briefly acknowledge what the other theory might say, but your analysis should be grounded in the one you chose</li>
-          </ul>
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-obj-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-obj-h">Possible Objections</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-obj-body" role="region" aria-labelledby="sec-obj-h">
+              <div class="part-inner">
+                <ul class="inline-list">
+                  <li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
+                  <li>What's the strongest version of an objection to your position?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-          <h4>Possible Objections</h4>
-          <ul class="inline-list">
-            <li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
-            <li>What's the strongest version of an objection to your position?</li>
-          </ul>
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-resp-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-resp-h">Responses to Objections</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-resp-body" role="region" aria-labelledby="sec-resp-h">
+              <div class="part-inner">
+                <ul class="inline-list">
+                  <li>How would you respond to each objection — without simply repeating your original argument?</li>
+                  <li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-          <h4>Responses to Objections</h4>
-          <ul class="inline-list">
-            <li>How would you respond to each objection — without simply repeating your original argument?</li>
-            <li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
-          </ul>
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-conc-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-conc-h">Conclusion</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-conc-body" role="region" aria-labelledby="sec-conc-h">
+              <div class="part-inner">
+                <p>Restate what you've established and why. Acknowledge remaining uncertainty without abandoning your argument.</p>
+              </div>
+            </div>
+          </div>
 
-          <h4>Conclusion</h4>
-          <p>Restate what you've established and why. Acknowledge remaining uncertainty without abandoning your argument.</p>
         </div>
       </div>
     </div>
