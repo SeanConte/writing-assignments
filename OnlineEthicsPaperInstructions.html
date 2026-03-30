@@ -135,7 +135,7 @@
     padding: 0 .9rem;
     display: flex; align-items: center; gap: .3rem;
     border-bottom: 3px solid transparent;
-    margin-bottom: -3px; /* sit on the nav border */
+    margin-bottom: -3px;
     transition: color .15s, border-color .15s;
     white-space: nowrap;
   }
@@ -175,6 +175,62 @@
   .dropdown a:hover { background: rgba(255,255,255,.1); color: #fff; }
   .dropdown a.active { background: rgba(255,255,255,.15); color: #fff; font-weight: 600; }
   .dropdown a:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: -2px; color: #fff; }
+
+  /* ── HAMBURGER (mobile only) ── */
+  .nav-hamburger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    color: #fff; font-size: 1.3rem; line-height: 1;
+    margin-left: auto; padding: 0 .25rem;
+    align-items: center;
+  }
+  .nav-hamburger:focus { outline: 2px solid rgba(255,255,255,.6); outline-offset: 2px; }
+
+  /* ── MOBILE NAV PANEL ── */
+  .mobile-nav {
+    display: none;
+    position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+    background: var(--ocean);
+    z-index: 190;
+    overflow-y: auto;
+    padding: .5rem 0 2rem;
+  }
+  .mobile-nav.open { display: block; }
+
+  .mobile-nav-section {
+    padding: .35rem 1.25rem .1rem;
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.45);
+  }
+  .mobile-nav a {
+    display: block;
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    font-size: .9rem; font-weight: 500;
+    padding: .7rem 1.5rem;
+    border-left: 3px solid transparent;
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .mobile-nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .mobile-nav a.active { color: #fff; font-weight: 600; border-left-color: #fff; background: rgba(255,255,255,.08); }
+  .mobile-nav a:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: -2px; color: #fff; }
+
+  /* ── RESPONSIVE BREAKPOINTS ── */
+  @media (max-width: 680px) {
+    .nav-items { display: none; }
+    .nav-hamburger { display: flex; }
+    nav { padding: 0 1rem; }
+    main { padding: 1.75rem 1rem 6rem; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .considerations-grid { grid-template-columns: 1fr; }
+    header { padding: 2rem 1rem 2rem; }
+    header h1 { font-size: 1.75rem; }
+  }
+
+  body.a11y .mobile-nav { background: #000; }
+  body.a11y .mobile-nav a { color: rgba(255,255,255,.9); }
+  body.a11y .mobile-nav a.active { color: #fff; border-left-color: #fff; }
+  body.a11y .nav-hamburger { color: #fff; }
 
   /* ── HEADER ── */
   header {
@@ -419,8 +475,33 @@
       <a href="#" id="nav-evaluation" onclick="navTo('evaluation', this); return false;">Evaluation</a>
     </div>
 
-  </div>
+  </div><!-- /nav-items -->
+
+  <button class="nav-hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" onclick="toggleMobileNav()">☰</button>
+
 </nav>
+
+<!-- MOBILE NAV PANEL -->
+<div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <div class="mobile-nav-section">Overview</div>
+  <a href="#" id="mnav-overview" onclick="mobileNavTo('overview'); return false;">Overview</a>
+
+  <div class="mobile-nav-section">Cases</div>
+  <a href="#" id="mnav-case-a" onclick="mobileNavTo('case-a'); return false;">Case A — Landlord &amp; Eviction</a>
+  <a href="#" id="mnav-case-b" onclick="mobileNavTo('case-b'); return false;">Case B — AI &amp; Free Will</a>
+  <a href="#" id="mnav-case-c" onclick="mobileNavTo('case-c'); return false;">Case C — Collective Responsibility</a>
+
+  <div class="mobile-nav-section">Parts</div>
+  <a href="#" id="mnav-part-0" onclick="mobileNavTo('part-0'); return false;">Part 0 — Notes</a>
+  <a href="#" id="mnav-part-1" onclick="mobileNavTo('part-1'); return false;">Part 1 — Outline</a>
+  <a href="#" id="mnav-part-2" onclick="mobileNavTo('part-2'); return false;">Part 2 — Outline Peer Review</a>
+  <a href="#" id="mnav-part-3" onclick="mobileNavTo('part-3'); return false;">Part 3 — Paper</a>
+  <a href="#" id="mnav-part-4" onclick="mobileNavTo('part-4'); return false;">Part 4 — Paper Peer Review</a>
+  <a href="#" id="mnav-part-5" onclick="mobileNavTo('part-5'); return false;">Part 5 — Revision</a>
+
+  <div class="mobile-nav-section">Evaluation</div>
+  <a href="#" id="mnav-evaluation" onclick="mobileNavTo('evaluation'); return false;">Evaluation</a>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -937,7 +1018,6 @@
 
 <script>
   // ── PAGE MAP ──
-  // maps a logical page id to its DOM page id
   const PAGE_MAP = {
     'overview':   'page-overview',
     'case-a':     'page-case-a',
@@ -952,49 +1032,69 @@
     'evaluation': 'page-evaluation',
   };
 
-  // which top-level nav button/link each page belongs to
   const NAV_PARENT = {
     'overview':   'nav-overview',
-    'case-a':     'nav-cases',
-    'case-b':     'nav-cases',
-    'case-c':     'nav-cases',
-    'part-0':     'nav-parts',
-    'part-1':     'nav-parts',
-    'part-2':     'nav-parts',
-    'part-3':     'nav-parts',
-    'part-4':     'nav-parts',
-    'part-5':     'nav-parts',
+    'case-a':     'nav-cases',  'case-b': 'nav-cases',  'case-c': 'nav-cases',
+    'part-0':     'nav-parts',  'part-1': 'nav-parts',  'part-2': 'nav-parts',
+    'part-3':     'nav-parts',  'part-4': 'nav-parts',  'part-5': 'nav-parts',
     'evaluation': 'nav-evaluation',
   };
 
   let currentPage = 'overview';
 
   function navTo(pageId, triggerEl) {
-    // hide all pages
+    // show correct page
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    // show target
     const target = document.getElementById(PAGE_MAP[pageId]);
     if (target) target.classList.add('active');
 
-    // clear all active states
+    // desktop nav active states
     document.querySelectorAll('.nav-item > button, .nav-item > a').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.dropdown a').forEach(el => el.classList.remove('active'));
-
-    // set active on top-level nav item
-    const parentId = NAV_PARENT[pageId];
-    if (parentId) {
-      const parentEl = document.getElementById(parentId);
-      if (parentEl) parentEl.classList.add('active');
-    }
-
-    // set active on dropdown item (if applicable)
-    const dropdownId = 'nav-' + pageId;
-    const dropdownEl = document.getElementById(dropdownId);
+    const parentEl = document.getElementById(NAV_PARENT[pageId]);
+    if (parentEl) parentEl.classList.add('active');
+    const dropdownEl = document.getElementById('nav-' + pageId);
     if (dropdownEl) dropdownEl.classList.add('active');
+
+    // mobile nav active states
+    document.querySelectorAll('.mobile-nav a').forEach(el => el.classList.remove('active'));
+    const mobileEl = document.getElementById('mnav-' + pageId);
+    if (mobileEl) mobileEl.classList.add('active');
 
     currentPage = pageId;
     window.scrollTo(0, 0);
   }
+
+  function mobileNavTo(pageId) {
+    navTo(pageId, null);
+    closeMobileNav();
+  }
+
+  // ── MOBILE NAV ──
+  function toggleMobileNav() {
+    const panel = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger-btn');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.textContent = isOpen ? '☰' : '✕';
+  }
+
+  function closeMobileNav() {
+    const panel = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger-btn');
+    panel.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '☰';
+  }
+
+  // close mobile nav on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeMobileNav();
+      document.activeElement.blur();
+    }
+  });
 
   // ── ACCORDION ──
   function togglePart(btn) {
@@ -1010,18 +1110,13 @@
     document.body.classList.toggle('a11y', a11yOn);
     document.getElementById('a11y-btn').setAttribute('aria-pressed', String(a11yOn));
     document.getElementById('a11y-label').textContent = a11yOn ? 'Standard Mode' : 'Accessibility Mode';
-    // expand all accordions in a11y mode
     document.querySelectorAll('.part').forEach(p => {
       p.setAttribute('aria-expanded', a11yOn ? 'true' : 'false');
     });
   }
 
-  // ── KEYBOARD: close dropdown on Escape ──
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      document.activeElement.blur();
-    }
-  });
+  // set initial active state on load
+  navTo('overview', null);
 </script>
 
 </body>
