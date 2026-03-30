@@ -419,6 +419,36 @@
   td { padding: 1rem; vertical-align: top; color: var(--mid); line-height: 1.55; }
   td:first-child { font-weight: 700; color: var(--slate); white-space: nowrap; font-size: .85rem; }
 
+  /* ── FORMAT TOGGLE ── */
+  .format-toggle {
+    display: flex; gap: .4rem; margin-bottom: 1.25rem;
+  }
+  .format-toggle button {
+    background: var(--white); border: 2px solid var(--border);
+    border-radius: 6px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem; font-weight: 600; color: var(--mid);
+    padding: .45rem 1rem; transition: all .15s;
+  }
+  .format-toggle button:hover { border-color: var(--teal-light); color: var(--teal); }
+  .format-toggle button:focus { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .format-toggle button.active { background: var(--ocean); border-color: var(--ocean); color: #fff; }
+  .format-panel { display: none; }
+  .format-panel.active { display: block; }
+  body.a11y .format-toggle button { border-color: #000; color: #000; }
+  body.a11y .format-toggle button.active { background: #000; border-color: #000; color: #fff; }
+  body.a11y .format-panel { display: block !important; }
+  body.a11y .format-toggle { display: none; }
+  body.a11y .format-panel-label { display: block; }
+  .format-panel-label {
+    display: none;
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--teal);
+    border-top: 2px solid var(--border);
+    padding-top: .75rem; margin-bottom: .5rem;
+  }
+  body.a11y .format-panel-label { color: #000; border-top-color: #000; }
+
   /* ── FOOTER ── */
   footer { background: var(--ocean); color: rgba(255,255,255,.65); text-align: center; padding: 1.4rem; font-size: .8rem; }
 
@@ -895,23 +925,51 @@
       <div class="page-num" aria-hidden="true">3</div>
       <h2>Part 2 — Outline Peer Review</h2>
     </div>
-    <p>You will be placed into groups of three within D2L. Further instructions are available in that discussion.</p>
-    <p style="margin-top:.75rem;">A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class (the two peer review discussions), so we will need to utilize them as much as possible to practice the skill of revising. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class (the two peer review discussions), so we will need to utilize them as much as possible to practice the skill of revising. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
 
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">When you receive feedback, ask yourself:</h3>
+    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+    <div class="format-toggle" role="group" aria-label="Select your class format">
+      <button class="active" onclick="toggleFormat(this, 'p2-online', 'p2-inperson')" id="p2-online-btn">For Online Classes</button>
+      <button onclick="toggleFormat(this, 'p2-inperson', 'p2-online')" id="p2-inperson-btn">For In Person Classes</button>
+    </div>
+
+    <div class="format-panel active" id="p2-online">
+      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
+      <p>You will be placed into groups of three within D2L. Go to the peer review discussion for this assignment and post your outline there. Read your group members' outlines and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. Your outline needs to be a real structural plan, not a sketch.</span>
+      </div>
+    </div>
+
+    <div class="format-panel" id="p2-inperson">
+      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
+      <p>Print off two copies of your outline and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch — and you need your printed copies.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+    <p>When reading your partner's outline, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <ul class="review-qs">
+      <li>Is the overall structure clear? Does the sequence of sections make sense, or are things in a confusing order?</li>
+      <li>Is the dilemma section doing enough work? Does it explain why the question is genuinely hard, or does it treat it as already settled?</li>
+      <li>Is the theory or framework being applied actually connected to the case, or does it feel abstract and generic?</li>
+      <li>Is there a real position being taken and defended, or is the paper just presenting multiple views without committing?</li>
+      <li>Are the objections genuine — the strongest version of a challenge to the argument — or are they weak or strawman versions?</li>
+      <li>What is missing? What would you want to see that isn't there?</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
     <ul class="review-qs">
       <li>What worked well? What did the reviewers seem to like?</li>
       <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
       <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
     </ul>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">After the discussion</h3>
-    <p>Consider your feedback and adjust your outline before you begin the full writing process. Change the sections, paragraphs, etc. so that you're building from the right blueprint. The outline does you no good if it's obsolete.</p>
-
-    <div class="callout" role="note">
-      <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span>There will be an automatic deduction for being under-prepared for the peer review discussion. Be sure to stay up to date with the schedule in D2L.</span>
-    </div>
+    <p style="margin-top:.75rem;">Consider your feedback and adjust your outline before you begin the full writing process. Change the sections, paragraphs, etc. so that you're building from the right blueprint. The outline does you no good if it's obsolete.</p>
   </div>
 
 
@@ -960,20 +1018,51 @@
       <div class="page-num" aria-hidden="true">3</div>
       <h2>Part 4 — Paper Peer Review</h2>
     </div>
-    <p>You will be placed into new groups of three within D2L. Further instructions are available in that discussion.</p>
-    <p style="margin-top:.75rem;">A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class, so we will need to utilize them as much as possible. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class, so we will need to utilize them as much as possible. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
 
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">When you receive feedback, ask yourself:</h3>
+    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+    <div class="format-toggle" role="group" aria-label="Select your class format">
+      <button class="active" onclick="toggleFormat(this, 'p4-online', 'p4-inperson')" id="p4-online-btn">For Online Classes</button>
+      <button onclick="toggleFormat(this, 'p4-inperson', 'p4-online')" id="p4-inperson-btn">For In Person Classes</button>
+    </div>
+
+    <div class="format-panel active" id="p4-online">
+      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
+      <p>You will be placed into new groups of three within D2L. Go to the peer review discussion for this assignment and post your completed paper there. Read your group members' papers and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own — do not treat this as a rough draft.</span>
+      </div>
+    </div>
+
+    <div class="format-panel" id="p4-inperson">
+      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
+      <p>Print off two copies of your paper and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own — do not treat this as a rough draft — and you need your printed copies.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+    <p>When reading your partner's paper, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <ul class="review-qs">
+      <li>Is the case explained clearly and in the writer's own words, or does it feel like a paraphrase of the prompt?</li>
+      <li>Is the philosophical question clearly identified, and does the paper explain why it's genuinely difficult?</li>
+      <li>Are the relevant concepts explained accurately and in enough detail that someone unfamiliar with the course would understand them?</li>
+      <li>Does the analysis actually apply the theory to the case, or does it just describe the theory in the abstract?</li>
+      <li>Is a clear position taken and defended with argument, or is the paper just presenting views without committing?</li>
+      <li>Are the objections genuine and well-stated? Does the response to them actually engage with the challenge, or just restate the original argument?</li>
+      <li>What is the single most important thing the writer could do to make this paper stronger?</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
     <ul class="review-qs">
       <li>What worked well? What did the reviewers seem to like?</li>
       <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
       <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
     </ul>
-
-    <div class="callout" role="note">
-      <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span>There will be an automatic deduction for being under-prepared for the peer review discussion. Be sure to stay up to date with the schedule in D2L.</span>
-    </div>
   </div>
 
 
@@ -1169,6 +1258,14 @@
       document.activeElement.blur();
     }
   });
+
+  // ── FORMAT TOGGLE ──
+  function toggleFormat(btn, showId, hideId) {
+    document.getElementById(showId).classList.add('active');
+    document.getElementById(hideId).classList.remove('active');
+    btn.classList.add('active');
+    btn.parentElement.querySelectorAll('button').forEach(b => { if (b !== btn) b.classList.remove('active'); });
+  }
 
   // ── ACCORDION ──
   function togglePart(btn) {
