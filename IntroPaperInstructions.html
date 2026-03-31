@@ -406,6 +406,8 @@
   .outline-box > ol > li { font-weight: 600; color: var(--slate); margin-bottom: .4rem; }
   .outline-box li ul { padding-left: 1.1rem; margin-top: .2rem; list-style: disc; }
   .outline-box li ul li { font-weight: 400; color: var(--mid); margin-bottom: .15rem; font-size: .85rem; }
+  .outline-box li ul li ul { padding-left: 1rem; margin-top: .15rem; list-style: circle; }
+  .outline-box li ul li ul li { font-size: .8rem; color: var(--muted, var(--mid)); }
 
   /* ── SECTION LABEL (inside parts page) ── */
   .section-lede { font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); font-weight: 700; margin-bottom: .75rem; }
@@ -654,27 +656,7 @@
     </ol>
 
     <div class="divider" aria-hidden="true"></div>
-
-    <p class="section-lede" style="margin-bottom:.9rem;">Key Considerations</p>
-    <p style="font-size:.875rem; color:var(--mid); margin-bottom:.9rem;">Keep these in mind at every stage. They map directly to the rubric.</p>
-    <div class="considerations-grid">
-      <div class="consideration-item">
-        <h4>1. Explain Accurately</h4>
-        <p>Present course concepts in enough detail that someone unfamiliar with the course could understand them. Explain views fairly, as a proponent would recognize them.</p>
-      </div>
-      <div class="consideration-item">
-        <h4>2. Apply or Connect</h4>
-        <p>Use the philosophical ideas to do something: analyze a case, defend a thesis, work through a problem. The concepts should do genuine work, not just be described abstractly.</p>
-      </div>
-      <div class="consideration-item">
-        <h4>3. Engage Deeply</h4>
-        <p>Go beyond surface-level observations. Find interesting philosophical questions and recognize complications, tensions, or nuances in addressing them.</p>
-      </div>
-      <div class="consideration-item">
-        <h4>4. Reason Carefully</h4>
-        <p>Support your claims with arguments, not mere assertions. Avoid circular reasoning. Be clear about what you have established and why. Acknowledge genuine limitations without undermining your entire argument.</p>
-      </div>
-    </div>
+    <p style="font-size:.875rem; color:var(--mid);">For the key things to keep in mind while writing, refer to the Evaluation Rubric.</p>
 
     <div class="divider" aria-hidden="true"></div>
     <p class="section-lede" style="margin-bottom:.75rem;">Go to</p>
@@ -889,10 +871,16 @@
             <ol start="2">
               <li>The Dilemma
                 <ul>
-                  <li>The basic situation (in everyday language)</li>
-                  <li>The view of personal identity I'm working with, and what it says identity consists in</li>
-                  <li>How that view handles cleaner cases without much difficulty</li>
-                  <li>Drive home the point (i.e. what is the problem you'll solve): Dana's case is different because the view seems to imply more than one answer, or the answer it gives is hard to accept</li>
+                  <li>The basic situation (the basic facts without philosophy terms)</li>
+                  <li>The key philosophical question: ___</li>
+                  <li>The view I am working with, and what it says identity consists in
+                    <ul>
+                      <li>example that illustrates the view in a clean case</li>
+                    </ul>
+                  </li>
+                  <li>What the view says about the first body after the procedure</li>
+                  <li>What the view says about the second body after the procedure</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): the view seems to give the same answer about both, which creates a problem</li>
                 </ul>
               </li>
             </ol>
@@ -903,9 +891,14 @@
             <ol start="2">
               <li>The Dilemma
                 <ul>
-                  <li>The basic situation (in everyday language)</li>
+                  <li>The basic situation (the basic facts without philosophy terms)</li>
+                  <li>The key philosophical question: ___</li>
                   <li>Why free will matters for responsibility and blame</li>
-                  <li>The view I am working with, e.g. a simple case where it clearly applies</li>
+                  <li>The view I am working with
+                    <ul>
+                      <li>example that illustrates the view in a clear case</li>
+                    </ul>
+                  </li>
                   <li>Why the view gives an intuitive answer on Monday</li>
                   <li>Why Tuesday is less comfortable</li>
                   <li>Drive home the point (i.e. what is the problem you'll solve): it's not obvious what makes Monday and Tuesday different in a way that should matter to whether she was free</li>
@@ -919,9 +912,27 @@
             <ol start="2">
               <li>The Dilemma
                 <ul>
-                  <li>The basic situation (in everyday language)</li>
-                  <li>What the relevant epistemic concerns are, e.g. prediction, falsification, precision, accuracy, and why these are the right standards for evaluating theories</li>
-                  <li>Describe what each theory has going for it in light of those standards</li>
+                  <li>The basic situation (the basic facts without philosophy terms)</li>
+                  <li>The key philosophical question: ___</li>
+                  <li>What the relevant epistemic standards are and why they're the right ones for evaluating theories
+                    <ul>
+                      <li>Standard #1: ___
+                        <ul>
+                          <li>What it means</li>
+                          <li>How it applies to theory evaluation generally</li>
+                        </ul>
+                      </li>
+                      <li>Standard #2: ___
+                        <ul>
+                          <li>What it means</li>
+                          <li>How it applies to theory evaluation generally</li>
+                        </ul>
+                      </li>
+                      <li>Standard #3: ___ (etc.)</li>
+                    </ul>
+                  </li>
+                  <li>What Genly's theory has going for it in light of those standards</li>
+                  <li>What Estraven's theory has going for it in light of those standards</li>
                   <li>Drive home the point (i.e. what is the problem you'll solve): each theory has at least some claim to being better, so the problem is which one we should choose</li>
                 </ul>
               </li>
