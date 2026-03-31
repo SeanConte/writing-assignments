@@ -8,15 +8,15 @@
 <style>
   /* ── TOKENS ── */
   :root {
-    --ocean:       #7a1520;
-    --teal:        #9e2a2b;
-    --teal-light:  #c0392b;
-    --teal-pale:   #fce8e8;
-    --teal-ghost:  #fdf3f3;
+    --ocean:       #0f4c75;
+    --teal:        #1b7a8a;
+    --teal-light:  #22a3b8;
+    --teal-pale:   #e4f4f7;
+    --teal-ghost:  #f0fafb;
     --slate:       #1e2d3d;
-    --mid:         #4a2020;
-    --border:      #e8c8c8;
-    --bg:          #fdf8f8;
+    --mid:         #3a5268;
+    --border:      #cde2e8;
+    --bg:          #f7fbfc;
     --white:       #ffffff;
     --strong-fg:   #1a7a4a;
     --strong-bg:   #e8f6ee;
@@ -66,6 +66,11 @@
   body.a11y .chevron { display: none; }
   body.a11y .part-body { display: block !important; }
   body.a11y .part > .part-body { display: block !important; }
+  body.a11y .case-switcher { display: none; }
+  body.a11y [id^="page-case-b"] .page-heading,
+  body.a11y [id^="page-case-b"] > p,
+  body.a11y [id^="page-case-c"] .page-heading,
+  body.a11y [id^="page-case-c"] > p { display: none; }
   body.a11y .case-header { background: #000; }
   body.a11y .case-header h3 { color: #fff; }
   body.a11y .scenario-block { background: #f2f2f2; border-color: #000; border-left-color: #000; }
@@ -618,7 +623,7 @@
       <div class="pill" role="listitem"><strong>Due dates</strong>&nbsp; See syllabus</div>
     </div>
     <div class="header-note" role="note">
-      <strong>Writing location:</strong> Everything — from your first scratch to the final draft — must be written in Personify.ai. The link is in the D2L assignment description. Do not paste large blocks of text from elsewhere.
+      <strong>Writing location:</strong> Everything, from your first scratch to the final draft, must be written in Personify.ai. The link is in the D2L assignment description. Do not paste large blocks of text from elsewhere.
     </div>
   </div>
 </header>
@@ -659,7 +664,7 @@
       </div>
       <div class="consideration-item">
         <h4>2. Apply or Connect</h4>
-        <p>Use the philosophical ideas to do something — analyze a case, defend a thesis, work through a problem. The concepts should do genuine work, not just be described abstractly.</p>
+        <p>Use the philosophical ideas to do something: analyze a case, defend a thesis, work through a problem. The concepts should do genuine work, not just be described abstractly.</p>
       </div>
       <div class="consideration-item">
         <h4>3. Engage Deeply</h4>
@@ -696,7 +701,7 @@
       <div class="page-num" aria-hidden="true">2</div>
       <h2>Cases</h2>
     </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case. See the note under your chosen case.</p>
     <div class="case-switcher" role="group" aria-label="Choose a case">
       <button class="case-switch-btn active" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
       <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — Free Will</button>
@@ -707,12 +712,12 @@
       <div class="case-body">
         <div class="scenario-block">
           <p>Dana is a space explorer. Before her next mission, she is discovered to have also been a bank robber on the side. At the time this is discovered, there is no dispute about who Dana is or that she did the robbing.</p>
-          <p>Before she is arrested, Dana undergoes a transport procedure required for her mission. Over a very short period of time, Dana's body is scanned at the molecular level. As each molecule is scanned, a corresponding molecule is assembled at the destination, arranged to match Dana's complete physical and psychological structure. At the same time, Dana's original molecules are removed and stored. Dana's expressed wishes are that these original molecules are never touched again. But several days later (against her wishes), those original molecules are reassembled according to the same recorded structure.</p>
-          <p>For a brief interval during the process, no body exists that is Dana. After the procedure, three things exist: a functioning body at the destination composed of newly assembled material (with Dana's memories and sense of continuity), a functioning body reassembled days later from Dana's original material (also with Dana's memories and character), and the complete informational record used to assemble both. Both bodies are utterly devastated and don't know how they should feel about their own identity.</p>
+          <p>Before she is arrested, Dana undergoes a transport procedure required for her mission. Over a very short period of time, Dana's body is scanned at the molecular level. As each molecule is scanned, a corresponding molecule is assembled at the destination, arranged to match Dana's complete physical and psychological structure. At the same time, Dana's original molecules are removed and stored. Dana's expressed wishes are that these original molecules are never touched again. But several days later, against her wishes, those original molecules are reassembled according to the same recorded structure.</p>
+          <p>For a brief interval during the process, no body exists that is Dana. After the procedure, three things exist: a functioning body at the destination composed of newly assembled material (with Dana's memories and sense of continuity), a functioning body reassembled days later from Dana's original material (also with Dana's memories and character), and the complete informational record used to assemble both. Both bodies are utterly devastated and unsure how to feel about their own identity.</p>
         </div>
         <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
           <span class="callout-icon" aria-hidden="true">📌</span>
-          <span><strong>Concept requirement:</strong> Choose one view of personal identity from class — the soul view, the body/physical continuity view, the psychological continuity view, or nihilism about the self — and use it to answer the question. Pick one and defend it.</span>
+          <span><strong>Concept requirement:</strong> Choose one view of personal identity from class: the soul view, the body/physical continuity view, the psychological continuity view, or nihilism about the self. Work within that view: apply it to Dana's case carefully, work out the internal difficulties it faces, and respond to the objections someone skeptical of your view would raise.</span>
         </div>
         <p style="margin-top:1rem;"><strong>Your question:</strong> Who should be held accountable for robbing banks? The focus is not about morality or practicality, but about identifying who is Dana. What is the thing, after the procedure, that is numerically identical to the person that was robbing banks before the procedure?</p>
       </div>
@@ -727,7 +732,7 @@
       <div class="page-num" aria-hidden="true">2</div>
       <h2>Cases</h2>
     </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case. See the note under your chosen case.</p>
     <div class="case-switcher" role="group" aria-label="Choose a case">
       <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
       <button class="case-switch-btn active" onclick="navTo('case-b', this)">Case B — Free Will</button>
@@ -737,15 +742,15 @@
       <div class="case-header"><h3>Case B: Free Will</h3></div>
       <div class="case-body">
         <div class="scenario-block">
-          <p>Louise is deciding whether to call a coworker concerning a potential problem with the product they're putting to market. She considers calling, but also thinks it might be better to wait until the weekend. After reflecting for a moment, Louise decides not to call that night.</p>
+          <p>Louise is deciding whether to call a coworker concerning a potential problem with the product they're putting to market. She considers calling, but also thinks it might be better to wait until the weekend. After reflecting, Louise decides not to call that night.</p>
           <p>Unknown to Louise, while she is deliberating, there is a temporary service disruption affecting her phone's ability to contact her colleagues. It is impossible for Louise to make a successful call that evening or at any other time during the weekend. Even if she had tried to place the call, no connection could have been made.</p>
-          <p>On the Monday after the weekend, Louise finds that the problem she was worried about actually occurred, and the company is facing serious consequences. Her colleagues blame her for not calling. On Tuesday, they learn about the service disruption — that it would have been impossible for her to call even if she wanted to. The colleagues are split on whether this changes anything. On Wednesday, they learn the disruption was deliberately engineered by someone who knew about the flaw and wanted to destroy the company. The colleagues agree the hacker is at least partially responsible, but some still think Louise did something wrong.</p>
+          <p>On the Monday after the weekend, Louise finds that the problem she was worried about actually occurred, and the company is facing serious consequences. Her colleagues blame her for not calling. On Tuesday, they learn about the service disruption, that it would have been impossible for her to call even if she wanted to. The colleagues are split on whether this changes anything. On Wednesday, they learn the disruption was deliberately engineered by someone who knew about the flaw and wanted to destroy the company. The colleagues agree the hacker is at least partially responsible, but some still think Louise did something wrong.</p>
         </div>
         <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
           <span class="callout-icon" aria-hidden="true">📌</span>
-          <span><strong>Concept requirement:</strong> Frame your answer using the compatibilism/incompatibilism distinction. Define what free will means, then use that definition to evaluate Louise's situation at each stage.</span>
+          <span><strong>Concept requirement:</strong> Choose either compatibilism or incompatibilism. Work within that view: apply it carefully to Louise's situation at each stage, work out the internal difficulties the case raises, and respond to the objections someone holding the other view would raise.</span>
         </div>
-        <p style="margin-top:1rem;"><strong>Your question:</strong> On Monday, were Louise's colleagues right to blame her — should they have judged her action to be free? On Tuesday, based on the information they had, were they right to criticize Louise? Finally, once the colleagues have all the information on Wednesday, should they consider Louise's decision free? More generally: what determines if Louise's action is free, and how should the details learned each day be understood in light of that definition?</p>
+        <p style="margin-top:1rem;"><strong>Your question:</strong> On Monday, were Louise's colleagues right to blame her? Should they have judged her action to be free? On Tuesday, based on the information they had, were they right to criticize Louise? Finally, once the colleagues have all the information on Wednesday, should they consider Louise's decision free? More generally: what determines if Louise's action is free, and how should the details learned each day be understood in light of that definition?</p>
       </div>
     </div>
   </div>
@@ -758,7 +763,7 @@
       <div class="page-num" aria-hidden="true">2</div>
       <h2>Cases</h2>
     </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case. See the note under your chosen case.</p>
     <div class="case-switcher" role="group" aria-label="Choose a case">
       <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
       <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — Free Will</button>
@@ -770,11 +775,11 @@
         <div class="scenario-block">
           <p>Earthquakes are notoriously difficult to predict. Scientists lack well-established methods for forecasting where and when they will occur, and it is an active area of research to come up with a reliable theory and methodology to do so.</p>
           <p>On May 1st, Genly proposes a new theory and predicts, based on the available data, that an earthquake will occur in a particular location between September 10th and September 17th. A few months go by, and an earthquake occurs in that location on September 18th.</p>
-          <p>On November 1st (after the earthquake occurs), Estraven proposes a new theory — not a development or refinement of Genly's, but a completely new approach. Their theory, given the same data available to Genly in May, predicts an earthquake would occur exactly on September 18th (which it did).</p>
+          <p>On November 1st (after the earthquake occurs), Estraven proposes a new theory, not a development or refinement of Genly's but a completely new approach. Their theory, given the same data available to Genly in May, predicts an earthquake would occur exactly on September 18th (which it did).</p>
         </div>
         <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
           <span class="callout-icon" aria-hidden="true">📌</span>
-          <span><strong>Concept requirement:</strong> Identify the epistemic values or standards you think are relevant for comparing theories — such as precision, accuracy, falsifiability, predictive novelty, or others from class. Construct and defend a view about which standards matter most and why, then use that view to evaluate the two theories.</span>
+          <span><strong>Concept requirement:</strong> Identify the epistemic values or standards you think are relevant for comparing theories, such as precision, accuracy, falsifiability, predictive novelty, or others from class. Construct and defend a view about which standards matter most and why, then use that view to evaluate the two theories.</span>
         </div>
         <p style="margin-top:1rem;"><strong>Your question:</strong> How should we evaluate which theory is better? What are the relevant epistemic features? What information here helps us make the decision and what else would be useful to know about the theories? Argue for which theory we should favor (if either) and explain what would strengthen our confidence in either going forward.</p>
       </div>
@@ -814,16 +819,16 @@
     <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Analyzing with those concepts</h3>
     <ul class="review-qs">
       <li>What do the relevant concepts or views say about your case? What does each one point toward?</li>
-      <li>Are there tensions — either between competing views, or within the view you're defending? What pulls in different directions?</li>
+      <li>Are there tensions, either between competing views or within the view you're defending? What pulls in different directions?</li>
       <li>What is the right way to navigate those tensions? Why that way and not another?</li>
-      <li>Given all of that — what is the right answer to the question, and why?</li>
+      <li>Given all of that, what is the right answer to the question, and why?</li>
     </ul>
 
     <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Objections and responses</h3>
     <ul class="review-qs">
       <li>What are some potential weaknesses in your argument? Where is it most vulnerable?</li>
       <li>Why might someone reject what you're saying? What's the strongest version of that objection?</li>
-      <li>How would you respond — without simply repeating your original argument?</li>
+      <li>How would you respond, without simply repeating your original argument?</li>
     </ul>
     <div class="part-arrows">
       <span class="part-arrow-spacer"></span>
@@ -885,29 +890,44 @@
               <li>The Dilemma
                 <ul>
                   <li>The basic situation (in everyday language)</li>
-                  <li>Explain the principle of humanity</li>
-                  <li>Describe how the principle of humanity could be seen as saying ___</li>
-                  <li>Describe how, alternatively, it could also be seen as saying ___</li>
-                  <li>Drive home the point (i.e. what is the problem you'll solve): there is more than one way to apply the principle which might all seem reasonable at first, but I'm going to explain which one is correct</li>
+                  <li>The view of personal identity I'm working with, and what it says identity consists in</li>
+                  <li>How that view handles cleaner cases without much difficulty</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): Dana's case is different because the view seems to imply more than one answer, or the answer it gives is hard to accept</li>
                 </ul>
               </li>
             </ol>
           </div>
-          <p style="margin-top:.75rem;">And here is the same section using a consequentialist approach:</p>
+
+          <p style="margin-top:.75rem;">Here is the same section for Case B (free will):</p>
           <div class="outline-box">
             <ol start="2">
               <li>The Dilemma
                 <ul>
                   <li>The basic situation (in everyday language)</li>
-                  <li>What psychological continuity means</li>
-                  <li>What intrinsic and instrumental value are</li>
-                  <li>Describe the variety of things that are instrumentally valuable in this case</li>
-                  <li>Explain that there is a tension about which is more valuable, and that's why this is a dilemma that needs to be solved</li>
+                  <li>Why free will matters for responsibility and blame</li>
+                  <li>The view I am working with, e.g. a simple case where it clearly applies</li>
+                  <li>Why the view gives an intuitive answer on Monday</li>
+                  <li>Why Tuesday is less comfortable</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): it's not obvious what makes Monday and Tuesday different in a way that should matter to whether she was free</li>
                 </ul>
               </li>
             </ol>
           </div>
-          <p style="margin-top:.75rem;">Each of these deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
+
+          <p style="margin-top:.75rem;">And here is the same section for Case C (theory evaluation):</p>
+          <div class="outline-box">
+            <ol start="2">
+              <li>The Dilemma
+                <ul>
+                  <li>The basic situation (in everyday language)</li>
+                  <li>What the relevant epistemic concerns are, e.g. prediction, falsification, precision, accuracy, and why these are the right standards for evaluating theories</li>
+                  <li>Describe what each theory has going for it in light of those standards</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): each theory has at least some claim to being better, so the problem is which one we should choose</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p style="margin-top:.75rem;">Each of these bullets deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
           <p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
         </div>
       </div>
@@ -931,7 +951,7 @@
             </button>
             <div class="part-body" id="sec-intro-body" role="region" aria-labelledby="sec-intro-h">
               <div class="part-inner">
-                <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize — give the reader a reason to keep reading.</p>
+                <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize. Give the reader a reason to keep reading.</p>
               </div>
             </div>
           </div>
@@ -945,7 +965,7 @@
               <div class="part-inner">
                 <p>Explain the scenario and identify what makes it philosophically puzzling. Part of doing this well is explaining the theoretical lens you're using — that's what makes the dilemma visible in the first place.</p>
                 <ul class="inline-list">
-                  <li>Describe the scenario in your own words — don't just copy the prompt</li>
+                  <li>Describe the scenario in your own words. Don't just copy the prompt</li>
                   <li>Identify the specific philosophical question you need to answer</li>
                   <li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
                   <li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
@@ -966,9 +986,9 @@
                 <p>Apply the concepts of your chosen theory to work through the question.</p>
                 <ul class="inline-list">
                   <li>What are the key considerations your theory identifies in this case?</li>
-                  <li>Are there tensions — either between competing views, or within the view you're defending? What pulls in different directions?</li>
+                  <li>Are there tensions, either between competing views or within the view you're defending? What pulls in different directions?</li>
                   <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
-                  <li>Given your analysis — what is the right or best thing to do, and why?</li>
+                  <li>Given your analysis, what is the right or best thing to do, and why?</li>
                   <li>You may briefly acknowledge what the other theory might say, but your analysis should be grounded in the one you chose</li>
                 </ul>
               </div>
@@ -985,6 +1005,7 @@
                 <ul class="inline-list">
                   <li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
                   <li>What's the strongest version of an objection to your position?</li>
+                  <li>What would someone holding a competing view say against your argument? What is the strongest version of that attack?</li>
                 </ul>
               </div>
             </div>
@@ -998,7 +1019,7 @@
             <div class="part-body" id="sec-resp-body" role="region" aria-labelledby="sec-resp-h">
               <div class="part-inner">
                 <ul class="inline-list">
-                  <li>How would you respond to each objection — without simply repeating your original argument?</li>
+                  <li>How would you respond to each objection, without simply repeating your original argument?</li>
                   <li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
                 </ul>
               </div>
@@ -1060,18 +1081,18 @@
       <p>Print off two copies of your outline and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
       <div class="callout" role="note" style="margin-top:.75rem;">
         <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch — and you need your printed copies.</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch. You also need your printed copies.</span>
       </div>
     </div>
 
     <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
-    <p>When reading your partner's outline, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <p>When reading your partner's outline, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
     <ul class="review-qs">
       <li>Is the overall structure clear? Does the sequence of sections make sense, or are things in a confusing order?</li>
       <li>Is the dilemma section doing enough work? Does it explain why the question is genuinely hard, or does it treat it as already settled?</li>
       <li>Is the theory or framework being applied actually connected to the case, or does it feel abstract and generic?</li>
       <li>Is there a real position being taken and defended, or is the paper just presenting multiple views without committing?</li>
-      <li>Are the objections genuine — the strongest version of a challenge to the argument — or are they weak or strawman versions?</li>
+      <li>Are the objections genuine, the strongest version of a challenge to the argument, or are they weak or strawman versions?</li>
       <li>What is missing? What would you want to see that isn't there?</li>
     </ul>
 
@@ -1109,18 +1130,18 @@
     <p>A few things to keep in mind while writing:</p>
     <ul class="inline-list" style="margin-top:.5rem;">
       <li>Define any terms before you use them</li>
-      <li>Discuss others' views — even those you disagree with — generously</li>
+      <li>Discuss others' views, even those you disagree with, generously</li>
       <li>Be as clear as possible about what your assumptions are, what your conclusion is, and how your assumptions are meant to justify that conclusion</li>
     </ul>
 
     <div class="tip" role="note">
       <span class="tip-icon" aria-hidden="true">📖</span>
-      <span>Otherwise, I will point you to Martinich's <em>Philosophical Writing</em>. That's probably overkill for what you need to do here. But if you're feeling lost, it is a good resource.</span>
+      <span>If you're feeling lost, I will point you to Martinich's <em>Philosophical Writing</em>. That's probably overkill for what you need to do here, but it is a good resource.</span>
     </div>
 
     <div class="callout" role="note" style="margin-top:.75rem;">
       <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span><strong>The paper should be as good as you can make it on your own.</strong> Do not think of this as a rough or incomplete draft — that will undermine any value of the comments you receive in the peer review.</span>
+      <span><strong>The paper should be as good as you can make it on your own.</strong> Do not think of this as a rough or incomplete draft. Treating it that way will undermine the value of the comments you receive in the peer review.</span>
     </div>
     <div class="part-arrows">
       <a class="part-arrow-btn" href="#" onclick="navTo('part-2', this); return false;">‹ Previous: Part 2 — Outline Peer Review</a>
@@ -1148,7 +1169,7 @@
       <p>You will be placed into new groups of three within D2L. Go to the peer review discussion for this assignment and post your completed paper there. Read your group members' papers and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
       <div class="callout" role="note" style="margin-top:.75rem;">
         <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own — do not treat this as a rough draft.</span>
+        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own. Do not treat this as a rough draft.</span>
       </div>
     </div>
 
@@ -1157,12 +1178,12 @@
       <p>Print off two copies of your paper and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
       <div class="callout" role="note" style="margin-top:.75rem;">
         <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own — do not treat this as a rough draft — and you need your printed copies.</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own. Do not treat this as a rough draft. You also need your printed copies.</span>
       </div>
     </div>
 
     <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
-    <p>When reading your partner's paper, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <p>When reading your partner's paper, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
     <ul class="review-qs">
       <li>Is the case explained clearly and in the writer's own words, or does it feel like a paraphrase of the prompt?</li>
       <li>Is the philosophical question clearly identified, and does the paper explain why it's genuinely difficult?</li>
@@ -1250,9 +1271,9 @@
           </tr>
           <tr>
             <td>Capturing the Issue</td>
-            <td>Accurately and fully represents the puzzle or media being analyzed. Shows clear understanding of what is at stake.</td>
-            <td>Represents the puzzle or media adequately but may miss some nuances or details. General understanding is present.</td>
-            <td>Misrepresents or misunderstands key aspects of the puzzle or media being analyzed.</td>
+            <td>Accurately and fully represents the case being analyzed. Shows clear understanding of what is at stake.</td>
+            <td>Represents the case adequately but may miss some nuances or details. General understanding is present.</td>
+            <td>Misrepresents or misunderstands key aspects of the case being analyzed.</td>
           </tr>
           <tr>
             <td>Application / Connection</td>
@@ -1326,7 +1347,12 @@
 
   let currentPage = 'overview';
 
+  const CASE_PAGES = new Set(['case-a','case-b','case-c']);
+
   function navTo(pageId, triggerEl) {
+    const wasCasePage = CASE_PAGES.has(currentPage);
+    const isCasePage  = CASE_PAGES.has(pageId);
+
     // show correct page
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     const target = document.getElementById(PAGE_MAP[pageId]);
@@ -1351,7 +1377,16 @@
     if (activeSwitcher) activeSwitcher.classList.add('active');
 
     currentPage = pageId;
-    window.scrollTo(0, 0);
+    // in a11y mode, show all cases when on a case page, hide extras when leaving
+    if (a11yOn) {
+      document.querySelectorAll('[id^="page-case-"]').forEach(pg => {
+        pg.style.display = isCasePage ? 'block' : '';
+        if (!isCasePage) pg.classList.remove('active');
+      });
+      if (isCasePage) target.classList.add('active');
+    }
+    // only reset scroll when navigating between top-level sections, not between cases
+    if (!(wasCasePage && isCasePage)) window.scrollTo(0, 0);
   }
 
   function mobileNavTo(pageId) {
@@ -1407,8 +1442,17 @@
     document.body.classList.toggle('a11y', a11yOn);
     document.getElementById('a11y-btn').setAttribute('aria-pressed', String(a11yOn));
     document.getElementById('a11y-label').textContent = a11yOn ? 'Standard Mode' : 'Accessibility Mode';
+    // expand all accordions
     document.querySelectorAll('.part').forEach(p => {
       p.setAttribute('aria-expanded', a11yOn ? 'true' : 'false');
+    });
+    // show all case pages if currently on a case page
+    const onCase = CASE_PAGES.has(currentPage);
+    document.querySelectorAll('[id^="page-case-"]').forEach(pg => {
+      pg.style.display = (a11yOn && onCase) ? 'block' : '';
+      if (!a11yOn) {
+        pg.classList.toggle('active', pg.id === 'page-' + currentPage);
+      }
     });
   }
 
