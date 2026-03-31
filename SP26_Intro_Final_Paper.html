@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intro Paper Instructions — Introduction to Philosophy</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+  /* ── TOKENS ── */
+  :root {
+    --ocean:       #7a1520;
+    --teal:        #9e2a2b;
+    --teal-light:  #c0392b;
+    --teal-pale:   #fce8e8;
+    --teal-ghost:  #fdf3f3;
+    --slate:       #1e2d3d;
+    --mid:         #4a2020;
+    --border:      #e8c8c8;
+    --bg:          #fdf8f8;
+    --white:       #ffffff;
+    --strong-fg:   #1a7a4a;
+    --strong-bg:   #e8f6ee;
+    --adequate-fg: #2a6496;
+    --adequate-bg: #e8f0f8;
+    --weak-fg:     #8b3a3a;
+    --weak-bg:     #f8eded;
+    --warn-border: #e8c84a;
+    --alert-bg:    #fff3cd;
+    --alert-text:  #5a4500;
+    --nav-h:       48px;
+  }
+
+  /* ── A11Y MODE ── */
+  body.a11y {
+    --ocean: #000; --teal: #000; --teal-light: #000;
+    --teal-pale: #fff; --teal-ghost: #f2f2f2;
+    --slate: #000; --mid: #000; --border: #000;
+    --bg: #fff; --white: #fff;
+    --strong-fg: #000; --strong-bg: #eee;
+    --adequate-fg: #000; --adequate-bg: #eee;
+    --weak-fg: #000; --weak-bg: #eee;
+    --warn-border: #000; --alert-bg: #f2f2f2; --alert-text: #000;
+    font-size: 18px;
+  }
+  body.a11y nav { background: #000; border-bottom-color: #000; }
+  body.a11y .nav-brand { color: #fff; border-right-color: rgba(255,255,255,.35); }
+  body.a11y .nav-item > button,
+  body.a11y .nav-item > a { color: rgba(255,255,255,.9); }
+  body.a11y .nav-item > button.active,
+  body.a11y .nav-item > a.active { color: #fff; border-bottom-color: #fff; }
+  body.a11y .dropdown { background: #000; border-color: #333; }
+  body.a11y .dropdown a { color: rgba(255,255,255,.85); }
+  body.a11y .dropdown a:hover,
+  body.a11y .dropdown a.active { background: #333; color: #fff; }
+  body.a11y header { background: #000; }
+  body.a11y .course-label { border-color: rgba(255,255,255,.5); color: #fff; background: transparent; }
+  body.a11y .pill { border-color: rgba(255,255,255,.5); color: #fff; background: transparent; }
+  body.a11y .pill strong { color: #fff; }
+  body.a11y .header-note { color: #fff; }
+  body.a11y h2 { color: #000; }
+  body.a11y .section-num { background: #000; color: #fff; border: 2px solid #000; }
+  body.a11y .outcome-item { background: #f2f2f2; border-color: #000; border-left-color: #000; }
+  body.a11y .outcome-num { color: #000; }
+  body.a11y .step-badge { background: #000; color: #fff; }
+  body.a11y .part-trigger h3 { color: #000; }
+  body.a11y .chevron { display: none; }
+  body.a11y .part-body { display: block !important; }
+  body.a11y .part > .part-body { display: block !important; }
+  body.a11y .case-header { background: #000; }
+  body.a11y .case-header h3 { color: #fff; }
+  body.a11y .scenario-block { background: #f2f2f2; border-color: #000; border-left-color: #000; }
+  body.a11y .consideration-item { border-color: #000; }
+  body.a11y .consideration-item h4 { color: #000; }
+  body.a11y .callout { background: #f2f2f2; border-color: #000; color: #000; }
+  body.a11y .tip { background: #f2f2f2; border-color: #000; color: #000; }
+  body.a11y .review-qs li { border-color: #000; }
+  body.a11y .review-qs li::before { color: #000; }
+  body.a11y .outline-box { background: #f2f2f2; border-color: #000; }
+  body.a11y .inline-list li { border-color: #000; }
+  body.a11y thead th { background: #eee !important; color: #000 !important; border-color: #000; }
+  body.a11y tbody tr:hover td { background: #f2f2f2; }
+  body.a11y footer { background: #000; color: rgba(255,255,255,.85); }
+  body.a11y #a11y-btn { background: #000; color: #fff; box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000; }
+  body.a11y .part-inner .part { border-color: #000; }
+
+  /* ── RESET ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--slate); font-size: 16px; line-height: 1.75; }
+
+  /* ── SKIP / SR ── */
+  .skip-link {
+    position: absolute; top: -999px; left: 1rem;
+    background: var(--ocean); color: #fff;
+    padding: .5rem 1rem; border-radius: 4px;
+    font-size: .85rem; font-weight: 600; z-index: 9999; text-decoration: none;
+  }
+  .skip-link:focus { top: .5rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    background: var(--ocean);
+    border-bottom: 3px solid var(--teal-light);
+    height: var(--nav-h);
+    display: flex; align-items: stretch;
+    padding: 0 1.5rem;
+    overflow: visible;
+  }
+  .nav-brand {
+    font-family: 'DM Serif Display', serif;
+    color: var(--teal-pale);
+    font-size: .8rem; letter-spacing: .03em;
+    white-space: nowrap;
+    display: flex; align-items: center;
+    padding-right: 1.1rem;
+    border-right: 1px solid rgba(255,255,255,.18);
+    margin-right: .4rem;
+    flex-shrink: 0;
+  }
+  .nav-items { display: flex; align-items: stretch; }
+
+  /* each nav item wrapper */
+  .nav-item { position: relative; display: flex; align-items: stretch; }
+
+  /* shared style for nav buttons and direct links */
+  .nav-item > button,
+  .nav-item > a {
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,.76);
+    font-family: 'DM Sans', sans-serif;
+    font-size: .78rem; font-weight: 600;
+    letter-spacing: .06em; text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 .9rem;
+    display: flex; align-items: center; gap: .3rem;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -3px;
+    transition: color .15s, border-color .15s;
+    white-space: nowrap;
+  }
+  .nav-item > button:hover,
+  .nav-item > a:hover { color: #fff; }
+  .nav-item > button:focus,
+  .nav-item > a:focus { outline: 2px solid rgba(255,255,255,.55); outline-offset: -2px; color: #fff; }
+  .nav-item > button.active,
+  .nav-item > a.active { color: #fff; border-bottom-color: #fff; }
+
+  .nav-caret { font-size: .6rem; opacity: .7; }
+
+  /* dropdown */
+  .dropdown {
+    display: none;
+    position: absolute; top: 100%; left: 0;
+    background: var(--ocean);
+    border: 1px solid rgba(255,255,255,.15);
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    min-width: 200px;
+    box-shadow: 0 8px 24px rgba(0,0,0,.3);
+    z-index: 300;
+  }
+  .nav-item:hover .dropdown,
+  .nav-item:focus-within .dropdown { display: block; }
+
+  .dropdown a {
+    display: block;
+    color: rgba(255,255,255,.8);
+    text-decoration: none;
+    font-size: .8rem; font-weight: 500;
+    padding: .6rem 1.1rem;
+    transition: background .12s, color .12s;
+    white-space: nowrap;
+  }
+  .dropdown a:hover { background: rgba(255,255,255,.1); color: #fff; }
+  .dropdown a.active { background: rgba(255,255,255,.15); color: #fff; font-weight: 600; }
+  .dropdown a:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: -2px; color: #fff; }
+
+  /* ── HAMBURGER (mobile only) ── */
+  .nav-hamburger {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    color: #fff; font-size: 1.3rem; line-height: 1;
+    margin-left: auto; padding: 0 .25rem;
+    align-items: center;
+  }
+  .nav-hamburger:focus { outline: 2px solid rgba(255,255,255,.6); outline-offset: 2px; }
+
+  /* ── MOBILE NAV PANEL ── */
+  .mobile-nav {
+    display: none;
+    position: fixed; top: var(--nav-h); left: 0; right: 0; bottom: 0;
+    background: var(--ocean);
+    z-index: 190;
+    overflow-y: auto;
+    padding: .5rem 0 2rem;
+  }
+  .mobile-nav.open { display: block; }
+
+  .mobile-nav-section {
+    padding: .35rem 1.25rem .1rem;
+    font-size: .68rem; font-weight: 700; letter-spacing: .1em;
+    text-transform: uppercase; color: rgba(255,255,255,.45);
+  }
+  .mobile-nav a {
+    display: block;
+    color: rgba(255,255,255,.82);
+    text-decoration: none;
+    font-size: .9rem; font-weight: 500;
+    padding: .7rem 1.5rem;
+    border-left: 3px solid transparent;
+    transition: background .12s, color .12s, border-color .12s;
+  }
+  .mobile-nav a:hover { background: rgba(255,255,255,.08); color: #fff; }
+  .mobile-nav a.active { color: #fff; font-weight: 600; border-left-color: #fff; background: rgba(255,255,255,.08); }
+  .mobile-nav a:focus { outline: 2px solid rgba(255,255,255,.5); outline-offset: -2px; color: #fff; }
+
+  /* ── RESPONSIVE BREAKPOINTS ── */
+  @media (max-width: 680px) {
+    .nav-items { display: none; }
+    .nav-hamburger { display: flex; }
+    nav { padding: 0 1rem; }
+    main { padding: 1.75rem 1rem 6rem; }
+    .outcomes-grid { grid-template-columns: 1fr; }
+    .considerations-grid { grid-template-columns: 1fr; }
+    header { padding: 2rem 1rem 2rem; }
+    header h1 { font-size: 1.75rem; }
+  }
+
+  body.a11y .mobile-nav { background: #000; }
+  body.a11y .mobile-nav a { color: rgba(255,255,255,.9); }
+  body.a11y .mobile-nav a.active { color: #fff; border-left-color: #fff; }
+  body.a11y .nav-hamburger { color: #fff; }
+
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--ocean) 0%, var(--teal) 100%);
+    color: white; padding: 3rem 2rem 2.75rem;
+  }
+  .header-inner { max-width: 880px; margin: 0 auto; }
+  .course-label {
+    display: inline-block;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.25);
+    border-radius: 4px; padding: .22rem .72rem;
+    font-size: .76rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 1rem; color: var(--teal-pale);
+  }
+  header h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.9rem, 5vw, 2.75rem);
+    line-height: 1.15; font-weight: 400; margin-bottom: 1.3rem;
+  }
+  .meta-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.25rem; }
+  .pill {
+    background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22);
+    border-radius: 20px; padding: .25rem .85rem;
+    font-size: .82rem; font-weight: 500; color: #fff;
+  }
+  .pill strong { color: #a8e6ef; }
+  .header-note {
+    font-size: .875rem; color: rgba(255,255,255,.92);
+    max-width: 680px;
+  }
+  .header-note strong { color: #fff; }
+
+  /* ── PAGES ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* ── MAIN ── */
+  main { max-width: 880px; margin: 0 auto; padding: 2.5rem 1.5rem 8rem; }
+
+  /* ── PAGE HEADER ROW ── */
+  .page-heading {
+    display: flex; align-items: center; gap: .75rem; margin-bottom: 1.5rem;
+  }
+  .page-num {
+    width: 2rem; height: 2rem; flex-shrink: 0;
+    background: var(--ocean); color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: .76rem; font-weight: 700;
+  }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.55rem; font-weight: 400; color: var(--ocean); }
+  h3 { font-size: 1rem; font-weight: 600; color: var(--slate); margin-bottom: .4rem; }
+
+  p { margin-bottom: .85rem; color: var(--mid); }
+  p:last-child { margin-bottom: 0; }
+  strong { color: var(--slate); }
+
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; margin-bottom: 1rem; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; list-style: none; }
+  @media (max-width: 580px) { .outcomes-grid { grid-template-columns: 1fr; } }
+  .outcome-item {
+    background: var(--teal-ghost); border: 1px solid var(--border);
+    border-left: 3px solid var(--teal-light); border-radius: 6px;
+    padding: .8rem 1rem; font-size: .875rem; color: var(--mid);
+    display: flex; gap: .6rem; align-items: flex-start;
+  }
+  .outcome-num { font-weight: 700; color: var(--teal); font-size: .78rem; flex-shrink: 0; padding-top: .05em; }
+
+  /* ── CONSIDERATIONS ── */
+  .considerations-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+  @media (max-width: 580px) { .considerations-grid { grid-template-columns: 1fr; } }
+  .consideration-item { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.1rem; }
+  .consideration-item h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); font-weight: 700; margin-bottom: .4rem; }
+  .consideration-item p { font-size: .875rem; margin: 0; }
+
+  /* ── CASE CARD ── */
+  .case-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+  .case-header { background: linear-gradient(90deg, var(--ocean), var(--teal)); padding: 1.15rem 1.5rem; }
+  .case-header h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; font-weight: 400; color: white; }
+  .case-body { padding: 1.5rem; }
+  .scenario-block {
+    background: var(--teal-ghost); border: 1px solid var(--border);
+    border-left: 3px solid var(--teal-light); border-radius: 0 6px 6px 0;
+    padding: 1rem 1.2rem; margin-bottom: .5rem;
+    font-size: .875rem; color: var(--mid);
+  }
+  .scenario-block p { margin-bottom: .6rem; }
+  .scenario-block p:last-child { margin-bottom: 0; }
+
+  /* ── ACCORDIONS (parts) ── */
+  .parts { display: flex; flex-direction: column; gap: .6rem; }
+  .part { border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--white); }
+  .part-trigger {
+    width: 100%; background: none; border: none; cursor: pointer;
+    padding: 1.05rem 1.4rem;
+    display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    text-align: left; transition: background .15s;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .part-trigger:hover { background: var(--teal-ghost); }
+  .part-trigger:focus { outline: 3px solid var(--teal-light); outline-offset: -3px; }
+  .trigger-left { display: flex; align-items: center; gap: .75rem; }
+  .step-badge {
+    background: var(--ocean); color: white;
+    font-size: .68rem; font-weight: 700;
+    padding: .18rem .5rem; border-radius: 4px;
+    text-transform: uppercase; letter-spacing: .05em; white-space: nowrap;
+  }
+  .part-trigger h3 { margin: 0; font-size: .95rem; font-weight: 600; color: var(--ocean); }
+  .chevron { color: var(--teal); font-size: 1rem; transition: transform .25s; flex-shrink: 0; }
+  .part[aria-expanded="true"] > .part-trigger > .chevron { transform: rotate(180deg); }
+  .part-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 1px solid var(--border); }
+  .part[aria-expanded="true"] > .part-body { display: block; }
+  .part-inner { padding-top: 1.1rem; }
+  .part-inner p { font-size: .9rem; }
+  .part-inner h4 { font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); font-weight: 700; margin: 1.25rem 0 .5rem; }
+  .part-inner h4:first-child { margin-top: 0; }
+
+  /* nested expandable */
+  .part-inner .part { background: var(--white); border-radius: 6px; }
+  .part-inner .part-trigger { border-radius: 6px; padding: .85rem 1.1rem; }
+  .part-inner .part[aria-expanded="true"] .part-trigger { border-radius: 6px 6px 0 0; }
+  .part-inner .part-trigger h3 { font-size: .88rem; color: var(--teal); }
+
+  /* ── CALLOUT / TIP ── */
+  .callout {
+    display: flex; gap: .75rem; align-items: flex-start;
+    background: var(--alert-bg); border: 1px solid var(--warn-border);
+    border-radius: 8px; padding: .85rem 1.1rem;
+    font-size: .875rem; color: var(--alert-text); margin-top: .75rem;
+  }
+  .tip {
+    display: flex; gap: .75rem; align-items: flex-start;
+    background: var(--teal-ghost); border: 1px solid var(--border);
+    border-radius: 8px; padding: .85rem 1.1rem;
+    font-size: .875rem; color: var(--mid); margin-top: .75rem;
+  }
+  .callout-icon, .tip-icon { font-size: 1.05rem; flex-shrink: 0; margin-top: .05em; }
+
+  /* ── LISTS ── */
+  .review-qs { list-style: none; display: flex; flex-direction: column; gap: .45rem; margin-top: .6rem; }
+  .review-qs li {
+    background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+    padding: .7rem 1rem; font-size: .875rem; color: var(--mid);
+    display: flex; gap: .6rem;
+  }
+  .review-qs li::before { content: '→'; color: var(--teal-light); font-weight: 700; flex-shrink: 0; }
+  .inline-list { list-style: none; display: flex; flex-direction: column; gap: .4rem; margin-top: .6rem; }
+  .inline-list li {
+    display: flex; gap: .65rem; align-items: flex-start;
+    font-size: .875rem; color: var(--mid);
+    padding: .55rem .9rem;
+    background: var(--white); border: 1px solid var(--border); border-radius: 6px;
+  }
+  .inline-list li::before { content: '–'; color: var(--teal); font-weight: 700; flex-shrink: 0; }
+
+  /* ── OUTLINE BOX ── */
+  .outline-box {
+    background: var(--teal-ghost); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.15rem 1.4rem;
+    font-size: .875rem; margin-top: .75rem;
+  }
+  .outline-box ol { padding-left: 1.2rem; }
+  .outline-box > ol > li { font-weight: 600; color: var(--slate); margin-bottom: .4rem; }
+  .outline-box li ul { padding-left: 1.1rem; margin-top: .2rem; list-style: disc; }
+  .outline-box li ul li { font-weight: 400; color: var(--mid); margin-bottom: .15rem; font-size: .85rem; }
+
+  /* ── SECTION LABEL (inside parts page) ── */
+  .section-lede { font-size: .82rem; text-transform: uppercase; letter-spacing: .07em; color: var(--teal); font-weight: 700; margin-bottom: .75rem; }
+
+  /* ── RUBRIC ── */
+  .rubric-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: .875rem; background: var(--white); }
+  thead th { padding: .85rem 1rem; text-align: left; font-weight: 700; font-size: .76rem; text-transform: uppercase; letter-spacing: .06em; border-bottom: 2px solid var(--border); }
+  thead th:first-child  { color: var(--ocean);       background: var(--teal-ghost);  }
+  thead th:nth-child(2) { color: var(--strong-fg);   background: var(--strong-bg);   }
+  thead th:nth-child(3) { color: var(--adequate-fg); background: var(--adequate-bg); }
+  thead th:nth-child(4) { color: var(--weak-fg);     background: var(--weak-bg);     }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover td { background: var(--teal-ghost); }
+  td { padding: 1rem; vertical-align: top; color: var(--mid); line-height: 1.55; }
+  td:first-child { font-weight: 700; color: var(--slate); white-space: nowrap; font-size: .85rem; }
+
+  /* ── PAGE NAV BUTTONS (overview) ── */
+  .page-nav-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: .75rem; margin-top: 2rem;
+  }
+  @media (max-width: 580px) { .page-nav-grid { grid-template-columns: 1fr; } }
+  .page-nav-btn {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    cursor: pointer; text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    transition: border-color .15s, background .15s;
+    display: flex; flex-direction: column; gap: .2rem;
+    text-decoration: none;
+  }
+  .page-nav-btn:hover { border-color: var(--teal-light); background: var(--teal-ghost); }
+  .page-nav-btn:focus { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .page-nav-btn .nav-btn-label {
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .08em; color: var(--teal);
+  }
+  .page-nav-btn .nav-btn-title {
+    font-size: .95rem; font-weight: 600; color: var(--slate);
+  }
+  body.a11y .page-nav-btn { border-color: #000; }
+  body.a11y .page-nav-btn:hover { background: #f2f2f2; }
+  body.a11y .page-nav-btn .nav-btn-label { color: #000; }
+  body.a11y .page-nav-btn .nav-btn-title { color: #000; }
+
+  /* ── CASE SWITCHER ── */
+  .case-switcher {
+    display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem;
+  }
+  .case-switch-btn {
+    background: var(--white); border: 2px solid var(--border);
+    border-radius: 6px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem; font-weight: 600; color: var(--mid);
+    padding: .5rem 1.1rem; transition: all .15s;
+  }
+  .case-switch-btn:hover { border-color: var(--teal-light); color: var(--teal); }
+  .case-switch-btn:focus { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .case-switch-btn.active { background: var(--ocean); border-color: var(--ocean); color: #fff; }
+  body.a11y .case-switch-btn { border-color: #000; color: #000; }
+  body.a11y .case-switch-btn.active { background: #000; border-color: #000; color: #fff; }
+
+  /* ── PART ARROW NAV ── */
+  .part-arrows {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 2.5rem; padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    gap: 1rem;
+  }
+  .part-arrow-btn {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .85rem; font-weight: 600; color: var(--mid);
+    padding: .65rem 1.1rem;
+    display: flex; align-items: center; gap: .5rem;
+    transition: border-color .15s, color .15s, background .15s;
+    text-decoration: none;
+  }
+  .part-arrow-btn:hover { border-color: var(--teal-light); color: var(--teal); background: var(--teal-ghost); }
+  .part-arrow-btn:focus { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .part-arrow-btn.next { margin-left: auto; }
+  .part-arrow-spacer { flex: 1; }
+  body.a11y .part-arrow-btn { border-color: #000; color: #000; }
+  body.a11y .part-arrow-btn:hover { background: #f2f2f2; }
+  body.a11y .part-arrows { border-top-color: #000; }
+
+  /* ── FORMAT TOGGLE ── */
+  .format-toggle {
+    display: flex; gap: .4rem; margin-bottom: 1.25rem;
+  }
+  .format-toggle button {
+    background: var(--white); border: 2px solid var(--border);
+    border-radius: 6px; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: .82rem; font-weight: 600; color: var(--mid);
+    padding: .45rem 1rem; transition: all .15s;
+  }
+  .format-toggle button:hover { border-color: var(--teal-light); color: var(--teal); }
+  .format-toggle button:focus { outline: 3px solid var(--teal-light); outline-offset: 2px; }
+  .format-toggle button.active { background: var(--ocean); border-color: var(--ocean); color: #fff; }
+  .format-panel { display: none; }
+  .format-panel.active { display: block; }
+  body.a11y .format-toggle button { border-color: #000; color: #000; }
+  body.a11y .format-toggle button.active { background: #000; border-color: #000; color: #fff; }
+  body.a11y .format-panel { display: block !important; }
+  body.a11y .format-toggle { display: none; }
+  body.a11y .format-panel-label { display: block; }
+  .format-panel-label {
+    display: none;
+    font-size: .72rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .1em; color: var(--teal);
+    border-top: 2px solid var(--border);
+    padding-top: .75rem; margin-bottom: .5rem;
+  }
+  body.a11y .format-panel-label { color: #000; border-top-color: #000; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ocean); color: rgba(255,255,255,.65); text-align: center; padding: 1.4rem; font-size: .8rem; }
+
+  /* ── A11Y BUTTON ── */
+  #a11y-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    background: var(--ocean); color: #fff; border: 2px solid transparent;
+    border-radius: 50px; padding: .62rem 1.1rem;
+    font-family: 'DM Sans', sans-serif; font-size: .82rem; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: .5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.22); transition: box-shadow .15s;
+  }
+  #a11y-btn:hover { box-shadow: 0 6px 22px rgba(0,0,0,.3); }
+  #a11y-btn:focus { outline: 3px solid var(--teal-light); outline-offset: 3px; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<!-- NAV -->
+<nav aria-label="Site navigation">
+  <div class="nav-brand">Intro Paper Instructions</div>
+  <div class="nav-items">
+
+    <div class="nav-item">
+      <a href="#" class="active" onclick="navTo('overview', this); return false;" id="nav-overview">Overview</a>
+    </div>
+
+    <div class="nav-item">
+      <button id="nav-cases" onclick="navTo('case-a', this); return false;" aria-haspopup="true">
+        Cases <span class="nav-caret">▾</span>
+      </button>
+      <div class="dropdown" role="menu">
+        <a href="#" role="menuitem" onclick="navTo('case-a', this); return false;" id="nav-case-a">Case A — Personal Identity</a>
+        <a href="#" role="menuitem" onclick="navTo('case-b', this); return false;" id="nav-case-b">Case B — Free Will</a>
+        <a href="#" role="menuitem" onclick="navTo('case-c', this); return false;" id="nav-case-c">Case C — Theory Evaluation</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <button id="nav-parts" onclick="navTo('part-0', this); return false;" aria-haspopup="true">
+        Parts <span class="nav-caret">▾</span>
+      </button>
+      <div class="dropdown" role="menu">
+        <a href="#" role="menuitem" onclick="navTo('part-0', this); return false;" id="nav-part-0">Part 0 — Take Notes</a>
+        <a href="#" role="menuitem" onclick="navTo('part-1', this); return false;" id="nav-part-1">Part 1 — Outline</a>
+        <a href="#" role="menuitem" onclick="navTo('part-2', this); return false;" id="nav-part-2">Part 2 — Outline Peer Review</a>
+        <a href="#" role="menuitem" onclick="navTo('part-3', this); return false;" id="nav-part-3">Part 3 — Paper</a>
+        <a href="#" role="menuitem" onclick="navTo('part-4', this); return false;" id="nav-part-4">Part 4 — Paper Peer Review</a>
+        <a href="#" role="menuitem" onclick="navTo('part-5', this); return false;" id="nav-part-5">Part 5 — Revision</a>
+      </div>
+    </div>
+
+    <div class="nav-item">
+      <a href="#" id="nav-evaluation" onclick="navTo('evaluation', this); return false;">Evaluation</a>
+    </div>
+
+  </div><!-- /nav-items -->
+
+  <button class="nav-hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" onclick="toggleMobileNav()">☰</button>
+
+</nav>
+
+<!-- MOBILE NAV PANEL -->
+<div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
+  <div class="mobile-nav-section">Overview</div>
+  <a href="#" id="mnav-overview" onclick="mobileNavTo('overview'); return false;">Overview</a>
+
+  <div class="mobile-nav-section">Cases</div>
+  <a href="#" id="mnav-case-a" onclick="mobileNavTo('case-a'); return false;">Case A — Personal Identity</a>
+  <a href="#" id="mnav-case-b" onclick="mobileNavTo('case-b'); return false;">Case B — Free Will</a>
+  <a href="#" id="mnav-case-c" onclick="mobileNavTo('case-c'); return false;">Case C — Theory Evaluation</a>
+
+  <div class="mobile-nav-section">Parts</div>
+  <a href="#" id="mnav-part-0" onclick="mobileNavTo('part-0'); return false;">Part 0 — Take Notes</a>
+  <a href="#" id="mnav-part-1" onclick="mobileNavTo('part-1'); return false;">Part 1 — Outline</a>
+  <a href="#" id="mnav-part-2" onclick="mobileNavTo('part-2'); return false;">Part 2 — Outline Peer Review</a>
+  <a href="#" id="mnav-part-3" onclick="mobileNavTo('part-3'); return false;">Part 3 — Paper</a>
+  <a href="#" id="mnav-part-4" onclick="mobileNavTo('part-4'); return false;">Part 4 — Paper Peer Review</a>
+  <a href="#" id="mnav-part-5" onclick="mobileNavTo('part-5'); return false;">Part 5 — Revision</a>
+
+  <div class="mobile-nav-section">Evaluation</div>
+  <a href="#" id="mnav-evaluation" onclick="mobileNavTo('evaluation'); return false;">Evaluation</a>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="course-label" aria-hidden="true">Introduction to Philosophy</div>
+    <h1>Intro Paper Instructions</h1>
+    <div class="meta-pills" role="list" aria-label="Assignment details">
+      <div class="pill" role="listitem"><strong>Length</strong>&nbsp; 1,200–1,500 words</div>
+      <div class="pill" role="listitem"><strong>Weight</strong>&nbsp; 30% of final grade (10% each part)</div>
+      <div class="pill" role="listitem"><strong>Format</strong>&nbsp; Double-spaced, 12pt, APA</div>
+      <div class="pill" role="listitem"><strong>Due dates</strong>&nbsp; See syllabus</div>
+    </div>
+    <div class="header-note" role="note">
+      <strong>Writing location:</strong> Everything — from your first scratch to the final draft — must be written in Personify.ai. The link is in the D2L assignment description. Do not paste large blocks of text from elsewhere.
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- ══════════════════════════════════════
+       PAGE: OVERVIEW
+  ══════════════════════════════════════ -->
+  <div class="page active" id="page-overview" role="main" aria-label="Overview">
+
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">1</div>
+      <h2>Overview</h2>
+    </div>
+
+    <div class="card">
+      <p>This assignment asks you to demonstrate your philosophical understanding and reasoning by analyzing a situation using the concepts and tools from class. Your goal is to demonstrate that you have developed your understanding of issues, honed skills, and are able to do more than regurgitate ideas.</p>
+      <p>You will choose one of three cases and analyze it using the relevant concepts from class. This assignment is known as a scaffolded assignment, which means it has multiple parts which build upon each other. A major part of the process is two peer review sessions, one on your outline and another on a completed version of the paper. Be aware: if you only have a small sketch with a few lines for your outline, or only an incomplete draft before the peer review discussions, that will count against your grade.</p>
+    </div>
+
+    <p class="section-lede">Learning Outcomes</p>
+    <ol class="outcomes-grid" aria-label="Course learning outcomes">
+      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">1</span>Distinguish and critically evaluate the major schools of philosophy.</li>
+      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">2</span>Demonstrate an understanding of the methods of philosophical thinking.</li>
+      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">4</span>Apply philosophical theories to current issues.</li>
+      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">5</span>Demonstrate philosophical and/or logical thinking through writing and other forms of assessment.</li>
+    </ol>
+
+    <div class="divider" aria-hidden="true"></div>
+
+    <p class="section-lede" style="margin-bottom:.9rem;">Key Considerations</p>
+    <p style="font-size:.875rem; color:var(--mid); margin-bottom:.9rem;">Keep these in mind at every stage. They map directly to the rubric.</p>
+    <div class="considerations-grid">
+      <div class="consideration-item">
+        <h4>1. Explain Accurately</h4>
+        <p>Present course concepts in enough detail that someone unfamiliar with the course could understand them. Explain views fairly, as a proponent would recognize them.</p>
+      </div>
+      <div class="consideration-item">
+        <h4>2. Apply or Connect</h4>
+        <p>Use the philosophical ideas to do something — analyze a case, defend a thesis, work through a problem. The concepts should do genuine work, not just be described abstractly.</p>
+      </div>
+      <div class="consideration-item">
+        <h4>3. Engage Deeply</h4>
+        <p>Go beyond surface-level observations. Find interesting philosophical questions and recognize complications, tensions, or nuances in addressing them.</p>
+      </div>
+      <div class="consideration-item">
+        <h4>4. Reason Carefully</h4>
+        <p>Support your claims with arguments, not mere assertions. Avoid circular reasoning. Be clear about what you have established and why. Acknowledge genuine limitations without undermining your entire argument.</p>
+      </div>
+    </div>
+
+    <div class="divider" aria-hidden="true"></div>
+    <p class="section-lede" style="margin-bottom:.75rem;">Go to</p>
+    <div class="page-nav-grid" role="list">
+      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('case-a', this); return false;">
+        <span class="nav-btn-title">Cases</span>
+      </a>
+      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('part-0', this); return false;">
+        <span class="nav-btn-title">Parts</span>
+      </a>
+      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('evaluation', this); return false;">
+        <span class="nav-btn-title">Evaluation</span>
+      </a>
+    </div>
+
+  </div><!-- /page-overview -->
+
+
+  <!-- ══════════════════════════════════════
+       PAGE: CASE A
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-case-a" role="main" aria-label="Case A: Personal Identity">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">2</div>
+      <h2>Cases</h2>
+    </div>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <div class="case-switcher" role="group" aria-label="Choose a case">
+      <button class="case-switch-btn active" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
+      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — Free Will</button>
+      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Theory Evaluation</button>
+    </div>
+    <div class="case-card">
+      <div class="case-header"><h3>Case A: Personal Identity</h3></div>
+      <div class="case-body">
+        <div class="scenario-block">
+          <p>Dana is a space explorer. Before her next mission, she is discovered to have also been a bank robber on the side. At the time this is discovered, there is no dispute about who Dana is or that she did the robbing.</p>
+          <p>Before she is arrested, Dana undergoes a transport procedure required for her mission. Over a very short period of time, Dana's body is scanned at the molecular level. As each molecule is scanned, a corresponding molecule is assembled at the destination, arranged to match Dana's complete physical and psychological structure. At the same time, Dana's original molecules are removed and stored. Dana's expressed wishes are that these original molecules are never touched again. But several days later (against her wishes), those original molecules are reassembled according to the same recorded structure.</p>
+          <p>For a brief interval during the process, no body exists that is Dana. After the procedure, three things exist: a functioning body at the destination composed of newly assembled material (with Dana's memories and sense of continuity), a functioning body reassembled days later from Dana's original material (also with Dana's memories and character), and the complete informational record used to assemble both. Both bodies are utterly devastated and don't know how they should feel about their own identity.</p>
+        </div>
+        <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
+          <span class="callout-icon" aria-hidden="true">📌</span>
+          <span><strong>Concept requirement:</strong> Choose one view of personal identity from class — the soul view, the body/physical continuity view, the psychological continuity view, or nihilism about the self — and use it to answer the question. Pick one and defend it.</span>
+        </div>
+        <p style="margin-top:1rem;"><strong>Your question:</strong> Who should be held accountable for robbing banks? The focus is not about morality or practicality, but about identifying who is Dana. What is the thing, after the procedure, that is numerically identical to the person that was robbing banks before the procedure?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: CASE B
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-case-b" role="main" aria-label="Case B: Free Will">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">2</div>
+      <h2>Cases</h2>
+    </div>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <div class="case-switcher" role="group" aria-label="Choose a case">
+      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
+      <button class="case-switch-btn active" onclick="navTo('case-b', this)">Case B — Free Will</button>
+      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Theory Evaluation</button>
+    </div>
+    <div class="case-card">
+      <div class="case-header"><h3>Case B: Free Will</h3></div>
+      <div class="case-body">
+        <div class="scenario-block">
+          <p>Louise is deciding whether to call a coworker concerning a potential problem with the product they're putting to market. She considers calling, but also thinks it might be better to wait until the weekend. After reflecting for a moment, Louise decides not to call that night.</p>
+          <p>Unknown to Louise, while she is deliberating, there is a temporary service disruption affecting her phone's ability to contact her colleagues. It is impossible for Louise to make a successful call that evening or at any other time during the weekend. Even if she had tried to place the call, no connection could have been made.</p>
+          <p>On the Monday after the weekend, Louise finds that the problem she was worried about actually occurred, and the company is facing serious consequences. Her colleagues blame her for not calling. On Tuesday, they learn about the service disruption — that it would have been impossible for her to call even if she wanted to. The colleagues are split on whether this changes anything. On Wednesday, they learn the disruption was deliberately engineered by someone who knew about the flaw and wanted to destroy the company. The colleagues agree the hacker is at least partially responsible, but some still think Louise did something wrong.</p>
+        </div>
+        <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
+          <span class="callout-icon" aria-hidden="true">📌</span>
+          <span><strong>Concept requirement:</strong> Frame your answer using the compatibilism/incompatibilism distinction. Define what free will means, then use that definition to evaluate Louise's situation at each stage.</span>
+        </div>
+        <p style="margin-top:1rem;"><strong>Your question:</strong> On Monday, were Louise's colleagues right to blame her — should they have judged her action to be free? On Tuesday, based on the information they had, were they right to criticize Louise? Finally, once the colleagues have all the information on Wednesday, should they consider Louise's decision free? More generally: what determines if Louise's action is free, and how should the details learned each day be understood in light of that definition?</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PAGE: CASE C
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-case-c" role="main" aria-label="Case C: Theory Evaluation">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">2</div>
+      <h2>Cases</h2>
+    </div>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. The concept requirements are specific to each case — see the note under your chosen case.</p>
+    <div class="case-switcher" role="group" aria-label="Choose a case">
+      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Personal Identity</button>
+      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — Free Will</button>
+      <button class="case-switch-btn active" onclick="navTo('case-c', this)">Case C — Theory Evaluation</button>
+    </div>
+    <div class="case-card">
+      <div class="case-header"><h3>Case C: Theory Evaluation</h3></div>
+      <div class="case-body">
+        <div class="scenario-block">
+          <p>Earthquakes are notoriously difficult to predict. Scientists lack well-established methods for forecasting where and when they will occur, and it is an active area of research to come up with a reliable theory and methodology to do so.</p>
+          <p>On May 1st, Genly proposes a new theory and predicts, based on the available data, that an earthquake will occur in a particular location between September 10th and September 17th. A few months go by, and an earthquake occurs in that location on September 18th.</p>
+          <p>On November 1st (after the earthquake occurs), Estraven proposes a new theory — not a development or refinement of Genly's, but a completely new approach. Their theory, given the same data available to Genly in May, predicts an earthquake would occur exactly on September 18th (which it did).</p>
+        </div>
+        <div class="callout" role="note" style="margin-top:1rem; margin-bottom:0;">
+          <span class="callout-icon" aria-hidden="true">📌</span>
+          <span><strong>Concept requirement:</strong> Identify the epistemic values or standards you think are relevant for comparing theories — such as precision, accuracy, falsifiability, predictive novelty, or others from class. Construct and defend a view about which standards matter most and why, then use that view to evaluate the two theories.</span>
+        </div>
+        <p style="margin-top:1rem;"><strong>Your question:</strong> How should we evaluate which theory is better? What are the relevant epistemic features? What information here helps us make the decision and what else would be useful to know about the theories? Argue for which theory we should favor (if either) and explain what would strengthen our confidence in either going forward.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       PAGE: PART 0
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-0" role="main" aria-label="Part 0: Notes">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 0 — Take Notes</h2>
+    </div>
+    <p>The assignment is broken into parts which build on each other. Be sure to check the due dates for each of the parts in your syllabus.</p>
+    <div class="callout" role="note" style="margin-top:.75rem; margin-bottom:1.25rem;">
+      <span class="callout-icon" aria-hidden="true">✍️</span>
+      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+    </div>
+    <p>Before you start outlining, spend some time with the case. Use the questions below to get your initial reactions down and start chewing on the philosophical issues. You don't need polished answers. The point is just to start thinking. Get your ideas on the page so you can start organizing and analyzing them.</p>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Introducing and clarifying the case</h3>
+    <ul class="review-qs">
+      <li>How would you describe the situation in your own words? What's actually going on here?</li>
+      <li>What is the specific philosophical question you need to answer?</li>
+      <li>Why is this question hard? What makes the answer unclear? What's at stake for the people involved?</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">The relevant concepts</h3>
+    <ul class="review-qs">
+      <li>What concepts, views, or frameworks from class are relevant to your case? See the concept requirement on your case page.</li>
+      <li>How would you explain those concepts to someone who hasn't taken this course?</li>
+      <li>How do those concepts connect to the specific question you identified?</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Analyzing with those concepts</h3>
+    <ul class="review-qs">
+      <li>What do the relevant concepts or views say about your case? What does each one point toward?</li>
+      <li>Are there tensions — either between competing views, or within the view you're defending? What pulls in different directions?</li>
+      <li>What is the right way to navigate those tensions? Why that way and not another?</li>
+      <li>Given all of that — what is the right answer to the question, and why?</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Objections and responses</h3>
+    <ul class="review-qs">
+      <li>What are some potential weaknesses in your argument? Where is it most vulnerable?</li>
+      <li>Why might someone reject what you're saying? What's the strongest version of that objection?</li>
+      <li>How would you respond — without simply repeating your original argument?</li>
+    </ul>
+    <div class="part-arrows">
+      <span class="part-arrow-spacer"></span>
+      <a class="part-arrow-btn next" href="#" onclick="navTo('part-1', this); return false;">Next: Part 1 — Outline ›</a>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: PART 1
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-1" role="main" aria-label="Part 1: Outline">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 1 — Outline</h2>
+    </div>
+    <div class="callout" role="note" style="margin-bottom:1.25rem;">
+      <span class="callout-icon" aria-hidden="true">✍️</span>
+      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+    </div>
+    <p>Plan the structure of your paper, including the key points that you will be making and how everything will be organized.</p>
+
+    <!-- EXPANDABLE 1: How to structure your outline -->
+    <div class="part" aria-expanded="false" style="margin-top:1.25rem;">
+      <button class="part-trigger" aria-controls="outline-structure-body" onclick="togglePart(this)">
+        <div class="trigger-left">
+          <h3 id="outline-structure-h">How to structure your outline</h3>
+        </div>
+        <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div class="part-body" id="outline-structure-body" role="region" aria-labelledby="outline-structure-h">
+        <div class="part-inner">
+          <p>Your paper will have sections. Just like you group sentences into paragraphs, you'll group paragraphs into sections. Here is an example of how to section your paper:</p>
+          <div class="outline-box">
+            <ol>
+              <li>Introduction</li>
+              <li>The Dilemma</li>
+              <li>My Contribution <em style="font-weight:400;">(this is where your main argument goes)</em></li>
+              <li>Possible Objections</li>
+              <li>Responses to Objections</li>
+              <li>Conclusion</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPANDABLE 2: A couple quick examples -->
+    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
+      <button class="part-trigger" aria-controls="outline-examples-body" onclick="togglePart(this)">
+        <div class="trigger-left">
+          <h3 id="outline-examples-h">A couple quick examples</h3>
+        </div>
+        <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div class="part-body" id="outline-examples-body" role="region" aria-labelledby="outline-examples-h">
+        <div class="part-inner">
+          <p>In each section, bullet out all of the important thoughts you want to get across relating to that topic. Here is what the Dilemma section might look like for Case A (personal identity):</p>
+          <div class="outline-box">
+            <ol start="2">
+              <li>The Dilemma
+                <ul>
+                  <li>The basic situation (in everyday language)</li>
+                  <li>Explain the principle of humanity</li>
+                  <li>Describe how the principle of humanity could be seen as saying ___</li>
+                  <li>Describe how, alternatively, it could also be seen as saying ___</li>
+                  <li>Drive home the point (i.e. what is the problem you'll solve): there is more than one way to apply the principle which might all seem reasonable at first, but I'm going to explain which one is correct</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p style="margin-top:.75rem;">And here is the same section using a consequentialist approach:</p>
+          <div class="outline-box">
+            <ol start="2">
+              <li>The Dilemma
+                <ul>
+                  <li>The basic situation (in everyday language)</li>
+                  <li>What psychological continuity means</li>
+                  <li>What intrinsic and instrumental value are</li>
+                  <li>Describe the variety of things that are instrumentally valuable in this case</li>
+                  <li>Explain that there is a tension about which is more valuable, and that's why this is a dilemma that needs to be solved</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+          <p style="margin-top:.75rem;">Each of these deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
+          <p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPANDABLE 3: What belongs in each section (with nested expandables per section) -->
+    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
+      <button class="part-trigger" aria-controls="outline-detail-body" onclick="togglePart(this)">
+        <div class="trigger-left">
+          <h3 id="outline-detail-h">What belongs in each section of the paper</h3>
+        </div>
+        <span class="chevron" aria-hidden="true">▼</span>
+      </button>
+      <div class="part-body" id="outline-detail-body" role="region" aria-labelledby="outline-detail-h">
+        <div class="part-inner">
+
+          <div class="part" aria-expanded="false">
+            <button class="part-trigger" aria-controls="sec-intro-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-intro-h">Introduction</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-intro-body" role="region" aria-labelledby="sec-intro-h">
+              <div class="part-inner">
+                <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize — give the reader a reason to keep reading.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-dilemma-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-dilemma-h">The Dilemma</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-dilemma-body" role="region" aria-labelledby="sec-dilemma-h">
+              <div class="part-inner">
+                <p>Explain the scenario and identify what makes it philosophically puzzling. Part of doing this well is explaining the theoretical lens you're using — that's what makes the dilemma visible in the first place.</p>
+                <ul class="inline-list">
+                  <li>Describe the scenario in your own words — don't just copy the prompt</li>
+                  <li>Identify the specific philosophical question you need to answer</li>
+                  <li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
+                  <li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
+                  <li>Explain why these particular concepts are relevant: What do they help us understand about the puzzle?</li>
+                  <li>Show how these concepts connect to the question you identified</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-analysis-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-analysis-h">My Contribution</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-analysis-body" role="region" aria-labelledby="sec-analysis-h">
+              <div class="part-inner">
+                <p>Apply the concepts of your chosen theory to work through the question.</p>
+                <ul class="inline-list">
+                  <li>What are the key considerations your theory identifies in this case?</li>
+                  <li>Are there tensions — either between competing views, or within the view you're defending? What pulls in different directions?</li>
+                  <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
+                  <li>Given your analysis — what is the right or best thing to do, and why?</li>
+                  <li>You may briefly acknowledge what the other theory might say, but your analysis should be grounded in the one you chose</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-obj-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-obj-h">Possible Objections</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-obj-body" role="region" aria-labelledby="sec-obj-h">
+              <div class="part-inner">
+                <ul class="inline-list">
+                  <li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
+                  <li>What's the strongest version of an objection to your position?</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-resp-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-resp-h">Responses to Objections</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-resp-body" role="region" aria-labelledby="sec-resp-h">
+              <div class="part-inner">
+                <ul class="inline-list">
+                  <li>How would you respond to each objection — without simply repeating your original argument?</li>
+                  <li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
+            <button class="part-trigger" aria-controls="sec-conc-body" onclick="togglePart(this)">
+              <div class="trigger-left"><h3 id="sec-conc-h">Conclusion</h3></div>
+              <span class="chevron" aria-hidden="true">▼</span>
+            </button>
+            <div class="part-body" id="sec-conc-body" role="region" aria-labelledby="sec-conc-h">
+              <div class="part-inner">
+                <p>Restate what you've established and why. Acknowledge remaining uncertainty without abandoning your argument.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" role="note" style="margin-top:1rem;">
+      <span class="callout-icon" aria-hidden="true">⚠️</span>
+      <span>There will be an automatic deduction for being under-prepared for the peer review discussion. If you only have a small sketch with a few lines, that will count against your grade. Your outline should be a real structural plan.</span>
+    </div>
+    <div class="part-arrows">
+      <a class="part-arrow-btn" href="#" onclick="navTo('part-0', this); return false;">‹ Previous: Part 0 — Take Notes</a>
+      <a class="part-arrow-btn next" href="#" onclick="navTo('part-2', this); return false;">Next: Part 2 — Outline Peer Review ›</a>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: PART 2
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-2" role="main" aria-label="Part 2: Outline Peer Review">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 2 — Outline Peer Review</h2>
+    </div>
+    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class (the two peer review discussions), so we will need to utilize them as much as possible to practice the skill of revising. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+    <div class="format-toggle" role="group" aria-label="Select your class format">
+      <button class="active" onclick="toggleFormat(this, 'p2-online', 'p2-inperson')" id="p2-online-btn">For Online Classes</button>
+      <button onclick="toggleFormat(this, 'p2-inperson', 'p2-online')" id="p2-inperson-btn">For In Person Classes</button>
+    </div>
+
+    <div class="format-panel active" id="p2-online">
+      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
+      <p>You will be placed into groups of three within D2L. Go to the peer review discussion for this assignment and post your outline there. Read your group members' outlines and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. Your outline needs to be a real structural plan, not a sketch.</span>
+      </div>
+    </div>
+
+    <div class="format-panel" id="p2-inperson">
+      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
+      <p>Print off two copies of your outline and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch — and you need your printed copies.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+    <p>When reading your partner's outline, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <ul class="review-qs">
+      <li>Is the overall structure clear? Does the sequence of sections make sense, or are things in a confusing order?</li>
+      <li>Is the dilemma section doing enough work? Does it explain why the question is genuinely hard, or does it treat it as already settled?</li>
+      <li>Is the theory or framework being applied actually connected to the case, or does it feel abstract and generic?</li>
+      <li>Is there a real position being taken and defended, or is the paper just presenting multiple views without committing?</li>
+      <li>Are the objections genuine — the strongest version of a challenge to the argument — or are they weak or strawman versions?</li>
+      <li>What is missing? What would you want to see that isn't there?</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
+    <ul class="review-qs">
+      <li>What worked well? What did the reviewers seem to like?</li>
+      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+    </ul>
+    <p style="margin-top:.75rem;">Consider your feedback and adjust your outline before you begin the full writing process. Change the sections, paragraphs, etc. so that you're building from the right blueprint. The outline does you no good if it's obsolete.</p>
+    <div class="part-arrows">
+      <a class="part-arrow-btn" href="#" onclick="navTo('part-1', this); return false;">‹ Previous: Part 1 — Outline</a>
+      <a class="part-arrow-btn next" href="#" onclick="navTo('part-3', this); return false;">Next: Part 3 — Paper ›</a>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: PART 3
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-3" role="main" aria-label="Part 3: Paper">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 3 — Paper</h2>
+    </div>
+    <div class="callout" role="note" style="margin-bottom:1.25rem;">
+      <span class="callout-icon" aria-hidden="true">✍️</span>
+      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+    </div>
+
+    <h3 style="margin-bottom:.4rem;">First: revise your outline</h3>
+    <p>Before you start writing, go back to your outline and update it based on the feedback you received. The outline does you no good if it's obsolete. Change the sections, add or remove bullets, rearrange things so that you're building from the right blueprint. If you're unsure how your outline should look, refer back to the Part 1 instructions.</p>
+
+    <h3 style="margin-top:1.25rem; margin-bottom:.4rem;">Then: turn your bullets into paragraphs</h3>
+    <p>Each bullet in your outline should become its own paragraph. Work section by section. For each bullet, ask yourself: what does someone need to understand for this point to make sense? What am I assuming they already know? What would make this clearer?</p>
+    <p>A few things to keep in mind while writing:</p>
+    <ul class="inline-list" style="margin-top:.5rem;">
+      <li>Define any terms before you use them</li>
+      <li>Discuss others' views — even those you disagree with — generously</li>
+      <li>Be as clear as possible about what your assumptions are, what your conclusion is, and how your assumptions are meant to justify that conclusion</li>
+    </ul>
+
+    <div class="tip" role="note">
+      <span class="tip-icon" aria-hidden="true">📖</span>
+      <span>Otherwise, I will point you to Martinich's <em>Philosophical Writing</em>. That's probably overkill for what you need to do here. But if you're feeling lost, it is a good resource.</span>
+    </div>
+
+    <div class="callout" role="note" style="margin-top:.75rem;">
+      <span class="callout-icon" aria-hidden="true">⚠️</span>
+      <span><strong>The paper should be as good as you can make it on your own.</strong> Do not think of this as a rough or incomplete draft — that will undermine any value of the comments you receive in the peer review.</span>
+    </div>
+    <div class="part-arrows">
+      <a class="part-arrow-btn" href="#" onclick="navTo('part-2', this); return false;">‹ Previous: Part 2 — Outline Peer Review</a>
+      <a class="part-arrow-btn next" href="#" onclick="navTo('part-4', this); return false;">Next: Part 4 — Paper Peer Review ›</a>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: PART 4
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-4" role="main" aria-label="Part 4: Paper Peer Review">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 4 — Paper Peer Review</h2>
+    </div>
+    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class, so we will need to utilize them as much as possible. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+    <div class="format-toggle" role="group" aria-label="Select your class format">
+      <button class="active" onclick="toggleFormat(this, 'p4-online', 'p4-inperson')" id="p4-online-btn">For Online Classes</button>
+      <button onclick="toggleFormat(this, 'p4-inperson', 'p4-online')" id="p4-inperson-btn">For In Person Classes</button>
+    </div>
+
+    <div class="format-panel active" id="p4-online">
+      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
+      <p>You will be placed into new groups of three within D2L. Go to the peer review discussion for this assignment and post your completed paper there. Read your group members' papers and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own — do not treat this as a rough draft.</span>
+      </div>
+    </div>
+
+    <div class="format-panel" id="p4-inperson">
+      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
+      <p>Print off two copies of your paper and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+      <div class="callout" role="note" style="margin-top:.75rem;">
+        <span class="callout-icon" aria-hidden="true">⚠️</span>
+        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own — do not treat this as a rough draft — and you need your printed copies.</span>
+      </div>
+    </div>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+    <p>When reading your partner's paper, use these questions to guide your feedback. Be specific — vague comments aren't useful.</p>
+    <ul class="review-qs">
+      <li>Is the case explained clearly and in the writer's own words, or does it feel like a paraphrase of the prompt?</li>
+      <li>Is the philosophical question clearly identified, and does the paper explain why it's genuinely difficult?</li>
+      <li>Are the relevant concepts explained accurately and in enough detail that someone unfamiliar with the course would understand them?</li>
+      <li>Does the analysis actually apply the theory to the case, or does it just describe the theory in the abstract?</li>
+      <li>Is a clear position taken and defended with argument, or is the paper just presenting views without committing?</li>
+      <li>Are the objections genuine and well-stated? Does the response to them actually engage with the challenge, or just restate the original argument?</li>
+      <li>What is the single most important thing the writer could do to make this paper stronger?</li>
+    </ul>
+
+    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
+    <ul class="review-qs">
+      <li>What worked well? What did the reviewers seem to like?</li>
+      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+    </ul>
+    <div class="part-arrows">
+      <a class="part-arrow-btn" href="#" onclick="navTo('part-3', this); return false;">‹ Previous: Part 3 — Paper</a>
+      <a class="part-arrow-btn next" href="#" onclick="navTo('part-5', this); return false;">Next: Part 5 — Revision ›</a>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: PART 5
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-part-5" role="main" aria-label="Part 5: Revision">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">3</div>
+      <h2>Part 5 — Revision</h2>
+    </div>
+    <div class="callout" role="note" style="margin-bottom:1.25rem;">
+      <span class="callout-icon" aria-hidden="true">✍️</span>
+      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+    </div>
+    <p>Based on the feedback received from the peer review discussions, revise your paper so that it's better than before.</p>
+
+    <h3 style="margin-top:1.25rem; margin-bottom:.5rem;">How to use your feedback</h3>
+    <p>There is not much new information to give you here. The point is to utilize the feedback you received and continue to use the rubric and the tips in these instructions.</p>
+    <p>When reviewing the feedback you received, ask yourself the same questions from the peer review stages:</p>
+    <ul class="review-qs" style="margin-top:.5rem;">
+      <li>What worked well? What did the reviewers seem to like?</li>
+      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+    </ul>
+
+    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Checking your work</h3>
+    <p>Your grade comes down to the rubric. If you're ever feeling lost, you can always turn to the rubric to see if you're satisfying the necessary criteria. And of course, don't hesitate to reach out for help.</p>
+    <div class="part-arrows">
+      <a class="part-arrow-btn" href="#" onclick="navTo('part-4', this); return false;">‹ Previous: Part 4 — Paper Peer Review</a>
+      <span class="part-arrow-spacer"></span>
+    </div>
+  </div>
+  <!-- ══════════════════════════════════════
+       PAGE: EVALUATION
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-evaluation" role="main" aria-label="Evaluation">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">4</div>
+      <h2>Evaluation Rubric</h2>
+    </div>
+    <p style="margin-bottom:1rem;">Your paper will be evaluated on the following criteria. When in doubt about whether your paper is on track, return here.</p>
+
+    <div class="callout" role="note" style="margin-bottom:1.25rem;">
+      <span class="callout-icon" aria-hidden="true">⚠️</span>
+      <span>There will be an automatic deduction for being under-prepared or late to class on either peer review day. Check your syllabus for the specific dates.</span>
+    </div>
+
+    <div class="rubric-wrap">
+      <table>
+        <caption class="sr-only">Grading rubric: seven criteria each evaluated as Strong, Adequate, or Inadequate</caption>
+        <thead>
+          <tr>
+            <th scope="col">Criterion</th>
+            <th scope="col">✓ Strong</th>
+            <th scope="col">~ Adequate</th>
+            <th scope="col">✗ Inadequate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Accuracy of Understanding</td>
+            <td>Explains concepts with sufficient detail and accuracy. A proponent of the view would recognize the explanation as fair and substantive.</td>
+            <td>Explains concepts with the general idea present but lacks some detail or contains minor inaccuracies that don't fundamentally misrepresent the view.</td>
+            <td>Significantly misrepresents concepts, provides only superficial description, or demonstrates fundamental misunderstanding.</td>
+          </tr>
+          <tr>
+            <td>Capturing the Issue</td>
+            <td>Accurately and fully represents the puzzle or media being analyzed. Shows clear understanding of what is at stake.</td>
+            <td>Represents the puzzle or media adequately but may miss some nuances or details. General understanding is present.</td>
+            <td>Misrepresents or misunderstands key aspects of the puzzle or media being analyzed.</td>
+          </tr>
+          <tr>
+            <td>Application / Connection</td>
+            <td>Uses philosophical concepts to analyze specific cases, scenarios, or content. The concepts do genuine work in the analysis rather than being merely described in abstract terms.</td>
+            <td>Applies concepts but the connection may be somewhat general or underdeveloped. Some genuine application is present but could go deeper.</td>
+            <td>Describes concepts in abstract without real application, or connections are vague and forced.</td>
+          </tr>
+          <tr>
+            <td>Depth of Engagement</td>
+            <td>Engages with complications, tensions, or nuances. Goes beyond obvious observations to reveal something philosophically interesting.</td>
+            <td>Shows some engagement with the material but remains somewhat surface-level. May acknowledge complications without fully exploring them.</td>
+            <td>Stays entirely at surface level. Treats complex issues as simple or obvious. No recognition of philosophical difficulty.</td>
+          </tr>
+          <tr>
+            <td>Reasoning / Argumentation</td>
+            <td>Provides clear reasons for claims. Positions are supported by argument rather than mere assertion. Avoids circular reasoning.</td>
+            <td>Provides some reasoning though it may be underdeveloped. May occasionally assert without argument or reason somewhat circularly.</td>
+            <td>Assertions without reasoning, or reasoning that is circular or question-begging throughout.</td>
+          </tr>
+          <tr>
+            <td>Argumentative Awareness</td>
+            <td>Clearly articulates what has been established by the reasoning and why. Simultaneously acknowledges genuine limitations, assumptions, or unresolved questions without undermining the argument's force.</td>
+            <td>Shows some awareness of what the argument accomplishes, though may either overstate certainty or retreat too much from conclusions reached. Some acknowledgment of limitations.</td>
+            <td>Either presents conclusions as obvious with no acknowledgment of limitations, or undermines the entire argument by treating everything as equally uncertain or relative.</td>
+          </tr>
+          <tr>
+            <td>Writing &amp; Organization</td>
+            <td>Well-organized with clear transitions. Minimal grammatical errors.</td>
+            <td>Adequate organization. Some grammatical issues but meaning is clear.</td>
+            <td>Disorganized or difficult to follow. Frequent grammatical problems.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Introduction to Philosophy &nbsp;·&nbsp; Intro Paper Instructions &nbsp;·&nbsp; Refer to your syllabus for all due dates
+</footer>
+
+<button id="a11y-btn" aria-pressed="false" onclick="toggleA11y()">
+  <span aria-hidden="true">⚑</span>
+  <span id="a11y-label">Accessibility Mode</span>
+</button>
+
+<script>
+  // ── PAGE MAP ──
+  const PAGE_MAP = {
+    'overview':   'page-overview',
+    'case-a':     'page-case-a',
+    'case-b':     'page-case-b',
+    'case-c':     'page-case-c',
+    'part-0':     'page-part-0',
+    'part-1':     'page-part-1',
+    'part-2':     'page-part-2',
+    'part-3':     'page-part-3',
+    'part-4':     'page-part-4',
+    'part-5':     'page-part-5',
+    'evaluation': 'page-evaluation',
+  };
+
+  const NAV_PARENT = {
+    'overview':   'nav-overview',
+    'case-a':     'nav-cases',  'case-b': 'nav-cases',  'case-c': 'nav-cases',
+    'part-0':     'nav-parts',  'part-1': 'nav-parts',  'part-2': 'nav-parts',
+    'part-3':     'nav-parts',  'part-4': 'nav-parts',  'part-5': 'nav-parts',
+    'evaluation': 'nav-evaluation',
+  };
+
+  let currentPage = 'overview';
+
+  function navTo(pageId, triggerEl) {
+    // show correct page
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    const target = document.getElementById(PAGE_MAP[pageId]);
+    if (target) target.classList.add('active');
+
+    // desktop nav active states
+    document.querySelectorAll('.nav-item > button, .nav-item > a').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.dropdown a').forEach(el => el.classList.remove('active'));
+    const parentEl = document.getElementById(NAV_PARENT[pageId]);
+    if (parentEl) parentEl.classList.add('active');
+    const dropdownEl = document.getElementById('nav-' + pageId);
+    if (dropdownEl) dropdownEl.classList.add('active');
+
+    // mobile nav active states
+    document.querySelectorAll('.mobile-nav a').forEach(el => el.classList.remove('active'));
+    const mobileEl = document.getElementById('mnav-' + pageId);
+    if (mobileEl) mobileEl.classList.add('active');
+
+    // case switcher: update active button on whatever case page is now showing
+    document.querySelectorAll('.case-switch-btn').forEach(btn => btn.classList.remove('active'));
+    const activeSwitcher = document.querySelector(`#page-${PAGE_MAP[pageId].replace('page-','')} .case-switch-btn[onclick*="${pageId}"]`);
+    if (activeSwitcher) activeSwitcher.classList.add('active');
+
+    currentPage = pageId;
+    window.scrollTo(0, 0);
+  }
+
+  function mobileNavTo(pageId) {
+    navTo(pageId, null);
+    closeMobileNav();
+  }
+
+  // ── MOBILE NAV ──
+  function toggleMobileNav() {
+    const panel = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger-btn');
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.textContent = isOpen ? '☰' : '✕';
+  }
+
+  function closeMobileNav() {
+    const panel = document.getElementById('mobile-nav');
+    const btn = document.getElementById('hamburger-btn');
+    panel.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    btn.textContent = '☰';
+  }
+
+  // close mobile nav on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeMobileNav();
+      document.activeElement.blur();
+    }
+  });
+
+  // ── FORMAT TOGGLE ──
+  function toggleFormat(btn, showId, hideId) {
+    document.getElementById(showId).classList.add('active');
+    document.getElementById(hideId).classList.remove('active');
+    btn.classList.add('active');
+    btn.parentElement.querySelectorAll('button').forEach(b => { if (b !== btn) b.classList.remove('active'); });
+  }
+
+  // ── ACCORDION ──
+  function togglePart(btn) {
+    const el = btn.closest('.part');
+    const expanded = el.getAttribute('aria-expanded') === 'true';
+    el.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  }
+
+  // ── ACCESSIBILITY MODE ──
+  let a11yOn = false;
+  function toggleA11y() {
+    a11yOn = !a11yOn;
+    document.body.classList.toggle('a11y', a11yOn);
+    document.getElementById('a11y-btn').setAttribute('aria-pressed', String(a11yOn));
+    document.getElementById('a11y-label').textContent = a11yOn ? 'Standard Mode' : 'Accessibility Mode';
+    document.querySelectorAll('.part').forEach(p => {
+      p.setAttribute('aria-expanded', a11yOn ? 'true' : 'false');
+    });
+  }
+
+  // set initial active state on load
+  navTo('overview', null);
+</script>
+
+</body>
+</html>
