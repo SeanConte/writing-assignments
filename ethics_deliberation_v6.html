@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Deliberation — Introduction to Ethics</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson:      #8b1a1a;
+    --crimson-deep: #5c0f0f;
+    --crimson-mid:  #a82020;
+    --crimson-soft: #c94040;
+    --red-pale:     #fdf2f2;
+    --red-ghost:    #fef8f8;
+    --red-border:   #e8c4c4;
+    --slate:        #1e1e1e;
+    --mid:          #4a3535;
+    --muted:        #7a5c5c;
+    --border:       #e0d0d0;
+    --bg:           #fdf6f6;
+    --white:        #ffffff;
+    --strong-fg:    #1a6b3a;
+    --strong-bg:    #eaf6f0;
+    --adequate-fg:  #2a4f96;
+    --adequate-bg:  #eaeef8;
+    --weak-fg:      #7a3a1a;
+    --weak-bg:      #f8f0ea;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Source Serif 4', serif;
+    background: var(--bg);
+    color: var(--slate);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .skip-link {
+    position: absolute; top: -100%; left: 1rem;
+    background: var(--crimson); color: #fff;
+    padding: .5rem 1rem; border-radius: 0 0 6px 6px;
+    font-size: .85rem; font-weight: 600;
+    text-decoration: none; z-index: 999;
+  }
+  .skip-link:focus { top: 0; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--crimson-deep);
+    border-bottom: 3px solid var(--crimson-soft);
+    padding: 0 2rem;
+    display: flex; align-items: center;
+    overflow-x: auto;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    color: rgba(255,255,255,.6);
+    font-size: .82rem;
+    white-space: nowrap;
+    padding: .9rem 1.2rem .9rem 0;
+    border-right: 1px solid rgba(255,255,255,.15);
+    margin-right: .5rem;
+  }
+  nav a {
+    color: rgba(255,255,255,.65);
+    text-decoration: none;
+    font-size: .78rem; font-weight: 600;
+    font-family: 'Source Serif 4', serif;
+    padding: .9rem .85rem;
+    white-space: nowrap;
+    transition: color .2s;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  nav a:hover, nav a:focus { color: #fff; outline: none; }
+  nav a.active { color: #fff; border-bottom: 2px solid var(--crimson-soft); padding-bottom: calc(.9rem - 2px); }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(160deg, var(--crimson-deep) 0%, var(--crimson) 60%, var(--crimson-mid) 100%);
+    color: #fff;
+    padding: 3.5rem 2rem 3rem;
+    position: relative; overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 40%; height: 100%;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+    pointer-events: none;
+  }
+  .header-inner { max-width: 820px; margin: 0 auto; position: relative; z-index: 1; }
+  .course-label {
+    font-size: .72rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .14em;
+    color: rgba(255,255,255,.5);
+    margin-bottom: .5rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    line-height: 1.1; font-weight: 900;
+    margin-bottom: .35rem;
+  }
+  .header-subtitle {
+    font-size: 1rem;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 1.4rem;
+    font-style: italic;
+  }
+  .meta-pills {
+    display: flex; flex-wrap: wrap; gap: .5rem;
+    margin-bottom: 1.4rem;
+  }
+  .pill {
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 999px;
+    padding: .28rem .9rem;
+    font-size: .78rem;
+    color: rgba(255,255,255,.85);
+  }
+  .pill strong { color: #fff; }
+  .header-note {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-left: 4px solid rgba(255,255,255,.4);
+    border-radius: 6px;
+    padding: .85rem 1.1rem;
+    font-size: .875rem;
+    color: rgba(255,255,255,.85);
+    line-height: 1.6;
+  }
+
+  /* MAIN */
+  main { max-width: 820px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+  section { padding-top: 2.8rem; scroll-margin-top: 3.2rem; }
+
+  .section-label {
+    display: flex; align-items: center; gap: .85rem;
+    margin-bottom: 1.1rem;
+  }
+  .section-num {
+    width: 2rem; height: 2rem;
+    background: var(--crimson); color: #fff;
+    border-radius: 50%;
+    font-size: .78rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.45rem;
+    color: var(--crimson-deep);
+  }
+
+  /* CARD */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--red-border);
+    border-radius: 10px;
+    padding: 1.5rem 1.7rem;
+  }
+  .card p { color: var(--mid); line-height: 1.7; }
+  .card p + p { margin-top: .85rem; }
+  .card p strong { color: var(--slate); }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--red-ghost);
+    border: 1px solid var(--red-border);
+    border-left: 4px solid var(--crimson-soft);
+    border-radius: 6px;
+    padding: .95rem 1.2rem;
+    margin-top: 1rem;
+    font-size: .875rem;
+    color: var(--mid);
+    line-height: 1.6;
+  }
+  .callout strong { color: var(--slate); }
+
+  /* PHASE BLOCKS */
+  .phases { display: flex; flex-direction: column; gap: 1rem; margin-top: .25rem; }
+  .phase {
+    background: var(--white);
+    border: 1px solid var(--red-border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .phase-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.4rem;
+    background: var(--red-ghost);
+    border-bottom: 1px solid var(--red-border);
+  }
+  .phase-num {
+    background: var(--crimson); color: #fff;
+    border-radius: 6px;
+    padding: .2rem .6rem;
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .07em; text-transform: uppercase;
+    white-space: nowrap; flex-shrink: 0;
+  }
+  .phase-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--slate);
+  }
+  .phase-timing {
+    margin-left: auto;
+    font-size: .75rem; font-weight: 600;
+    color: var(--crimson);
+    text-transform: uppercase; letter-spacing: .07em;
+    white-space: nowrap;
+  }
+  .phase-body {
+    padding: 1.1rem 1.4rem;
+    color: var(--mid);
+    font-size: .9rem; line-height: 1.7;
+  }
+  .phase-body p + p { margin-top: .65rem; }
+  .phase-body strong { color: var(--slate); }
+  .phase-req {
+    margin-top: .85rem;
+    background: var(--red-pale);
+    border: 1px solid var(--red-border);
+    border-radius: 6px;
+    padding: .75rem 1rem;
+    font-size: .85rem; color: var(--mid);
+  }
+  .phase-req-label {
+    font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .08em;
+    color: var(--crimson); margin-bottom: .3rem;
+  }
+
+  /* CASE TABS */
+  .case-tabs {
+    display: flex; flex-wrap: wrap; gap: .4rem;
+    margin-bottom: 1rem;
+  }
+  .case-tab {
+    background: var(--white);
+    border: 1.5px solid var(--red-border);
+    border-radius: 6px;
+    padding: .36rem .8rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: .8rem; font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all .18s;
+  }
+  .case-tab:hover { border-color: var(--crimson-soft); color: var(--crimson); }
+  .case-tab.active { background: var(--crimson); border-color: var(--crimson); color: #fff; }
+  .case-tab:focus { outline: 3px solid var(--crimson-soft); outline-offset: 2px; }
+  .case-panel { display: none; }
+  .case-panel.active { display: block; }
+
+  /* accessibility mode: show all cases at once */
+  body.a11y-mode .case-tabs { display: none; }
+  body.a11y-mode .case-panel { display: block; margin-bottom: 1.5rem; }
+  body.a11y-mode .case-panel + .case-panel { border-top: 1px solid var(--red-border); padding-top: 1.5rem; }
+
+  .case-header {
+    display: flex; align-items: flex-start;
+    gap: .85rem; margin-bottom: .8rem;
+  }
+  .case-number {
+    background: var(--crimson); color: #fff;
+    border-radius: 5px; padding: .2rem .52rem;
+    font-size: .7rem; font-weight: 700;
+    letter-spacing: .06em; text-transform: uppercase;
+    white-space: nowrap; flex-shrink: 0;
+    margin-top: .18rem;
+  }
+  .case-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; color: var(--slate);
+    line-height: 1.25;
+  }
+  .case-body { color: var(--mid); font-size: .9rem; line-height: 1.7; }
+  .case-body p + p { margin-top: .65rem; }
+  .case-tensions {
+    margin-top: .85rem;
+    background: var(--red-ghost);
+    border: 1px solid var(--red-border);
+    border-radius: 7px;
+    padding: .75rem 1rem;
+  }
+  .tensions-label {
+    font-size: .7rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: var(--crimson); margin-bottom: .4rem;
+  }
+  .tension-pills { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .tension-pill {
+    background: var(--white);
+    border: 1px solid var(--red-border);
+    border-radius: 999px;
+    padding: .18rem .65rem;
+    font-size: .78rem; color: var(--mid);
+  }
+
+  /* FAQ */
+  .faq { display: flex; flex-direction: column; gap: .6rem; }
+  .faq-item {
+    background: var(--white);
+    border: 1px solid var(--red-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .faq-q {
+    width: 100%;
+    display: flex; align-items: flex-start; gap: .85rem;
+    padding: .95rem 1.1rem;
+    background: none; border: none;
+    font-family: 'Source Serif 4', serif;
+    font-size: .92rem; font-weight: 600;
+    color: var(--slate);
+    cursor: pointer; text-align: left;
+    transition: background .15s;
+  }
+  .faq-q:hover { background: var(--red-ghost); }
+  .faq-q:focus { outline: 3px solid var(--crimson-soft); outline-offset: -3px; }
+  .faq-icon {
+    color: var(--crimson); font-weight: 700; font-size: 1rem;
+    flex-shrink: 0; margin-top: .05rem;
+    transition: transform .2s; user-select: none;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+  .faq-a {
+    display: none;
+    padding: 0 1.1rem .95rem 2.7rem;
+    font-size: .9rem; color: var(--mid);
+    line-height: 1.7;
+    border-top: 1px solid var(--red-border);
+  }
+  .faq-a p + p { margin-top: .6rem; }
+  .faq-item.open .faq-a { display: block; }
+
+  /* accessibility mode: expand all FAQ */
+  body.a11y-mode .faq-a { display: block; }
+  body.a11y-mode .faq-icon { display: none; }
+
+  /* RUBRIC */
+  .rubric-wrap { overflow-x: auto; }
+  .rubric-table {
+    width: 100%; border-collapse: collapse;
+    font-size: .855rem; font-family: 'Source Serif 4', serif;
+  }
+  .rubric-table thead th {
+    padding: .7rem 1rem;
+    text-align: left;
+    font-size: .72rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .07em;
+    border-bottom: 2px solid var(--red-border);
+  }
+  thead th:nth-child(1) { color: var(--mid); }
+  thead th:nth-child(2) { color: var(--strong-fg); background: var(--strong-bg); }
+  thead th:nth-child(3) { color: var(--adequate-fg); background: var(--adequate-bg); }
+  thead th:nth-child(4) { color: var(--weak-fg); background: var(--weak-bg); }
+  .rubric-table tbody tr { border-bottom: 1px solid var(--border); }
+  .rubric-table tbody tr:last-child { border-bottom: none; }
+  .rubric-table tbody tr:hover td { background: var(--red-ghost); }
+  .rubric-table td {
+    padding: .85rem 1rem;
+    vertical-align: top;
+    color: var(--mid); line-height: 1.5;
+  }
+  .rubric-table td:first-child {
+    font-weight: 700; color: var(--slate);
+    white-space: nowrap; font-size: .82rem;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--crimson-deep);
+    color: rgba(255,255,255,.45);
+    text-align: center; padding: 1.5rem;
+    font-size: .8rem;
+  }
+
+  /* ACCESSIBILITY BUTTON */
+  #a11y-btn {
+    position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 200;
+    background: var(--crimson-deep); color: #fff;
+    border: 2px solid transparent; border-radius: 50px;
+    padding: .6rem 1.1rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: .82rem; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; gap: .5rem;
+    box-shadow: 0 4px 16px rgba(0,0,0,.25);
+    transition: box-shadow .15s;
+  }
+  #a11y-btn:hover { box-shadow: 0 6px 22px rgba(0,0,0,.35); }
+  #a11y-btn:focus { outline: 3px solid var(--crimson-soft); outline-offset: 3px; }
+
+  /* ACCESSIBILITY MODE: black on white, no tints */
+  body.a11y-mode {
+    --bg: #ffffff;
+    --white: #ffffff;
+    --red-ghost: #ffffff;
+    --red-pale: #ffffff;
+    --red-border: #000000;
+    --border: #000000;
+    --crimson: #000000;
+    --crimson-deep: #000000;
+    --crimson-mid: #000000;
+    --crimson-soft: #000000;
+    --slate: #000000;
+    --mid: #000000;
+    --muted: #000000;
+    --strong-bg: #ffffff;
+    --strong-fg: #000000;
+    --adequate-bg: #ffffff;
+    --adequate-fg: #000000;
+    --weak-bg: #ffffff;
+    --weak-fg: #000000;
+    background: #fff;
+    color: #000;
+  }
+  body.a11y-mode header {
+    background: #000;
+    color: #fff;
+  }
+  body.a11y-mode header::after { display: none; }
+  body.a11y-mode .course-label { color: rgba(255,255,255,.8); }
+  body.a11y-mode .header-subtitle { color: rgba(255,255,255,.9); }
+  body.a11y-mode .pill { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.4); color: #fff; }
+  body.a11y-mode .header-note { background: rgba(255,255,255,.1); border-color: rgba(255,255,255,.4); color: #fff; }
+  body.a11y-mode nav { background: #000; border-bottom-color: #fff; }
+  body.a11y-mode nav a { color: rgba(255,255,255,.8); }
+  body.a11y-mode .section-num { background: #000; }
+  body.a11y-mode .section-label h2 { color: #000; }
+  body.a11y-mode .phase-num { background: #000; }
+  body.a11y-mode .case-number { background: #000; }
+  body.a11y-mode .case-tab.active { background: #000; border-color: #000; }
+  body.a11y-mode footer { background: #000; }
+  body.a11y-mode #a11y-btn { background: #000; border-color: #fff; }
+  body.a11y-mode .faq-q:hover { background: #f0f0f0; }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<nav aria-label="Page sections">
+  <div class="nav-brand" aria-hidden="true">Introduction to Ethics</div>
+  <a href="#overview">Overview</a>
+  <a href="#cases">Cases</a>
+  <a href="#phases">The Three Phases</a>
+  <a href="#rubric">Rubric</a>
+  <a href="#faq">FAQ</a>
+</nav>
+
+<header>
+  <div class="header-inner">
+    <div class="course-label" aria-hidden="true">Introduction to Ethics &nbsp;·&nbsp; Discussion Assignment</div>
+    <h1>Case Deliberation</h1>
+    <p class="header-subtitle">A collaborative ethical analysis exercise</p>
+    <div class="meta-pills" role="list" aria-label="Assignment details">
+      <div class="pill" role="listitem"><strong>Format</strong>&nbsp; Async discussion board</div>
+      <div class="pill" role="listitem"><strong>Phases</strong>&nbsp; 3</div>
+      <div class="pill" role="listitem"><strong>Builds toward</strong>&nbsp; Final paper</div>
+      <div class="pill" role="listitem"><strong>Due dates</strong>&nbsp; See syllabus</div>
+    </div>
+    <div class="header-note" role="note">
+      All three phases happen in the same D2L discussion thread. You do not need to submit a separate file anywhere. Read the full instructions before you post anything: the phases build on each other and the order matters.
+    </div>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <!-- OVERVIEW -->
+  <section id="overview" aria-labelledby="h-overview">
+    <div class="section-label">
+      <div class="section-num" aria-hidden="true">1</div>
+      <h2 id="h-overview">Overview</h2>
+    </div>
+    <div class="card">
+      <p>This assignment asks you to analyze a real ethical case, stake out a position, and then do what actual ethical reasoning requires: engage seriously with someone who sees it differently. The cases come from the <strong>APPE Intercollegiate Ethics Bowl</strong>, a national competition where college teams analyze hard ethical situations and defend their reasoning against real objections. That is the model here, scaled down and moved into your discussion board.</p>
+      <p>There are three phases. In the first, you analyze a case and make an argument. In the second, you find someone else's analysis that you think gets something wrong and explain why. In the third, you respond to whoever challenged your post. Each phase requires the previous one: you cannot do Phase 2 without having read at least one other person's analysis, and you cannot do Phase 3 without having written something worth responding to in Phase 1.</p>
+      <p>This assignment scaffolds toward the final paper. That assignment asks you to do a sustained individual analysis of an ethical case: one theory, one objection handled, a clear argument throughout. Here you are practicing the same reasoning moves with other people's thinking pushing back on yours. Most students find the final paper noticeably easier after working through this first.</p>
+      <div class="callout">
+        <strong>A note on difficulty:</strong> These cases were written for college students by professional ethicists. They are designed to resist easy answers. If your analysis makes a case look simple, something important is being skipped.
+      </div>
+    </div>
+  </section>
+
+  <!-- CASES -->
+  <section id="cases" aria-labelledby="h-cases">
+    <div class="section-label">
+      <div class="section-num" aria-hidden="true">2</div>
+      <h2 id="h-cases">Choose a Case</h2>
+    </div>
+    <div class="card">
+      <p>Read through the cases below and choose one for your Phase 1 post. You do not need to claim it in advance. If multiple people end up on the same case, that is fine and actually useful for Phase 2.</p>
+
+      <div class="case-tabs" role="tablist" aria-label="Available cases">
+        <button class="case-tab active" role="tab" aria-selected="true" aria-controls="cp-1" id="ct-1">Clean Hands</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-2" id="ct-2">Cloudy / Fallout</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-3" id="ct-3">Forget Me Not</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-4" id="ct-4">GoGuardian Angels</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-5" id="ct-5">Less Pay, More Play</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-6" id="ct-6">MAID to Order</button>
+        <button class="case-tab" role="tab" aria-selected="false" aria-controls="cp-7" id="ct-7">Transitive Life Support</button>
+      </div>
+
+      <div class="case-panel active" id="cp-1" role="tabpanel" aria-labelledby="ct-1">
+        <div class="case-header">
+          <span class="case-number">Case 1</span>
+          <h3 class="case-title">Clean Hands</h3>
+        </div>
+        <div class="case-body">
+          <p>When the Thirty Tyrants ordered Socrates to help arrest Leon of Salamis, a man Socrates believed would be unjustly killed, Socrates simply went home. The other four men given the same order carried it out. Leon was presumably executed.</p>
+          <p>History is full of variations on this situation. James Franck resigned his university position rather than comply with Nazi laws targeting Jewish scholars. Oskar Schindler worked from within a corrupt system to save hundreds of lives. Dietrich Bonhoeffer joined an assassination plot against Hitler and was executed for it. Others participated in quiet factory sabotage, their names now lost. Each chose a different response to the same basic problem: being embedded in a system that demands participation in wrongdoing.</p>
+          <p>Going home keeps your hands clean. But what about Leon? Resisting from within has its own costs. Active resistance may require breaking other moral rules to stop something worse. The case asks what any of these people were actually obligated to do, and whether keeping your own hands clean is a moral achievement or a failure.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Moral integrity vs. consequences for others</span>
+            <span class="tension-pill">Complicity through participation</span>
+            <span class="tension-pill">Limits of political obligation</span>
+            <span class="tension-pill">What resistance actually requires</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-2" role="tabpanel" aria-labelledby="ct-2">
+        <div class="case-header">
+          <span class="case-number">Case 2</span>
+          <h3 class="case-title">Cloudy with a Chance of Fallout</h3>
+        </div>
+        <div class="case-body">
+          <p>Seldon Pryce, a billionaire climate-tech entrepreneur, secretly conducted stratospheric aerosol injections over international waters, spraying reflective particles into the upper atmosphere to reduce global temperatures. He claims measurable results and plans larger deployments. He calls it "ethical acceleration."</p>
+          <p>Nations across the Global South condemned it as atmospheric colonialism. Environmental organizations warned of unintended consequences: altered monsoons, drought in agricultural regions, unknown long-term effects. The UN convened an emergency session and reached no consensus. Some Arctic nations, experiencing rapid ice loss, quietly expressed interest in cooperating.</p>
+          <p>Pryce argues that climate tipping points are approaching, governments have repeatedly failed to act, and someone had to move first. "History rarely remembers the consensus builders," he wrote. Critics argue that no individual, regardless of motive or resources, has the authority to unilaterally alter the planetary climate. The case asks whether urgency justifies bypassing consent, and who gets to decide.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Unilateral action vs. democratic consent</span>
+            <span class="tension-pill">Urgency and institutional failure</span>
+            <span class="tension-pill">Who bears the risks</span>
+            <span class="tension-pill">Private power over shared resources</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-3" role="tabpanel" aria-labelledby="ct-3">
+        <div class="case-header">
+          <span class="case-number">Case 3</span>
+          <h3 class="case-title">Forget Me Not</h3>
+        </div>
+        <div class="case-body">
+          <p>Lacuna, Inc. offers a memory-erasure service. In <em>Eternal Sunshine of the Spotless Mind</em>, Joel and Clementine both choose to have each other permanently erased after a painful breakup. During the procedure, Joel relives his memories in reverse, and as he reaches the warmth of their early relationship, he starts to regret the decision and question whether his consent, made in grief, was genuinely his own.</p>
+          <p>Memory is the foundation of personal identity. Erasing experiences selectively risks eroding who a person is. At the same time, some memories cause genuine ongoing harm, trauma researchers document real cases where people struggle to recover without intervention, and people have legitimate interests in managing their own mental health. The case also raises questions about Lacuna's business model: a company that profits from people at their most vulnerable, offering a shortcut that may undermine the very development it promises to protect.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Autonomy vs. authenticity of identity</span>
+            <span class="tension-pill">Consent under emotional distress</span>
+            <span class="tension-pill">Harm reduction vs. personal development</span>
+            <span class="tension-pill">Corporate interests and vulnerability</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-4" role="tabpanel" aria-labelledby="ct-4">
+        <div class="case-header">
+          <span class="case-number">Case 4</span>
+          <h3 class="case-title">GoGuardian Angels Watching Over Me</h3>
+        </div>
+        <div class="case-body">
+          <p>GoGuardian Beacon is AI-monitoring software installed on school-issued devices. It scans students' keystrokes and browsing behavior for signs of self-harm and alerts school officials in real time. Nearly 27 million students, close to half of all American schoolchildren, are monitored by software like it.</p>
+          <p>The technology has saved lives. In one documented case, a sixteen-year-old had already taken fifteen pills when police arrived after a late-night alert; she survived. But the same system generates large numbers of false positives: alerts triggered by health class assignments on suicide, a poem typed on a school laptop, and websites about counseling, LGBTQ issues, and college information. Some students have been visited by armed police after midnight. The software can be configured to run 24 hours a day, including off school grounds and outside school hours.</p>
+          <p>Critics call it a surveillance infrastructure that collects vast student data, disproportionately flags benign content, and functions primarily as a disciplinary tool. Schools say they cannot turn it off. "The consequences of switching it off," one official said, "is that somebody can die."</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Student privacy vs. duty of care</span>
+            <span class="tension-pill">Accuracy and the costs of false positives</span>
+            <span class="tension-pill">Scope and consent</span>
+            <span class="tension-pill">Who controls the off switch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-5" role="tabpanel" aria-labelledby="ct-5">
+        <div class="case-header">
+          <span class="case-number">Case 5</span>
+          <h3 class="case-title">Less Pay, More Play</h3>
+        </div>
+        <div class="case-body">
+          <p>MixoLyrica runs a program called Discovery Boost: artists who agree to a 25% royalty cut get their songs aggressively promoted by the platform's recommendation algorithm. The arrangement is not disclosed to listeners, who are told their playlists are "tailored to your taste."</p>
+          <p>Luna Rivers, an independent singer-songwriter barely covering rent, has just released what she believes is her best work. Her agent tells her she can get into Discovery Boost. The exposure could be career-defining, but the royalty cut would hurt, and she is troubled by the fact that listeners will not know what is driving the recommendations. Industry watchdogs compare it to payola, the once-widespread and now-illegal practice of paying radio stations to play certain songs. Her agent's defense: there is no cash changing hands. Luna decides the practice probably should be illegal. But that is someone else's fight. She still has rent.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Transparency and listener trust</span>
+            <span class="tension-pill">Individual self-interest vs. systemic harm</span>
+            <span class="tension-pill">Structural coercion and nominal consent</span>
+            <span class="tension-pill">Is it payola if no cash changes hands?</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-6" role="tabpanel" aria-labelledby="ct-6">
+        <div class="case-header">
+          <span class="case-number">Case 6</span>
+          <h3 class="case-title">MAID to Order</h3>
+        </div>
+        <div class="case-body">
+          <p>Canada's medical assistance in dying (MAID) legislation allows mentally competent adults with a grievous and irremediable medical condition to receive physician-administered death. A 2021 amendment extended eligibility to severe mental illness alone, meaning someone may qualify without any physical condition if the illness is severe, treatment-resistant, and causes intolerable suffering.</p>
+          <p>Critics argue that severe mental illness, including depression and certain personality disorders, can itself undermine the capacity for autonomous decision-making that MAID requires. If the suffering driving someone toward death is a symptom of the condition they are suffering from, can their consent be genuinely voluntary? Supporters respond that suffering is subjective, some mental illnesses cannot be treated with anything currently available, and refusing to extend MAID to mental illness reflects a form of stigma: we do not require physical suffering to be treatable before we extend compassion.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Autonomy and self-determination</span>
+            <span class="tension-pill">Mental illness and capacity to consent</span>
+            <span class="tension-pill">Dignity vs. duty to preserve life</span>
+            <span class="tension-pill">Stigma and equal treatment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-panel" id="cp-7" role="tabpanel" aria-labelledby="ct-7">
+        <div class="case-header">
+          <span class="case-number">Case 7</span>
+          <h3 class="case-title">Transitive Life Support</h3>
+        </div>
+        <div class="case-body">
+          <p>Adriana Smith was eight weeks pregnant when she arrived at an Atlanta-area hospital complaining of persistent headaches. She was sent home. Days later she was rushed back: a CT scan revealed multiple blood clots in her brain. She was declared brain-dead. She was thirty years old.</p>
+          <p>Georgia's LIFE Act bans abortions after fetal cardiac activity is detectable and grants fetuses the legal status of "natural persons" with full civil rights. Hospital officials told Smith's family that the law required them to keep her on a ventilator to allow the pregnancy to continue. The family was not consulted. Four months later, Smith's son was delivered by C-section and survived. Her body was then removed from life support. Georgia's Attorney General later stated the law did not require this, but by then the hospital had already made its decision and held to it for four months.</p>
+          <p>The case raises questions about what legal personhood actually obligates, who has authority over a body when the person inside it is dead, and what it means to have rights over your own body when those rights can be suspended by a legal status granted to someone else.</p>
+        </div>
+        <div class="case-tensions">
+          <div class="tensions-label">Key tensions</div>
+          <div class="tension-pills">
+            <span class="tension-pill">Fetal personhood and bodily autonomy</span>
+            <span class="tension-pill">State authority vs. family decision-making</span>
+            <span class="tension-pill">Obligations generated by legal status</span>
+            <span class="tension-pill">Brain death and the meaning of personhood</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- THE THREE PHASES -->
+  <section id="phases" aria-labelledby="h-phases">
+    <div class="section-label">
+      <div class="section-num" aria-hidden="true">3</div>
+      <h2 id="h-phases">The Three Phases</h2>
+    </div>
+
+    <div class="phases">
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 1</span>
+          <span class="phase-title">Your Analysis</span>
+          <span class="phase-timing">Post by Thursday</span>
+        </div>
+        <div class="phase-body">
+          <p>Choose one case and write an analysis in the discussion thread. Your post should do three things: identify what the central ethical tension is, take a position on it, and explain, using either consequentialism or Kantian ethics, why that position is the right one.</p>
+          <p>The goal is to make an argument, not to hedge. That means your post should be specific enough that someone could push back on it. If your analysis is so general that anyone could agree with it, you have not staked out a position: you have described the case.</p>
+          <div class="phase-req">
+            <div class="phase-req-label">What your post needs</div>
+            A clear statement of the central tension &nbsp;·&nbsp; A position you are actually defending &nbsp;·&nbsp; A theoretical justification using consequentialism or Kantian ethics &nbsp;·&nbsp; Roughly 200–300 words
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 2</span>
+          <span class="phase-title">Your Explanation and Critique</span>
+          <span class="phase-timing">Post by Saturday</span>
+        </div>
+        <div class="phase-body">
+          <p>Read through the thread and find a post where you think the analysis is mistaken: not just one you happen to disagree with, but one where you can point to something specific that the argument gets wrong or overlooks. It can be someone analyzing the same case you did or a different one.</p>
+          <p><strong>One post per person:</strong> you may only respond to a Phase 1 post that has not already been challenged by someone else. Check the thread before you write. This ensures everyone gets a response and no one gets piled on.</p>
+          <p>Your post has two distinct parts. Do not blend them together.</p>
+
+          <div class="phase-req" style="margin-top:.75rem;">
+            <div class="phase-req-label">Part A: Your Explanation</div>
+            <p style="margin:0;font-size:.875rem;color:var(--mid);line-height:1.6;">Before you say anything critical, explain what the person actually argued, in your own words, accurately, without softening or exaggerating it. Pretend you are summarizing their post for someone who has not read it. What position did they take? What theory did they use? What reasons did they give?</p>
+            <p style="margin:.5rem 0 0;font-size:.875rem;color:var(--mid);line-height:1.6;">This part is not your opinion. It is a description. The person you are responding to should be able to read it and say "yes, that is what I argued." If they would say "that is not what I said," you have not explained their argument: you have replaced it with a weaker version that is easier to criticize. That is called a straw man, and it undermines everything that follows.</p>
+          </div>
+
+          <div class="phase-req" style="margin-top:.75rem;">
+            <div class="phase-req-label">Part B: Your Critique</div>
+            <p style="margin:0;font-size:.875rem;color:var(--mid);line-height:1.6;">Now explain what you think is wrong with the argument you just described. This needs to be specific: not "I disagree with your conclusion" but a reason why a particular claim or move in their argument fails. Point to something they said and explain why it does not hold up. Ground your critique in the case itself or in how the theory actually works.</p>
+            <p style="margin:.5rem 0 0;font-size:.875rem;color:var(--mid);line-height:1.6;">If your critique would apply equally well to any post in the thread, it is not specific enough. It should be addressed to the particular argument you read in Part A.</p>
+          </div>
+
+          <div class="phase-req" style="margin-top:.75rem;">
+            <div class="phase-req-label">Length</div>
+            Roughly 150–250 words total across both parts
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <span class="phase-num">Phase 3</span>
+          <span class="phase-title">Your Response</span>
+          <span class="phase-timing">Post by Sunday</span>
+        </div>
+        <div class="phase-body">
+          <p>Someone has challenged your Phase 1 post. Respond to them, engaging directly with what they said. A response that ignores the specific critique and just reasserts your original argument is not a response.</p>
+          <p>Use these questions to guide your post: What strong points did they raise? What did they fail to explain or support adequately? Is their critique compelling, and why or why not?</p>
+          <p>If no one has challenged your post by Saturday evening, find a Phase 2 post that challenged someone else's analysis of the same case and respond to that instead, treating it as if it were addressed to you. This is unlikely if you post Phase 1 on time, but the fallback is there if you need it.</p>
+          <div class="phase-req">
+            <div class="phase-req-label">What your post needs</div>
+            Direct engagement with the specific critique raised &nbsp;·&nbsp; Answers to at least two of the guiding questions above &nbsp;·&nbsp; Roughly 150–200 words
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="callout" style="margin-top:1rem;">
+      <strong>Connection to the final paper:</strong> The final paper asks you to analyze one case using one theory, handle one serious objection, and make a clear argument throughout, alone, at greater length. If you do these three phases carefully, you will have already worked through the core moves. Many students find it useful to revisit their Phase 1 and 3 posts when choosing a case for the final paper.
+    </div>
+  </section>
+
+  <!-- RUBRIC -->
+  <section id="rubric" aria-labelledby="h-rubric">
+    <div class="section-label">
+      <div class="section-num" aria-hidden="true">4</div>
+      <h2 id="h-rubric">Rubric</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:1rem;">Each post is graded on the quality of the reasoning, not which position you defend. A well-argued post that reaches the wrong conclusion outscores a poorly-argued post that happens to reach the right one.</p>
+      <div class="rubric-wrap">
+        <table class="rubric-table" aria-label="Grading rubric">
+          <thead>
+            <tr>
+              <th scope="col">Criterion</th>
+              <th scope="col">Strong</th>
+              <th scope="col">Adequate</th>
+              <th scope="col">Needs Work</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Phase 1<br><small style="font-weight:400;color:var(--muted);">Analysis</small></td>
+              <td>Central tension precisely identified; clear position staked out; theory applied specifically to the case and does real analytical work</td>
+              <td>Tension identified but framed generically; position present but underdeveloped; theory named but applied loosely</td>
+              <td>Describes the case without taking a position; theory named but not used; too vague to push back on</td>
+            </tr>
+            <tr>
+              <td>Phase 2<br><small style="font-weight:400;color:var(--muted);">Explanation &amp; Critique</small></td>
+              <td>Explanation accurately represents the argument at its strongest; critique targets something specific and real; grounded in the case or the theory</td>
+              <td>Explanation is mostly accurate; critique is present but could be more specific or better grounded</td>
+              <td>Explanation misrepresents what the person argued; critique is vague, generic, or attacks a weakened version of the argument</td>
+            </tr>
+            <tr>
+              <td>Phase 3<br><small style="font-weight:400;color:var(--muted);">Response</small></td>
+              <td>Directly engages the specific objection; either defends, revises, or concedes with genuine reasoning; the original position is clearer at the end than it was at the start</td>
+              <td>Responds to the objection but somewhat indirectly; some development of the original position</td>
+              <td>Ignores the specific objection and reasserts the original argument; or does not engage with the response at all</td>
+            </tr>
+            <tr>
+              <td>Timing</td>
+              <td>Phase 1 by Thursday; Phase 2 by Saturday; Phase 3 by Sunday, all with enough lead time for others to respond</td>
+              <td>One phase slightly late but the thread still functions; other students were not significantly affected</td>
+              <td>Phases posted so late that others could not respond; or phases skipped entirely</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" aria-labelledby="h-faq">
+    <div class="section-label">
+      <div class="section-num" aria-hidden="true">5</div>
+      <h2 id="h-faq">FAQ</h2>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:1.1rem;">Questions that tend to come up with this assignment.</p>
+      <div class="faq" role="list">
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            I already have a good sense of which case I want and I am ready to go. Should I just post Phase 1 now?
+          </button>
+          <div class="faq-a">
+            <p>Read the full instructions first, including all three phases, before you post anything. Phase 2 has a constraint: you can only respond to a Phase 1 post that has not already been challenged, so the order and timing of when you post actually matters. It is also worth reading through the case one more time after reading the instructions, since knowing what Phase 2 asks tends to change what you notice in Phase 1.</p>
+            <p>Beyond that, yes: posting Phase 1 early is genuinely good. The earlier you post, the more options you have for Phase 2, and the more time others have to respond to you before Phase 3 is due.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            Can I read some of my classmates' posts before I write mine, to get a sense of how to approach it?
+          </button>
+          <div class="faq-a">
+            <p>You can, but be careful. Reading other posts before writing your own is fine as orientation, but your Phase 1 analysis needs to be your own argument about the case, not a variation of someone else's. If you find yourself writing something very similar to a post you read, step back and think about whether you actually agree or whether you are just following their framing. The cases are rich enough that there are multiple defensible positions: try to find the one you actually want to defend.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            Do I have to use consequentialism or Kantian ethics, or can I use a different theory?
+          </button>
+          <div class="faq-a">
+            <p>For Phase 1, yes: use one of those two. Both have been covered in enough depth in this course that you should be able to apply them specifically rather than just invoking them by name. If you try to use a theory we have only touched on briefly, your analysis will almost certainly stay at the surface level, which is exactly what the rubric is watching for.</p>
+            <p>In Phases 2 and 3, you are engaging with someone else's argument, so the theory they used is what is on the table.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            What is the difference between the explanation and the critique in Phase 2? They seem like the same thing.
+          </button>
+          <div class="faq-a">
+            <p>They are easy to conflate but they are genuinely different tasks. The explanation is a description: you are reporting what someone else said as accurately as you can, without any evaluation. The critique is your argument: you are explaining why something in what they said is wrong.</p>
+            <p>A quick way to check: read your Phase 2 post and ask whether the first part contains any of your own opinions. If it does, you have started critiquing before you finished explaining. The explanation should read like a summary a neutral third party could have written. Once that is done, the critique is where your own reasoning comes in.</p>
+            <p>Keeping them separate also protects you. If you mix them together, you may end up critiquing a version of the argument that is slightly different from what the person actually wrote. When they respond in Phase 3, they can point that out, and then your critique does not land. Getting the explanation right first means your critique has something real to push against.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            What counts as a "specific objection" in Phase 2? I am not sure mine is specific enough.
+          </button>
+          <div class="faq-a">
+            <p>A specific objection targets something the person actually said and explains why that particular claim or move is wrong. "I disagree with your conclusion" is not specific: it is just registering a different opinion. "Your argument assumes that consequences are the only thing that matters, but in this case that assumption breaks down because..." is specific. It identifies a particular feature of the argument and gives a reason why it fails.</p>
+            <p>If your objection would apply equally well to any post in the thread, it is not specific enough. It should be addressed to the particular argument you read.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            What is the point of the one-response-per-post rule? It seems arbitrary.
+          </button>
+          <div class="faq-a">
+            <p>Two reasons. First, it makes sure everyone gets a response. If a few posts get challenged five times each and others get ignored, the exchange stops being a conversation and becomes a pile-on. Second, it makes Phase 2 harder in a useful way. You cannot just pick the easiest post to challenge: you have to actually read the thread and find something worth engaging with that has not already been taken.</p>
+            <p>In practice this also means posting Phase 1 early gives you more options in Phase 2, since the best posts tend to get claimed first.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            I do not understand what consequentialism or Kantian ethics actually says. Where do I start?
+          </button>
+          <div class="faq-a">
+            <p>Go back to your course notes and the readings from those units before you write Phase 1. Both theories have been covered in class. If your notes are thin, the textbook sections are the right place to start, not a search engine, which will give you definitions that are too shallow to actually apply.</p>
+            <p>The key question to ask yourself is: what does this theory say is the right way to evaluate an action or a policy? For consequentialism, it is about outcomes and effects on welfare. For Kantian ethics, it is about the nature of the action itself and whether it could be universalized or whether it treats persons as mere means. Once you can answer that question in your own words, you are ready to apply it to the case.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            What if no one challenges my Phase 1 post before the Phase 3 deadline?
+          </button>
+          <div class="faq-a">
+            <p>If no one has challenged your post by Saturday evening, find a Phase 2 post that challenged someone else's analysis of the same case and respond to that instead, treating it as if it were addressed to you. This is unlikely if you post Phase 1 on time, since there should be enough activity in the thread by then. But the fallback is there if you need it.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            Can I change my position between Phase 1 and Phase 3?
+          </button>
+          <div class="faq-a">
+            <p>Yes, and sometimes it is the right call. If someone raises an objection in Phase 2 that genuinely changes your view, say so and explain what shifted. That is not weakness: it is reasoning. What you cannot do is ignore the objection and pretend Phase 2 did not happen. Phase 3 needs to be a response to what was actually said.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            I do not really disagree with anyone's post. Can I just pick one at random?
+          </button>
+          <div class="faq-a">
+            <p>Read more carefully. These cases are designed so that reasonable people disagree about them, and most Phase 1 posts will have at least one move that can be questioned: a claim that is too strong, a feature of the case that is being overlooked, an application of the theory that does not quite fit. You are not looking for a post that is obviously wrong. You are looking for a specific thing in a post that you can push on.</p>
+            <p>If you genuinely read through the thread and find yourself agreeing with everyone on every case, that is probably a sign that you are reading at too high a level of generality. Get specific.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            Why do I have to respond to someone else's post? I wrote my analysis, why is that not enough?
+          </button>
+          <div class="faq-a">
+            <p>Because writing your own analysis and defending it against someone who disagrees are different skills. The first one is mostly about what you know. The second is about whether your argument actually holds up when someone applies pressure to it. The final paper will ask you to handle a serious objection on your own. Phases 2 and 3 are where you practice that in a lower-stakes setting, with other people helping you find where your argument is weak before you have to write it alone.</p>
+            <p>The assignment is also explicitly designed as a group exercise, not a collection of individual posts. The exchange is the point.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" role="listitem">
+          <button class="faq-q" aria-expanded="false">
+            <span class="faq-icon" aria-hidden="true">+</span>
+            This seems like a lot of work for a discussion post. Is there a minimum I can do and still pass?
+          </button>
+          <div class="faq-a">
+            <p>Three posts total, one per phase, is the minimum. The word counts in each phase are also minimums, not targets. That said, the rubric grades quality of reasoning, not length. A 200-word Phase 1 post that takes a clear position and applies a theory specifically will score better than a 400-word post that describes the case thoroughly and then says the answer is complicated.</p>
+            <p>If you are short on time, the most important thing to protect is Phase 1 being posted by Thursday. Everything else in this assignment depends on having something in the thread early enough for others to respond to.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Introduction to Ethics &nbsp;·&nbsp; Case Deliberation &nbsp;·&nbsp; APPE IEB cases used under CC BY-NC-ND 4.0</p>
+</footer>
+
+<button id="a11y-btn" aria-pressed="false" aria-label="Toggle accessibility mode">
+  <span aria-hidden="true">Aa</span> Accessibility
+</button>
+
+<script>
+  // Active nav highlighting via IntersectionObserver
+  const navLinks = document.querySelectorAll('nav a[href^="#"]');
+  const sections = document.querySelectorAll('main section[id]');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+        });
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+  const tabs = document.querySelectorAll('.case-tab');
+  const panels = document.querySelectorAll('.case-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      document.getElementById(tab.getAttribute('aria-controls')).classList.add('active');
+    });
+    tab.addEventListener('keydown', e => {
+      const i = Array.from(tabs).indexOf(tab);
+      if (e.key === 'ArrowRight') { e.preventDefault(); const n = tabs[(i+1)%tabs.length]; n.click(); n.focus(); }
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); const n = tabs[(i-1+tabs.length)%tabs.length]; n.click(); n.focus(); }
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // skip accordion behavior in a11y mode (all are expanded)
+      if (document.body.classList.contains('a11y-mode')) return;
+      const item = btn.closest('.faq-item');
+      const open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      });
+      if (!open) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded','true');
+      }
+    });
+  });
+
+  // Accessibility toggle: black on white + expand all
+  const a11yBtn = document.getElementById('a11y-btn');
+  a11yBtn.addEventListener('click', () => {
+    const on = document.body.classList.toggle('a11y-mode');
+    a11yBtn.setAttribute('aria-pressed', String(on));
+    // when turning on, mark all FAQ as open for aria
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (on) {
+        item.classList.add('open');
+        item.querySelector('.faq-q').setAttribute('aria-expanded','true');
+      } else {
+        item.classList.remove('open');
+        item.querySelector('.faq-q').setAttribute('aria-expanded','false');
+      }
+    });
+  });
+</script>
+</body>
+</html>
