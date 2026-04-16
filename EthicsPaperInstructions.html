@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Ethics Paper Instructions — Introduction to Ethics</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&amp;display=swap" rel="stylesheet"/>
 <style>
   /* ── TOKENS ── */
   :root {
@@ -22,6 +23,8 @@
     --strong-bg:   #e8f6ee;
     --adequate-fg: #2a6496;
     --adequate-bg: #e8f0f8;
+    --partial-fg:  #8a5a00;
+    --partial-bg:  #fff4db;
     --weak-fg:     #8b3a3a;
     --weak-bg:     #f8eded;
     --warn-border: #e8c84a;
@@ -38,6 +41,7 @@
     --bg: #fff; --white: #fff;
     --strong-fg: #000; --strong-bg: #eee;
     --adequate-fg: #000; --adequate-bg: #eee;
+    --partial-fg: #000; --partial-bg: #eee;
     --weak-fg: #000; --weak-bg: #eee;
     --warn-border: #000; --alert-bg: #f2f2f2; --alert-text: #000;
     font-size: 18px;
@@ -421,12 +425,75 @@
   thead th:first-child  { color: var(--ocean);       background: var(--teal-ghost);  }
   thead th:nth-child(2) { color: var(--strong-fg);   background: var(--strong-bg);   }
   thead th:nth-child(3) { color: var(--adequate-fg); background: var(--adequate-bg); }
-  thead th:nth-child(4) { color: var(--weak-fg);     background: var(--weak-bg);     }
+  thead th:nth-child(4) { color: var(--partial-fg);  background: var(--partial-bg);  }
+  thead th:nth-child(5) { color: var(--weak-fg);     background: var(--weak-bg);     }
   tbody tr { border-bottom: 1px solid var(--border); }
   tbody tr:last-child { border-bottom: none; }
   tbody tr:hover td { background: var(--teal-ghost); }
   td { padding: 1rem; vertical-align: top; color: var(--mid); line-height: 1.55; }
   td:first-child { font-weight: 700; color: var(--slate); white-space: nowrap; font-size: .85rem; }
+
+  .criterion-label { display: block; }
+  .lo-chip-row { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .45rem; }
+  .lo-chip {
+    position: relative;
+    display: inline-flex; align-items: center;
+    padding: .12rem .45rem; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--teal-ghost);
+    color: var(--teal); font-size: .68rem; font-weight: 700; letter-spacing: .04em;
+    text-transform: uppercase; white-space: nowrap;
+    cursor: help;
+  }
+  .chip-tooltip {
+    position: absolute;
+    left: 0; top: 0;
+    width: min(280px, calc(100vw - 24px));
+    background: var(--slate);
+    color: #fff;
+    border-radius: 8px;
+    padding: .6rem .75rem;
+    font-size: .72rem;
+    font-weight: 500;
+    letter-spacing: 0;
+    line-height: 1.45;
+    text-transform: none;
+    white-space: normal;
+    box-shadow: 0 8px 24px rgba(0,0,0,.22);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .chip-tooltip.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  .chip-tooltip-title {
+    display: block;
+    font-style: italic;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: .7rem;
+  }
+  .chip-tooltip-body {
+    display: block;
+    color: rgba(255,255,255,.96);
+  }
+  body.a11y .lo-chip { border-color: #000; background: #fff; color: #000; }
+  body.a11y .chip-tooltip { background: #000; color: #fff; }
+
+  .a11y-tooltip-list { display: none; margin-top: .55rem; padding-left: 1.15rem; }
+  .a11y-tooltip-list li { margin: .45rem 0; color: var(--mid); }
+  .a11y-tooltip-title { display: block; font-size: .74rem; font-weight: 700; color: var(--teal); margin-bottom: .3rem; white-space: normal; }
+  .a11y-tooltip-body { display: block; font-size: .79rem; line-height: 1.5; white-space: normal; }
+  .case-switch-btn { display: inline-flex; align-items: center; text-decoration: none; line-height: 1.2; }
+
+  body.a11y .lo-chip-row { display: none; }
+  body.a11y .a11y-tooltip-list { display: block; }
+  body.a11y .a11y-tooltip-list li { color: #000; }
+  body.a11y .a11y-tooltip-title,
+  body.a11y .a11y-tooltip-body { color: #000; }
+  body.a11y tbody td:first-child { white-space: normal; }
 
   /* ── PAGE NAV BUTTONS (overview) ── */
   .page-nav-grid {
@@ -546,816 +613,737 @@
 </style>
 </head>
 <body>
-
 <a class="skip-link" href="#main-content">Skip to main content</a>
-
 <!-- NAV -->
 <nav aria-label="Site navigation">
-  <div class="nav-brand">Ethics Paper Instructions</div>
-  <div class="nav-items">
-
-    <div class="nav-item">
-      <a href="#" class="active" onclick="navTo('overview', this); return false;" id="nav-overview">Overview</a>
-    </div>
-
-    <div class="nav-item">
-      <button id="nav-cases" onclick="navTo('case-a', this); return false;" aria-haspopup="true">
-        Cases <span class="nav-caret">▾</span>
-      </button>
-      <div class="dropdown" role="menu">
-        <a href="#" role="menuitem" onclick="navTo('case-a', this); return false;" id="nav-case-a">Case A — Landlord &amp; Eviction</a>
-        <a href="#" role="menuitem" onclick="navTo('case-b', this); return false;" id="nav-case-b">Case B — AI &amp; Free Will</a>
-        <a href="#" role="menuitem" onclick="navTo('case-c', this); return false;" id="nav-case-c">Case C — Collective Responsibility</a>
-        <a href="#" role="menuitem" onclick="navTo('case-d', this); return false;" id="nav-case-d">Case D — Medical Priority &amp; Responsibility</a>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <button id="nav-parts" onclick="navTo('part-0', this); return false;" aria-haspopup="true">
-        Parts <span class="nav-caret">▾</span>
-      </button>
-      <div class="dropdown" role="menu">
-        <a href="#" role="menuitem" onclick="navTo('part-0', this); return false;" id="nav-part-0">Part 0 — Take Notes</a>
-        <a href="#" role="menuitem" onclick="navTo('part-1', this); return false;" id="nav-part-1">Part 1 — Outline</a>
-        <a href="#" role="menuitem" onclick="navTo('part-2', this); return false;" id="nav-part-2">Part 2 — Outline Peer Review</a>
-        <a href="#" role="menuitem" onclick="navTo('part-3', this); return false;" id="nav-part-3">Part 3 — Paper</a>
-        <a href="#" role="menuitem" onclick="navTo('part-4', this); return false;" id="nav-part-4">Part 4 — Paper Peer Review</a>
-        <a href="#" role="menuitem" onclick="navTo('part-5', this); return false;" id="nav-part-5">Part 5 — Revision</a>
-      </div>
-    </div>
-
-    <div class="nav-item">
-      <a href="#" id="nav-evaluation" onclick="navTo('evaluation', this); return false;">Evaluation</a>
-    </div>
-
-  </div><!-- /nav-items -->
-
-  <button class="nav-hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false" onclick="toggleMobileNav()">☰</button>
-
-</nav>
-
-<!-- MOBILE NAV PANEL -->
-<div class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation">
-  <div class="mobile-nav-section">Overview</div>
-  <a href="#" id="mnav-overview" onclick="mobileNavTo('overview'); return false;">Overview</a>
-
-  <div class="mobile-nav-section">Cases</div>
-  <a href="#" id="mnav-case-a" onclick="mobileNavTo('case-a'); return false;">Case A — Landlord &amp; Eviction</a>
-  <a href="#" id="mnav-case-b" onclick="mobileNavTo('case-b'); return false;">Case B — AI &amp; Free Will</a>
-  <a href="#" id="mnav-case-c" onclick="mobileNavTo('case-c'); return false;">Case C — Collective Responsibility</a>
-  <a href="#" id="mnav-case-d" onclick="mobileNavTo('case-d'); return false;">Case D — Medical Priority &amp; Responsibility</a>
-
-  <div class="mobile-nav-section">Parts</div>
-  <a href="#" id="mnav-part-0" onclick="mobileNavTo('part-0'); return false;">Part 0 — Take Notes</a>
-  <a href="#" id="mnav-part-1" onclick="mobileNavTo('part-1'); return false;">Part 1 — Outline</a>
-  <a href="#" id="mnav-part-2" onclick="mobileNavTo('part-2'); return false;">Part 2 — Outline Peer Review</a>
-  <a href="#" id="mnav-part-3" onclick="mobileNavTo('part-3'); return false;">Part 3 — Paper</a>
-  <a href="#" id="mnav-part-4" onclick="mobileNavTo('part-4'); return false;">Part 4 — Paper Peer Review</a>
-  <a href="#" id="mnav-part-5" onclick="mobileNavTo('part-5'); return false;">Part 5 — Revision</a>
-
-  <div class="mobile-nav-section">Evaluation</div>
-  <a href="#" id="mnav-evaluation" onclick="mobileNavTo('evaluation'); return false;">Evaluation</a>
+<div class="nav-brand">Ethics Paper Instructions</div>
+<div class="nav-items">
+<div class="nav-item">
+<a class="active" href="#" id="nav-overview" onclick="navTo('overview', this); return false;">Overview</a>
 </div>
-
+<div class="nav-item">
+<button aria-haspopup="true" id="nav-cases" onclick="navTo('case-a', this); return false;">
+        Cases <span class="nav-caret">▾</span>
+</button>
+<div class="dropdown" role="menu">
+<a href="#" id="nav-case-a" onclick="navTo('case-a', this); return false;" role="menuitem">Case A — Landlord &amp; Eviction</a>
+<a href="#" id="nav-case-b" onclick="navTo('case-b', this); return false;" role="menuitem">Case B — AI &amp; Free Will</a>
+<a href="#" id="nav-case-c" onclick="navTo('case-c', this); return false;" role="menuitem">Case C — Collective Responsibility</a>
+<a href="#" id="nav-case-d" onclick="navTo('case-d', this); return false;" role="menuitem">Case D — Medical Priority &amp; Responsibility</a>
+</div>
+</div>
+<div class="nav-item">
+<button aria-haspopup="true" id="nav-parts" onclick="navTo('part-0', this); return false;">
+        Parts <span class="nav-caret">▾</span>
+</button>
+<div class="dropdown" role="menu">
+<a href="#" id="nav-part-0" onclick="navTo('part-0', this); return false;" role="menuitem">Part 0 — Take Notes</a>
+<a href="#" id="nav-part-1" onclick="navTo('part-1', this); return false;" role="menuitem">Part 1 — Outline</a>
+<a href="#" id="nav-part-2" onclick="navTo('part-2', this); return false;" role="menuitem">Part 2 — Outline Peer Review</a>
+<a href="#" id="nav-part-3" onclick="navTo('part-3', this); return false;" role="menuitem">Part 3 — Paper</a>
+<a href="#" id="nav-part-4" onclick="navTo('part-4', this); return false;" role="menuitem">Part 4 — Paper Peer Review</a>
+<a href="#" id="nav-part-5" onclick="navTo('part-5', this); return false;" role="menuitem">Part 5 — Revision</a>
+</div>
+</div>
+<div class="nav-item">
+<a href="#" id="nav-evaluation" onclick="navTo('evaluation', this); return false;">Evaluation</a>
+</div>
+</div><!-- /nav-items -->
+<button aria-expanded="false" aria-label="Open navigation menu" class="nav-hamburger" id="hamburger-btn" onclick="toggleMobileNav()">☰</button>
+</nav>
+<!-- MOBILE NAV PANEL -->
+<div aria-label="Mobile navigation" class="mobile-nav" id="mobile-nav">
+<div class="mobile-nav-section">Overview</div>
+<a href="#" id="mnav-overview" onclick="mobileNavTo('overview'); return false;">Overview</a>
+<div class="mobile-nav-section">Cases</div>
+<a href="#" id="mnav-case-a" onclick="mobileNavTo('case-a'); return false;">Case A — Landlord &amp; Eviction</a>
+<a href="#" id="mnav-case-b" onclick="mobileNavTo('case-b'); return false;">Case B — AI &amp; Free Will</a>
+<a href="#" id="mnav-case-c" onclick="mobileNavTo('case-c'); return false;">Case C — Collective Responsibility</a>
+<a href="#" id="mnav-case-d" onclick="mobileNavTo('case-d'); return false;">Case D — Medical Priority &amp; Responsibility</a>
+<div class="mobile-nav-section">Parts</div>
+<a href="#" id="mnav-part-0" onclick="mobileNavTo('part-0'); return false;">Part 0 — Take Notes</a>
+<a href="#" id="mnav-part-1" onclick="mobileNavTo('part-1'); return false;">Part 1 — Outline</a>
+<a href="#" id="mnav-part-2" onclick="mobileNavTo('part-2'); return false;">Part 2 — Outline Peer Review</a>
+<a href="#" id="mnav-part-3" onclick="mobileNavTo('part-3'); return false;">Part 3 — Paper</a>
+<a href="#" id="mnav-part-4" onclick="mobileNavTo('part-4'); return false;">Part 4 — Paper Peer Review</a>
+<a href="#" id="mnav-part-5" onclick="mobileNavTo('part-5'); return false;">Part 5 — Revision</a>
+<div class="mobile-nav-section">Evaluation</div>
+<a href="#" id="mnav-evaluation" onclick="mobileNavTo('evaluation'); return false;">Evaluation</a>
+</div>
 <!-- HEADER -->
 <header>
-  <div class="header-inner">
-    <div class="course-label" aria-hidden="true">Introduction to Ethics</div>
-    <h1>Ethics Paper Instructions</h1>
-    <div class="meta-pills" role="list" aria-label="Assignment details">
-      <div class="pill" role="listitem"><strong>Length</strong>&nbsp; 1,200–1,500 words</div>
-      <div class="pill" role="listitem"><strong>Weight</strong>&nbsp; 30% of final grade</div>
-      <div class="pill" role="listitem"><strong>Format</strong>&nbsp; Double-spaced, 12pt, APA</div>
-      <div class="pill" role="listitem"><strong>Due dates</strong>&nbsp; See syllabus</div>
+<div class="header-inner">
+<div aria-hidden="true" class="course-label">Introduction to Ethics</div>
+<h1>Ethics Paper Instructions</h1>
+<div aria-label="Assignment details" class="meta-pills" role="list">
+<div class="pill" role="listitem"><strong>Length</strong>  1,200–1,500 words</div>
+<div class="pill" role="listitem"><strong>Weight</strong>  30% of final grade</div>
+<div class="pill" role="listitem"><strong>Format</strong>  Double-spaced, 12pt, APA</div>
+<div class="pill" role="listitem"><strong>Due dates</strong>  See syllabus</div>
+</div>
+<div class="header-note" role="note">
+<strong>Writing location:</strong> Everything, from your first scratch to the final draft, must be written in Personify.ai. The link is in the D2L assignment description. Do not paste large blocks of text from elsewhere.
     </div>
-    <div class="header-note" role="note">
-      <strong>Writing location:</strong> Everything, from your first scratch to the final draft, must be written in Personify.ai. The link is in the D2L assignment description. Do not paste large blocks of text from elsewhere.
-    </div>
-  </div>
+</div>
 </header>
-
 <main id="main-content">
-
-  <!-- ══════════════════════════════════════
+<!-- ══════════════════════════════════════
        PAGE: OVERVIEW
   ══════════════════════════════════════ -->
-  <div class="page active" id="page-overview" role="main" aria-label="Overview">
-
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">1</div>
-      <h2>Overview</h2>
-    </div>
-
-    <div class="card">
-      <p>This assignment asks you to demonstrate your philosophical understanding and reasoning by analyzing a situation using the concepts and tools from class. Your goal is to demonstrate that you have developed your understanding of issues, honed skills, and are able to do more than regurgitate ideas.</p>
-      <p>You will choose one of four cases and analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. This assignment is known as a scaffolded assignment, which means it has multiple parts which build upon each other. A major part of the process is two peer review sessions, one on your outline and another on a completed version of the paper. Be aware: if you only have a small sketch with a few lines for your outline, or only an incomplete draft before the peer review discussions, that will count against your grade.</p>
-    </div>
-
-    <p class="section-lede">Learning Outcomes</p>
-    <ol class="outcomes-grid" aria-label="Course learning outcomes">
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">1</span>Explain major ethical concepts and describe the problems and/or issues in clarifying them that are used to comprehend and express moral or ethical problems.</li>
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">2</span>Analyze major ethical theories.</li>
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">3</span>Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory.</li>
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">4</span>Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems.</li>
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">5</span>Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches.</li>
-      <li class="outcome-item"><span class="outcome-num" aria-hidden="true">6</span>Demonstrate philosophical and/or logical thinking through writing.</li>
-    </ol>
-
-    <div class="divider" aria-hidden="true"></div>
-    <p style="font-size:.875rem; color:var(--mid);">For the key things to keep in mind while writing, refer to the Evaluation Rubric.</p>
-
-    <div class="divider" aria-hidden="true"></div>
-    <p class="section-lede" style="margin-bottom:.75rem;">Go to</p>
-    <div class="page-nav-grid" role="list">
-      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('case-a', this); return false;">
-        <span class="nav-btn-title">Cases</span>
-      </a>
-      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('part-0', this); return false;">
-        <span class="nav-btn-title">Parts</span>
-      </a>
-      <a class="page-nav-btn" role="listitem" href="#" onclick="navTo('evaluation', this); return false;">
-        <span class="nav-btn-title">Evaluation</span>
-      </a>
-    </div>
-
-  </div><!-- /page-overview -->
-
-
-  <!-- ══════════════════════════════════════
+<div aria-label="Overview" class="page active" id="page-overview" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">1</div>
+<h2>Overview</h2>
+</div>
+<div class="card">
+<p>This assignment asks you to demonstrate your philosophical understanding and reasoning by analyzing a situation using the concepts and tools from class. Your goal is to demonstrate that you have developed your understanding of issues, honed skills, and are able to do more than regurgitate ideas.</p>
+<p>You will choose one of four cases and analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. This assignment is known as a scaffolded assignment, which means it has multiple parts which build upon each other. A major part of the process is two peer review sessions, one on your outline and another on a completed version of the paper. Be aware: if you only have a small sketch with a few lines for your outline, or only an incomplete draft before the peer review discussions, that will count against your grade.</p>
+</div>
+<p class="section-lede">Learning Outcomes</p>
+<ol aria-label="Course learning outcomes" class="outcomes-grid">
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">1</span>Explain major ethical concepts and describe the problems and/or issues in clarifying them that are used to comprehend and express moral or ethical problems.</li>
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">2</span>Analyze major ethical theories.</li>
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">3</span>Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory.</li>
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">4</span>Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems.</li>
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">5</span>Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches.</li>
+<li class="outcome-item"><span aria-hidden="true" class="outcome-num">6</span>Demonstrate philosophical and/or logical thinking through writing.</li>
+</ol>
+<div aria-hidden="true" class="divider"></div>
+<p style="font-size:.875rem; color:var(--mid);">For the key things to keep in mind while writing, refer to the Evaluation Rubric.</p>
+<div aria-hidden="true" class="divider"></div>
+<p class="section-lede" style="margin-bottom:.75rem;">Go to</p>
+<div class="page-nav-grid" role="list">
+<a class="page-nav-btn" href="#case-a" onclick="navTo('case-a', this); return false;" role="listitem">
+<span class="nav-btn-title">Cases</span>
+</a>
+<a class="page-nav-btn" href="#part-0" onclick="navTo('part-0', this); return false;" role="listitem">
+<span class="nav-btn-title">Parts</span>
+</a>
+<a class="page-nav-btn" href="#evaluation" onclick="navTo('evaluation', this); return false;" role="listitem">
+<span class="nav-btn-title">Evaluation</span>
+</a>
+</div>
+</div><!-- /page-overview -->
+<!-- ══════════════════════════════════════
        PAGE: CASE A
   ══════════════════════════════════════ -->
-  <div class="page" id="page-case-a" role="main" aria-label="Case A">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">2</div>
-      <h2>Cases</h2>
-    </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
-    <div class="case-switcher" role="group" aria-label="Choose a case">
-      <button class="case-switch-btn active" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
-      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
-      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
-      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
-    </div>
-    <div class="case-card">
-      <div class="case-header"><h3>Case A: Landlord &amp; Eviction</h3></div>
-      <div class="case-body">
-        <div class="scenario-block">
-          <p>Consider these two scenarios.</p>
-          <p><strong>Scenario 1:</strong> A progressive landlord discovers their renter frequently posts anti-LGBTQ views on social media. The landlord finds these views morally reprehensible and evicts the renter, arguing that forcing them to provide housing to someone whose values they find abhorrent violates their own moral autonomy and freedom of association.</p>
-          <p><strong>Scenario 2:</strong> A conservative Christian landlord discovers their renter is actively advocating for abortion rights and volunteering at a reproductive health clinic. The landlord finds these activities morally wrong and evicts the renter, making the same argument: forcing them to house someone whose actions they find immoral violates their conscience and freedom.</p>
-          <p>The renters in both cases argue that housing is a basic need and evicting someone for their views or activities, which are legal, is discriminatory and causes significant harm.</p>
-        </div>
-        <p style="margin-top:1rem;"><strong>Your question:</strong> Are both landlords justified in evicting, neither is justified, or is there a relevant moral difference between the cases? If you think one eviction is justified but not the other, what principle distinguishes them? If you think both are justified or neither is, would you think the same holds true for any similar situation, or is there something about these cases that makes them special?</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
+<div aria-label="Case A" class="page" id="page-case-a" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">2</div>
+<h2>Cases</h2>
+</div>
+<p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
+<div aria-label="Choose a case" class="case-switcher" role="group">
+<a class="case-switch-btn active" href="#case-a" onclick="navTo('case-a', this); return false;">Case A — Landlord &amp; Eviction</a>
+<a class="case-switch-btn" href="#case-b" onclick="navTo('case-b', this); return false;">Case B — AI &amp; Free Will</a>
+<a class="case-switch-btn" href="#case-c" onclick="navTo('case-c', this); return false;">Case C — Collective Responsibility</a>
+<a class="case-switch-btn" href="#case-d" onclick="navTo('case-d', this); return false;">Case D — Medical Priority &amp; Responsibility</a>
+</div>
+<div class="case-card">
+<div class="case-header"><h3>Case A: Landlord &amp; Eviction</h3></div>
+<div class="case-body">
+<div class="scenario-block">
+<p>Consider these two scenarios.</p>
+<p><strong>Scenario 1:</strong> A progressive landlord discovers their renter frequently posts anti-LGBTQ views on social media. The landlord finds these views morally reprehensible and evicts the renter, arguing that forcing them to provide housing to someone whose values they find abhorrent violates their own moral autonomy and freedom of association.</p>
+<p><strong>Scenario 2:</strong> A conservative Christian landlord discovers their renter is actively advocating for abortion rights and volunteering at a reproductive health clinic. The landlord finds these activities morally wrong and evicts the renter, making the same argument: forcing them to house someone whose actions they find immoral violates their conscience and freedom.</p>
+<p>The renters in both cases argue that housing is a basic need and evicting someone for their views or activities, which are legal, is discriminatory and causes significant harm.</p>
+</div>
+<p style="margin-top:1rem;"><strong>Your question:</strong> Are both landlords justified in evicting, neither is justified, or is there a relevant moral difference between the cases? If you think one eviction is justified but not the other, what principle distinguishes them? If you think both are justified or neither is, would you think the same holds true for any similar situation, or is there something about these cases that makes them special?</p>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: CASE B
   ══════════════════════════════════════ -->
-  <div class="page" id="page-case-b" role="main" aria-label="Case B">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">2</div>
-      <h2>Cases</h2>
-    </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
-    <div class="case-switcher" role="group" aria-label="Choose a case">
-      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
-      <button class="case-switch-btn active" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
-      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
-      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
-    </div>
-    <div class="case-card">
-      <div class="case-header"><h3>Case B: AI &amp; Free Will</h3></div>
-      <div class="case-body">
-        <div class="scenario-block">
-          <p>An advanced AI agent, embodied in a robot that can move through the world, commits a serious crime. It physically harms someone in a way that wasn't part of any programmed instruction. The AI's developer is put on trial.</p>
-          <p>The prosecution argues the AI is ultimately just following its programming, making the developer responsible for what it does.</p>
-          <p>The defense responds in the following way: "I conducted the same level of testing, training, and quality assurance as any responsible parent does with their children. I couldn't have predicted this action any more than a parent could predict their adult child committing a similar crime. The AI's decision-making process had become complex enough that specific outcomes were unpredictable despite my guidance. If we don't hold parents criminally responsible when their well-raised adult children commit crimes, you cannot hold me responsible either."</p>
-        </div>
-        <p style="margin-top:1rem;"><strong>Your question:</strong> Does the AI have free will in the same morally relevant way a human does, or is there a principled difference that makes the developer more responsible than a parent would be? If both the human and AI are products of their training and prior causes, what makes one free and the other not?</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- ══════════════════════════════════════
+<div aria-label="Case B" class="page" id="page-case-b" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">2</div>
+<h2>Cases</h2>
+</div>
+<p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
+<div aria-label="Choose a case" class="case-switcher" role="group">
+<a class="case-switch-btn" href="#case-a" onclick="navTo('case-a', this); return false;">Case A — Landlord &amp; Eviction</a>
+<a class="case-switch-btn active" href="#case-b" onclick="navTo('case-b', this); return false;">Case B — AI &amp; Free Will</a>
+<a class="case-switch-btn" href="#case-c" onclick="navTo('case-c', this); return false;">Case C — Collective Responsibility</a>
+<a class="case-switch-btn" href="#case-d" onclick="navTo('case-d', this); return false;">Case D — Medical Priority &amp; Responsibility</a>
+</div>
+<div class="case-card">
+<div class="case-header"><h3>Case B: AI &amp; Free Will</h3></div>
+<div class="case-body">
+<div class="scenario-block">
+<p>An advanced AI agent, embodied in a robot that can move through the world, commits a serious crime. It physically harms someone in a way that wasn't part of any programmed instruction. The AI's developer is put on trial.</p>
+<p>The prosecution argues the AI is ultimately just following its programming, making the developer responsible for what it does.</p>
+<p>The defense responds in the following way: "I conducted the same level of testing, training, and quality assurance as any responsible parent does with their children. I couldn't have predicted this action any more than a parent could predict their adult child committing a similar crime. The AI's decision-making process had become complex enough that specific outcomes were unpredictable despite my guidance. If we don't hold parents criminally responsible when their well-raised adult children commit crimes, you cannot hold me responsible either."</p>
+</div>
+<p style="margin-top:1rem;"><strong>Your question:</strong> Does the AI have free will in the same morally relevant way a human does, or is there a principled difference that makes the developer more responsible than a parent would be? If both the human and AI are products of their training and prior causes, what makes one free and the other not?</p>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: CASE C
   ══════════════════════════════════════ -->
-  <div class="page" id="page-case-c" role="main" aria-label="Case C">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">2</div>
-      <h2>Cases</h2>
-    </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
-    <div class="case-switcher" role="group" aria-label="Choose a case">
-      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
-      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
-      <button class="case-switch-btn active" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
-      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
-    </div>
-    <div class="case-card">
-      <div class="case-header"><h3>Case C: Collective Responsibility</h3></div>
-      <div class="case-body">
-        <div class="scenario-block">
-          <p>Consider these two scenarios.</p>
-          <p><strong>Scenario 1:</strong> A university fraternity committed serious hazing violations in 2015 that hospitalized several students. Over the next decade, every member graduated and was replaced by new members who had nothing to do with the original incidents. In 2025, the university is considering whether to continue sanctions against the fraternity.</p>
-          <p><strong>Scenario 2:</strong> A nation committed war crimes and human rights violations in 2015. Over the next decade, through natural demographic change, every government official who was in power during those violations has left office or died. The current government consists entirely of people who were not in positions of authority during the violations. In 2025, the international community is considering whether the nation still owes reparations.</p>
-        </div>
-        <p style="margin-top:1rem;"><strong>Your question:</strong> Does the fraternity still bear responsibility for the 2015 hazing? Does the nation still bear responsibility for the 2015 violations? If you treat these cases differently, what principle distinguishes them? If you think both are responsible or that neither is, would you think the same holds true for any similar situation, or is there something about these cases that makes them special?</p>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══════════════════════════════════════
+<div aria-label="Case C" class="page" id="page-case-c" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">2</div>
+<h2>Cases</h2>
+</div>
+<p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
+<div aria-label="Choose a case" class="case-switcher" role="group">
+<a class="case-switch-btn" href="#case-a" onclick="navTo('case-a', this); return false;">Case A — Landlord &amp; Eviction</a>
+<a class="case-switch-btn" href="#case-b" onclick="navTo('case-b', this); return false;">Case B — AI &amp; Free Will</a>
+<a class="case-switch-btn active" href="#case-c" onclick="navTo('case-c', this); return false;">Case C — Collective Responsibility</a>
+<a class="case-switch-btn" href="#case-d" onclick="navTo('case-d', this); return false;">Case D — Medical Priority &amp; Responsibility</a>
+</div>
+<div class="case-card">
+<div class="case-header"><h3>Case C: Collective Responsibility</h3></div>
+<div class="case-body">
+<div class="scenario-block">
+<p>Consider these two scenarios.</p>
+<p><strong>Scenario 1:</strong> A university fraternity committed serious hazing violations in 2015 that hospitalized several students. Over the next decade, every member graduated and was replaced by new members who had nothing to do with the original incidents. In 2025, the university is considering whether to continue sanctions against the fraternity.</p>
+<p><strong>Scenario 2:</strong> A nation committed war crimes and human rights violations in 2015. Over the next decade, through natural demographic change, every government official who was in power during those violations has left office or died. The current government consists entirely of people who were not in positions of authority during the violations. In 2025, the international community is considering whether the nation still owes reparations.</p>
+</div>
+<p style="margin-top:1rem;"><strong>Your question:</strong> Does the fraternity still bear responsibility for the 2015 hazing? Does the nation still bear responsibility for the 2015 violations? If you treat these cases differently, what principle distinguishes them? If you think both are responsible or that neither is, would you think the same holds true for any similar situation, or is there something about these cases that makes them special?</p>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: CASE D
   ══════════════════════════════════════ -->
-  <div class="page" id="page-case-d" role="main" aria-label="Case D">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">2</div>
-      <h2>Cases</h2>
-    </div>
-    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
-    <div class="case-switcher" role="group" aria-label="Choose a case">
-      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
-      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
-      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
-      <button class="case-switch-btn active" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
-    </div>
-    <div class="case-card">
-      <div class="case-header"><h3>Case D: Medical Priority &amp; Responsibility</h3></div>
-      <div class="case-body">
-        <div class="scenario-block">
-          <p>Consider these two scenarios.</p>
-          <p><strong>Scenario 1:</strong> A hospital has one donor liver available. Two patients are eligible for transplant. <strong>Patient A</strong> has liver failure partly caused by years of heavy drinking. However, Patient A has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. <strong>Patient B</strong> has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. The transplant team believes that either patient would likely benefit from the transplant, and another compatible liver is likely to become available soon enough that both patients can probably survive until then with current treatment.</p>
-          <p><strong>Scenario 2:</strong> The same hospital again has one donor liver available, and the same two patients are eligible for transplant. Patient A again has liver failure partly caused by years of heavy drinking, but has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. Patient B again has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. This time, however, no additional compatible liver is likely to become available soon, and both patients are deteriorating rapidly. If one of them does not receive the liver now, that patient will likely die before another becomes available.</p>
-        </div>
-        <p style="margin-top:1rem;"><strong>Your question:</strong> In either scenario, who should get the liver that is available now? Should these two cases be treated the same way, or is there a relevant moral difference between them? If you think they should be treated differently, what principle explains the difference? To what extent should Patient A's responsibility for their illness matter? To what extent should their responsibility for their recovery matter? To what extent should Patient B's not being responsible for her illness matter? How does the time constraint difference in the two scenarios change or not change these considerations?</p>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ══════════════════════════════════════
+<div aria-label="Case D" class="page" id="page-case-d" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">2</div>
+<h2>Cases</h2>
+</div>
+<p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
+<div aria-label="Choose a case" class="case-switcher" role="group">
+<a class="case-switch-btn" href="#case-a" onclick="navTo('case-a', this); return false;">Case A — Landlord &amp; Eviction</a>
+<a class="case-switch-btn" href="#case-b" onclick="navTo('case-b', this); return false;">Case B — AI &amp; Free Will</a>
+<a class="case-switch-btn" href="#case-c" onclick="navTo('case-c', this); return false;">Case C — Collective Responsibility</a>
+<a class="case-switch-btn active" href="#case-d" onclick="navTo('case-d', this); return false;">Case D — Medical Priority &amp; Responsibility</a>
+</div>
+<div class="case-card">
+<div class="case-header"><h3>Case D: Medical Priority &amp; Responsibility</h3></div>
+<div class="case-body">
+<div class="scenario-block">
+<p>Consider these two scenarios.</p>
+<p><strong>Scenario 1:</strong> A hospital has one donor liver available. Two patients are eligible for transplant. <strong>Patient A</strong> has liver failure partly caused by years of heavy drinking. However, Patient A has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. <strong>Patient B</strong> has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. The transplant team believes that either patient would likely benefit from the transplant, and another compatible liver is likely to become available soon enough that both patients can probably survive until then with current treatment.</p>
+<p><strong>Scenario 2:</strong> The same hospital again has one donor liver available, and the same two patients are eligible for transplant. Patient A again has liver failure partly caused by years of heavy drinking, but has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. Patient B again has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. This time, however, no additional compatible liver is likely to become available soon, and both patients are deteriorating rapidly. If one of them does not receive the liver now, that patient will likely die before another becomes available.</p>
+</div>
+<p style="margin-top:1rem;"><strong>Your question:</strong> In either scenario, who should get the liver that is available now? Should these two cases be treated the same way, or is there a relevant moral difference between them? If you think they should be treated differently, what principle explains the difference? To what extent should Patient A's responsibility for their illness matter? To what extent should their responsibility for their recovery matter? To what extent should Patient B's not being responsible for her illness matter? How does the time constraint difference in the two scenarios change or not change these considerations?</p>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 0
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-0" role="main" aria-label="Part 0: Notes">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 0 — Take Notes</h2>
-    </div>
-    <p>The assignment is broken into parts which build on each other. Be sure to check the due dates for each of the parts in your syllabus.</p>
-    <div class="callout" role="note" style="margin-top:.75rem; margin-bottom:1.25rem;">
-      <span class="callout-icon" aria-hidden="true">✍️</span>
-      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
-    </div>
-    <p>Before you start outlining, spend some time with the case. Use the questions below to get your initial reactions down and start chewing on the philosophical issues. You don't need polished answers. The point is just to start thinking. Get your ideas on the page so you can start organizing and analyzing them.</p>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Introducing and clarifying the case</h3>
-    <ul class="review-qs">
-      <li>How would you describe the situation in your own words? What's actually going on here?</li>
-      <li>What is the specific philosophical question you need to answer?</li>
-      <li>Why is this question hard? What makes the answer unclear? What's at stake for the people involved?</li>
-    </ul>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">The relevant concepts</h3>
-    <ul class="review-qs">
-      <li>Which theory are you going to use, consequentialism or Kantian ethics? Why that one for this case?</li>
-      <li>How would you explain the key concepts of that theory to someone who hasn't taken this course?</li>
-      <li>How do those concepts connect to the specific question you identified?</li>
-    </ul>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Analyzing with those concepts</h3>
-    <ul class="review-qs">
-      <li>What are the key considerations your theory identifies in this case? What does it say you should be paying attention to?</li>
-      <li>Are those considerations in tension with each other? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
-      <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
-      <li>Given all of that, what is the right or best thing to do in this case, and why?</li>
-    </ul>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Objections and responses</h3>
-    <ul class="review-qs">
-      <li>What are some potential weaknesses in your argument? Where is it most vulnerable?</li>
-      <li>Why might someone reject what you're saying? What's the strongest version of that objection?</li>
-      <li>How would you respond, without simply repeating your original argument?</li>
-    </ul>
-    <div class="part-arrows">
-      <span class="part-arrow-spacer"></span>
-      <a class="part-arrow-btn next" href="#" onclick="navTo('part-1', this); return false;">Next: Part 1 — Outline ›</a>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<div aria-label="Part 0: Notes" class="page" id="page-part-0" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 0 — Take Notes</h2>
+</div>
+<p>The assignment is broken into parts which build on each other. Be sure to check the due dates for each of the parts in your syllabus.</p>
+<div class="callout" role="note" style="margin-top:.75rem; margin-bottom:1.25rem;">
+<span aria-hidden="true" class="callout-icon">✍️</span>
+<span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+</div>
+<p>Before you start outlining, spend some time with the case. Use the questions below to get your initial reactions down and start chewing on the philosophical issues. You don't need polished answers. The point is just to start thinking. Get your ideas on the page so you can start organizing and analyzing them.</p>
+<h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Introducing and clarifying the case</h3>
+<ul class="review-qs">
+<li>How would you describe the situation in your own words? What's actually going on here?</li>
+<li>What is the specific philosophical question you need to answer?</li>
+<li>Why is this question hard? What makes the answer unclear? What's at stake for the people involved?</li>
+</ul>
+<h3 style="margin-top:1.5rem; margin-bottom:.5rem;">The relevant concepts</h3>
+<ul class="review-qs">
+<li>Which theory are you going to use, consequentialism or Kantian ethics? Why that one for this case?</li>
+<li>How would you explain the key concepts of that theory to someone who hasn't taken this course?</li>
+<li>How do those concepts connect to the specific question you identified?</li>
+</ul>
+<h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Analyzing with those concepts</h3>
+<ul class="review-qs">
+<li>What are the key considerations your theory identifies in this case? What does it say you should be paying attention to?</li>
+<li>Are those considerations in tension with each other? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
+<li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
+<li>Given all of that, what is the right or best thing to do in this case, and why?</li>
+</ul>
+<h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Objections and responses</h3>
+<ul class="review-qs">
+<li>What are some potential weaknesses in your argument? Where is it most vulnerable?</li>
+<li>Why might someone reject what you're saying? What's the strongest version of that objection?</li>
+<li>How would you respond, without simply repeating your original argument?</li>
+</ul>
+<div class="part-arrows">
+<span class="part-arrow-spacer"></span>
+<a class="part-arrow-btn next" href="#part-1" onclick="navTo('part-1', this); return false;">Next: Part 1 — Outline ›</a>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 1
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-1" role="main" aria-label="Part 1: Outline">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 1 — Outline</h2>
-    </div>
-    <div class="callout" role="note" style="margin-bottom:1.25rem;">
-      <span class="callout-icon" aria-hidden="true">✍️</span>
-      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
-    </div>
-    <p>Plan the structure of your paper, including the key points that you will be making and how everything will be organized.</p>
-
-    <!-- EXPANDABLE 1: How to structure your outline -->
-    <div class="part" aria-expanded="false" style="margin-top:1.25rem;">
-      <button class="part-trigger" aria-controls="outline-structure-body" onclick="togglePart(this)">
-        <div class="trigger-left">
-          <h3 id="outline-structure-h">How to structure your outline</h3>
-        </div>
-        <span class="chevron" aria-hidden="true">▼</span>
-      </button>
-      <div class="part-body" id="outline-structure-body" role="region" aria-labelledby="outline-structure-h">
-        <div class="part-inner">
-          <p>Your paper will have sections. Just like you group sentences into paragraphs, you'll group paragraphs into sections. Here is an example of how to section your paper:</p>
-          <div class="outline-box">
-            <ol>
-              <li>Introduction</li>
-              <li>The Dilemma</li>
-              <li>My Contribution <em style="font-weight:400;">(this is where your main argument goes)</em></li>
-              <li>Possible Objections</li>
-              <li>Responses to Objections</li>
-              <li>Conclusion</li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXPANDABLE 2: A couple quick examples -->
-    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
-      <button class="part-trigger" aria-controls="outline-examples-body" onclick="togglePart(this)">
-        <div class="trigger-left">
-          <h3 id="outline-examples-h">A couple quick examples</h3>
-        </div>
-        <span class="chevron" aria-hidden="true">▼</span>
-      </button>
-      <div class="part-body" id="outline-examples-body" role="region" aria-labelledby="outline-examples-h">
-        <div class="part-inner">
-          <p>In each section, bullet out all of the important thoughts you want to get across relating to that topic. Here is what the Dilemma section might look like using a Kantian approach:</p>
-          <div class="outline-box">
-            <ol start="2">
-              <li>The Dilemma
+<div aria-label="Part 1: Outline" class="page" id="page-part-1" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 1 — Outline</h2>
+</div>
+<div class="callout" role="note" style="margin-bottom:1.25rem;">
+<span aria-hidden="true" class="callout-icon">✍️</span>
+<span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+</div>
+<p>Plan the structure of your paper, including the key points that you will be making and how everything will be organized.</p>
+<!-- EXPANDABLE 1: How to structure your outline -->
+<div aria-expanded="false" class="part" style="margin-top:1.25rem;">
+<button aria-controls="outline-structure-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left">
+<h3 id="outline-structure-h">How to structure your outline</h3>
+</div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="outline-structure-h" class="part-body" id="outline-structure-body" role="region">
+<div class="part-inner">
+<p>Your paper will have sections. Just like you group sentences into paragraphs, you'll group paragraphs into sections. Here is an example of how to section your paper:</p>
+<div class="outline-box">
+<ol>
+<li>Introduction</li>
+<li>The Dilemma</li>
+<li>My Contribution <em style="font-weight:400;">(this is where your main argument goes)</em></li>
+<li>Possible Objections</li>
+<li>Responses to Objections</li>
+<li>Conclusion</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<!-- EXPANDABLE 2: A couple quick examples -->
+<div aria-expanded="false" class="part" style="margin-top:.6rem;">
+<button aria-controls="outline-examples-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left">
+<h3 id="outline-examples-h">A couple quick examples</h3>
+</div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="outline-examples-h" class="part-body" id="outline-examples-body" role="region">
+<div class="part-inner">
+<p>In each section, bullet out all of the important thoughts you want to get across relating to that topic. Here is what the Dilemma section might look like using a Kantian approach:</p>
+<div class="outline-box">
+<ol start="2">
+<li>The Dilemma
                 <ul>
-                  <li>The basic situation (the basic facts without philosophy terms)</li>
-                  <li>The key philosophical question: ___</li>
-                  <li>Explain the principle of humanity
+<li>The basic situation (the basic facts without philosophy terms)</li>
+<li>The key philosophical question: ___</li>
+<li>Explain the principle of humanity
                     <ul>
-                      <li>example that illustrates the principle</li>
-                    </ul>
-                  </li>
-                  <li>The principle seems to say one thing when applied to the landlord</li>
-                  <li>The principle seems to say another when applied to the tenant</li>
-                  <li>Drive home the point (i.e. what is the problem you'll solve): the principle pulls in two directions, so it's not clear what it requires here</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
-          <p style="margin-top:.75rem;">And here is the same section using a consequentialist approach:</p>
-          <div class="outline-box">
-            <ol start="2">
-              <li>The Dilemma
+<li>example that illustrates the principle</li>
+</ul>
+</li>
+<li>The principle seems to say one thing when applied to the landlord</li>
+<li>The principle seems to say another when applied to the tenant</li>
+<li>Drive home the point (i.e. what is the problem you'll solve): the principle pulls in two directions, so it's not clear what it requires here</li>
+</ul>
+</li>
+</ol>
+</div>
+<p style="margin-top:.75rem;">And here is the same section using a consequentialist approach:</p>
+<div class="outline-box">
+<ol start="2">
+<li>The Dilemma
                 <ul>
-                  <li>The basic situation (the basic facts without philosophy terms)</li>
-                  <li>The key philosophical question: ___</li>
-                  <li>What consequentialism is
+<li>The basic situation (the basic facts without philosophy terms)</li>
+<li>The key philosophical question: ___</li>
+<li>What consequentialism is
                     <ul>
-                      <li>example that illustrates the view</li>
-                    </ul>
-                  </li>
-                  <li>What intrinsic and instrumental value are
+<li>example that illustrates the view</li>
+</ul>
+</li>
+<li>What intrinsic and instrumental value are
                     <ul>
-                      <li>example of something intrinsically valuable</li>
-                      <li>example of something instrumentally valuable</li>
-                    </ul>
-                  </li>
-                  <li>Identify the variety of things that are intrinsically valuable in this case
+<li>example of something intrinsically valuable</li>
+<li>example of something instrumentally valuable</li>
+</ul>
+</li>
+<li>Identify the variety of things that are intrinsically valuable in this case
                     <ul>
-                      <li>Intrinsic Value #1: ___</li>
-                      <li>Intrinsic Value #2: ___</li>
-                      <li>Intrinsic Value #3: ___ (etc.)</li>
-                    </ul>
-                  </li>
-                  <li>Identify anything that is useful for getting those intrinsic values (i.e. what is instrumentally valuable?)
+<li>Intrinsic Value #1: ___</li>
+<li>Intrinsic Value #2: ___</li>
+<li>Intrinsic Value #3: ___ (etc.)</li>
+</ul>
+</li>
+<li>Identify anything that is useful for getting those intrinsic values (i.e. what is instrumentally valuable?)
                     <ul>
-                      <li>Intrinsic Value #1: ___
+<li>Intrinsic Value #1: ___
                         <ul>
-                          <li>Instrumental Value #1: ___</li>
-                          <li>Instrumental Value #2: ___</li>
-                        </ul>
-                      </li>
-                      <li>Intrinsic Value #2: ___
+<li>Instrumental Value #1: ___</li>
+<li>Instrumental Value #2: ___</li>
+</ul>
+</li>
+<li>Intrinsic Value #2: ___
                         <ul>
-                          <li>Instrumental Value #2: ___ (also useful here — note this is the same as above)</li>
-                          <li>Instrumental Value #3: ___</li>
-                        </ul>
-                      </li>
-                      <li>Intrinsic Value #3: ___
+<li>Instrumental Value #2: ___ (also useful here — note this is the same as above)</li>
+<li>Instrumental Value #3: ___</li>
+</ul>
+</li>
+<li>Intrinsic Value #3: ___
                         <ul>
-                          <li>Instrumental Value #4: ___</li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li>Drive home the point (i.e. what is the problem you'll solve): there is a tension about which values should take priority, and that's what needs to be resolved</li>
-                </ul>
-              </li>
-            </ol>
-          </div>
-          <p style="margin-top:.75rem;">Each of these bullets deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
-          <p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- EXPANDABLE 3: What belongs in each section (with nested expandables per section) -->
-    <div class="part" aria-expanded="false" style="margin-top:.6rem;">
-      <button class="part-trigger" aria-controls="outline-detail-body" onclick="togglePart(this)">
-        <div class="trigger-left">
-          <h3 id="outline-detail-h">What belongs in each section of the paper</h3>
-        </div>
-        <span class="chevron" aria-hidden="true">▼</span>
-      </button>
-      <div class="part-body" id="outline-detail-body" role="region" aria-labelledby="outline-detail-h">
-        <div class="part-inner">
-
-          <div class="part" aria-expanded="false">
-            <button class="part-trigger" aria-controls="sec-intro-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-intro-h">Introduction</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-intro-body" role="region" aria-labelledby="sec-intro-h">
-              <div class="part-inner">
-                <p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize. Give the reader a reason to keep reading.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
-            <button class="part-trigger" aria-controls="sec-dilemma-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-dilemma-h">The Dilemma</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-dilemma-body" role="region" aria-labelledby="sec-dilemma-h">
-              <div class="part-inner">
-                <p>Explain the scenario and identify what makes it philosophically puzzling. Part of doing this well is explaining the theoretical lens you're using — that's what makes the dilemma visible in the first place.</p>
-                <ul class="inline-list">
-                  <li>Describe the scenario in your own words. Don't just copy the prompt</li>
-                  <li>Identify the specific philosophical question you need to answer</li>
-                  <li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
-                  <li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
-                  <li>Explain why these particular concepts are relevant: What do they help us understand about the puzzle?</li>
-                  <li>Show how these concepts connect to the question you identified</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
-            <button class="part-trigger" aria-controls="sec-analysis-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-analysis-h">My Contribution</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-analysis-body" role="region" aria-labelledby="sec-analysis-h">
-              <div class="part-inner">
-                <p>Apply the concepts of your chosen theory to work through the question.</p>
-                <ul class="inline-list">
-                  <li>What are the key considerations your theory identifies in this case?</li>
-                  <li>Are those considerations in tension? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
-                  <li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
-                  <li>Given your analysis, what is the right or best thing to do, and why?</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
-            <button class="part-trigger" aria-controls="sec-obj-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-obj-h">Possible Objections</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-obj-body" role="region" aria-labelledby="sec-obj-h">
-              <div class="part-inner">
-                <ul class="inline-list">
-                  <li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
-                  <li>What's the strongest version of an objection to your position?</li>
-                  <li>What would a proponent of the other theory say against your view? What is the strongest version of that attack?</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
-            <button class="part-trigger" aria-controls="sec-resp-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-resp-h">Responses to Objections</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-resp-body" role="region" aria-labelledby="sec-resp-h">
-              <div class="part-inner">
-                <ul class="inline-list">
-                  <li>How would you respond to each objection, without simply repeating your original argument?</li>
-                  <li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          <div class="part" aria-expanded="false" style="margin-top:.5rem;">
-            <button class="part-trigger" aria-controls="sec-conc-body" onclick="togglePart(this)">
-              <div class="trigger-left"><h3 id="sec-conc-h">Conclusion</h3></div>
-              <span class="chevron" aria-hidden="true">▼</span>
-            </button>
-            <div class="part-body" id="sec-conc-body" role="region" aria-labelledby="sec-conc-h">
-              <div class="part-inner">
-                <p>Restate what you've established and why. Acknowledge remaining uncertainty without abandoning your argument.</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="callout" role="note" style="margin-top:1rem;">
-      <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span>There will be an automatic deduction for being under-prepared for the peer review discussion. If you only have a small sketch with a few lines, that will count against your grade. Your outline should be a real structural plan.</span>
-    </div>
-    <div class="part-arrows">
-      <a class="part-arrow-btn" href="#" onclick="navTo('part-0', this); return false;">‹ Previous: Part 0 — Take Notes</a>
-      <a class="part-arrow-btn next" href="#" onclick="navTo('part-2', this); return false;">Next: Part 2 — Outline Peer Review ›</a>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<li>Instrumental Value #4: ___</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Drive home the point (i.e. what is the problem you'll solve): there is a tension about which values should take priority, and that's what needs to be resolved</li>
+</ul>
+</li>
+</ol>
+</div>
+<p style="margin-top:.75rem;">Each of these bullets deserves its own paragraph. (This is just an example. Your paper will have different paragraphs depending on the concepts you're considering and the point you're making.) You'll want to do this for each of your sections.</p>
+<p>And then you'll want to do this for each of your sections. Think about the main things you need to establish and consider. Think of the sections as buckets for categorizing your ideas. When you start to think of a potential problem with your approach, put that as a bullet in the Possible Objections bucket.</p>
+</div>
+</div>
+</div>
+<!-- EXPANDABLE 3: What belongs in each section (with nested expandables per section) -->
+<div aria-expanded="false" class="part" style="margin-top:.6rem;">
+<button aria-controls="outline-detail-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left">
+<h3 id="outline-detail-h">What belongs in each section of the paper</h3>
+</div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="outline-detail-h" class="part-body" id="outline-detail-body" role="region">
+<div class="part-inner">
+<div aria-expanded="false" class="part">
+<button aria-controls="sec-intro-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-intro-h">Introduction</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-intro-h" class="part-body" id="sec-intro-body" role="region">
+<div class="part-inner">
+<p>Briefly introduce the case, identify the specific philosophical question you will answer, and preview your argument. Don't just summarize. Give the reader a reason to keep reading.</p>
+</div>
+</div>
+</div>
+<div aria-expanded="false" class="part" style="margin-top:.5rem;">
+<button aria-controls="sec-dilemma-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-dilemma-h">The Dilemma</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-dilemma-h" class="part-body" id="sec-dilemma-body" role="region">
+<div class="part-inner">
+<p>Explain the scenario and identify what makes it philosophically puzzling. Part of doing this well is explaining the theoretical lens you're using — that's what makes the dilemma visible in the first place.</p>
+<ul class="inline-list">
+<li>Describe the scenario in your own words. Don't just copy the prompt</li>
+<li>Identify the specific philosophical question you need to answer</li>
+<li>Explain why this question is difficult: What makes the answer unclear? What is at stake?</li>
+<li>Define and explain the key concepts of your chosen theory accurately and in enough detail for someone unfamiliar with the course</li>
+<li>Explain why these particular concepts are relevant: What do they help us understand about the puzzle?</li>
+<li>Show how these concepts connect to the question you identified</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-expanded="false" class="part" style="margin-top:.5rem;">
+<button aria-controls="sec-analysis-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-analysis-h">My Contribution</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-analysis-h" class="part-body" id="sec-analysis-body" role="region">
+<div class="part-inner">
+<p>Apply the concepts of your chosen theory to work through the question.</p>
+<ul class="inline-list">
+<li>What are the key considerations your theory identifies in this case?</li>
+<li>Are those considerations in tension? For consequentialism: are there competing values or outcomes that pull in different directions? For Kantian ethics: are there conflicting obligations or ways of respecting the people involved?</li>
+<li>What is the right way to navigate those tensions, given your theory? Why that way and not another?</li>
+<li>Given your analysis, what is the right or best thing to do, and why?</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-expanded="false" class="part" style="margin-top:.5rem;">
+<button aria-controls="sec-obj-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-obj-h">Possible Objections</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-obj-h" class="part-body" id="sec-obj-body" role="region">
+<div class="part-inner">
+<ul class="inline-list">
+<li>What are the potential weaknesses in your argument? Where is it most vulnerable?</li>
+<li>What's the strongest version of an objection to your position?</li>
+<li>What would a proponent of the other theory say against your view? What is the strongest version of that attack?</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-expanded="false" class="part" style="margin-top:.5rem;">
+<button aria-controls="sec-resp-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-resp-h">Responses to Objections</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-resp-h" class="part-body" id="sec-resp-body" role="region">
+<div class="part-inner">
+<ul class="inline-list">
+<li>How would you respond to each objection, without simply repeating your original argument?</li>
+<li>Acknowledge what assumptions you are making and what remains uncertain or unresolved</li>
+</ul>
+</div>
+</div>
+</div>
+<div aria-expanded="false" class="part" style="margin-top:.5rem;">
+<button aria-controls="sec-conc-body" class="part-trigger" onclick="togglePart(this)">
+<div class="trigger-left"><h3 id="sec-conc-h">Conclusion</h3></div>
+<span aria-hidden="true" class="chevron">▼</span>
+</button>
+<div aria-labelledby="sec-conc-h" class="part-body" id="sec-conc-body" role="region">
+<div class="part-inner">
+<p>Restate what you've established and why. Acknowledge remaining uncertainty without abandoning your argument.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout" role="note" style="margin-top:1rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>There will be an automatic deduction for being under-prepared for the peer review discussion. If you only have a small sketch with a few lines, that will count against your grade. Your outline should be a real structural plan.</span>
+</div>
+<div class="part-arrows">
+<a class="part-arrow-btn" href="#part-0" onclick="navTo('part-0', this); return false;">‹ Previous: Part 0 — Take Notes</a>
+<a class="part-arrow-btn next" href="#part-2" onclick="navTo('part-2', this); return false;">Next: Part 2 — Outline Peer Review ›</a>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 2
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-2" role="main" aria-label="Part 2: Outline Peer Review">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 2 — Outline Peer Review</h2>
-    </div>
-    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class (the two peer review discussions), so we will need to utilize them as much as possible to practice the skill of revising. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
-    <div class="format-toggle" role="group" aria-label="Select your class format">
-      <button class="active" onclick="toggleFormat(this, 'p2-online', 'p2-inperson')" id="p2-online-btn">For Online Classes</button>
-      <button onclick="toggleFormat(this, 'p2-inperson', 'p2-online')" id="p2-inperson-btn">For In Person Classes</button>
-    </div>
-
-    <div class="format-panel active" id="p2-online">
-      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
-      <p>You will be placed into groups of three within D2L. Go to the peer review discussion for this assignment and post your outline there. Read your group members' outlines and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
-      <div class="callout" role="note" style="margin-top:.75rem;">
-        <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. Your outline needs to be a real structural plan, not a sketch.</span>
-      </div>
-    </div>
-
-    <div class="format-panel" id="p2-inperson">
-      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
-      <p>Print off two copies of your outline and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
-      <div class="callout" role="note" style="margin-top:.75rem;">
-        <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch. You also need your printed copies.</span>
-      </div>
-    </div>
-
-    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
-    <p>When reading your partner's outline, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
-    <ul class="review-qs">
-      <li>Is the overall structure clear? Does the sequence of sections make sense, or are things in a confusing order?</li>
-      <li>Is the dilemma section doing enough work? Does it explain why the question is genuinely hard, or does it treat it as already settled?</li>
-      <li>Is the theory or framework being applied actually connected to the case, or does it feel abstract and generic?</li>
-      <li>Is there a real position being taken and defended, or is the paper just presenting multiple views without committing?</li>
-      <li>Are the objections genuine, the strongest version of a challenge to the argument, or are they weak or strawman versions?</li>
-      <li>What is missing? What would you want to see that isn't there?</li>
-    </ul>
-
-    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
-    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
-    <ul class="review-qs">
-      <li>What worked well? What did the reviewers seem to like?</li>
-      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
-      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
-    </ul>
-    <p style="margin-top:.75rem;">Consider your feedback and adjust your outline before you begin the full writing process. Change the sections, paragraphs, etc. so that you're building from the right blueprint. The outline does you no good if it's obsolete.</p>
-    <div class="part-arrows">
-      <a class="part-arrow-btn" href="#" onclick="navTo('part-1', this); return false;">‹ Previous: Part 1 — Outline</a>
-      <a class="part-arrow-btn next" href="#" onclick="navTo('part-3', this); return false;">Next: Part 3 — Paper ›</a>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<div aria-label="Part 2: Outline Peer Review" class="page" id="page-part-2" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 2 — Outline Peer Review</h2>
+</div>
+<p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class (the two peer review discussions), so we will need to utilize them as much as possible to practice the skill of revising. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+<h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+<div aria-label="Select your class format" class="format-toggle" role="group">
+<button class="active" id="p2-online-btn" onclick="toggleFormat(this, 'p2-online', 'p2-inperson')">For Online Classes</button>
+<button id="p2-inperson-btn" onclick="toggleFormat(this, 'p2-inperson', 'p2-online')">For In Person Classes</button>
+</div>
+<div class="format-panel active" id="p2-online">
+<div aria-hidden="true" class="format-panel-label">For Online Classes</div>
+<p>You will be placed into groups of three within D2L. Go to the peer review discussion for this assignment and post your outline there. Read your group members' outlines and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+<div class="callout" role="note" style="margin-top:.75rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>There will be an automatic deduction for being under-prepared for the peer review discussion. Your outline needs to be a real structural plan, not a sketch.</span>
+</div>
+</div>
+<div class="format-panel" id="p2-inperson">
+<div aria-hidden="true" class="format-panel-label">For In Person Classes</div>
+<p>Print off two copies of your outline and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+<div class="callout" role="note" style="margin-top:.75rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. Your outline needs to be a real structural plan, not a sketch. You also need your printed copies.</span>
+</div>
+</div>
+<h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+<p>When reading your partner's outline, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
+<ul class="review-qs">
+<li>Is the overall structure clear? Does the sequence of sections make sense, or are things in a confusing order?</li>
+<li>Is the dilemma section doing enough work? Does it explain why the question is genuinely hard, or does it treat it as already settled?</li>
+<li>Is the theory or framework being applied actually connected to the case, or does it feel abstract and generic?</li>
+<li>Is there a real position being taken and defended, or is the paper just presenting multiple views without committing?</li>
+<li>Are the objections genuine, the strongest version of a challenge to the argument, or are they weak or strawman versions?</li>
+<li>What is missing? What would you want to see that isn't there?</li>
+</ul>
+<h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+<p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
+<ul class="review-qs">
+<li>What worked well? What did the reviewers seem to like?</li>
+<li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+<li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+</ul>
+<p style="margin-top:.75rem;">Consider your feedback and adjust your outline before you begin the full writing process. Change the sections, paragraphs, etc. so that you're building from the right blueprint. The outline does you no good if it's obsolete.</p>
+<div class="part-arrows">
+<a class="part-arrow-btn" href="#part-1" onclick="navTo('part-1', this); return false;">‹ Previous: Part 1 — Outline</a>
+<a class="part-arrow-btn next" href="#part-3" onclick="navTo('part-3', this); return false;">Next: Part 3 — Paper ›</a>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 3
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-3" role="main" aria-label="Part 3: Paper">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 3 — Paper</h2>
-    </div>
-    <div class="callout" role="note" style="margin-bottom:1.25rem;">
-      <span class="callout-icon" aria-hidden="true">✍️</span>
-      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
-    </div>
-
-    <h3 style="margin-bottom:.4rem;">First: revise your outline</h3>
-    <p>Before you start writing, go back to your outline and update it based on the feedback you received. The outline does you no good if it's obsolete. Change the sections, add or remove bullets, rearrange things so that you're building from the right blueprint. If you're unsure how your outline should look, refer back to the Part 1 instructions.</p>
-
-    <h3 style="margin-top:1.25rem; margin-bottom:.4rem;">Then: turn your bullets into paragraphs</h3>
-    <p>Each bullet in your outline should become its own paragraph. Work section by section. For each bullet, ask yourself: what does someone need to understand for this point to make sense? What am I assuming they already know? What would make this clearer?</p>
-    <p>A few things to keep in mind while writing:</p>
-    <ul class="inline-list" style="margin-top:.5rem;">
-      <li>Define any terms before you use them</li>
-      <li>Discuss others' views, even those you disagree with, generously</li>
-      <li>Be as clear as possible about what your assumptions are, what your conclusion is, and how your assumptions are meant to justify that conclusion</li>
-    </ul>
-
-    <div class="tip" role="note">
-      <span class="tip-icon" aria-hidden="true">📖</span>
-      <span>If you're feeling lost, I will point you to Martinich's <em>Philosophical Writing</em>. That's probably overkill for what you need to do here, but it is a good resource.</span>
-    </div>
-
-    <div class="callout" role="note" style="margin-top:.75rem;">
-      <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span><strong>The paper should be as good as you can make it on your own.</strong> Do not think of this as a rough or incomplete draft. That will undermine the value of the comments you receive in the peer review.</span>
-    </div>
-    <div class="part-arrows">
-      <a class="part-arrow-btn" href="#" onclick="navTo('part-2', this); return false;">‹ Previous: Part 2 — Outline Peer Review</a>
-      <a class="part-arrow-btn next" href="#" onclick="navTo('part-4', this); return false;">Next: Part 4 — Paper Peer Review ›</a>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<div aria-label="Part 3: Paper" class="page" id="page-part-3" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 3 — Paper</h2>
+</div>
+<div class="callout" role="note" style="margin-bottom:1.25rem;">
+<span aria-hidden="true" class="callout-icon">✍️</span>
+<span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+</div>
+<h3 style="margin-bottom:.4rem;">First: revise your outline</h3>
+<p>Before you start writing, go back to your outline and update it based on the feedback you received. The outline does you no good if it's obsolete. Change the sections, add or remove bullets, rearrange things so that you're building from the right blueprint. If you're unsure how your outline should look, refer back to the Part 1 instructions.</p>
+<h3 style="margin-top:1.25rem; margin-bottom:.4rem;">Then: turn your bullets into paragraphs</h3>
+<p>Each bullet in your outline should become its own paragraph. Work section by section. For each bullet, ask yourself: what does someone need to understand for this point to make sense? What am I assuming they already know? What would make this clearer?</p>
+<p>A few things to keep in mind while writing:</p>
+<ul class="inline-list" style="margin-top:.5rem;">
+<li>Define any terms before you use them</li>
+<li>Discuss others' views, even those you disagree with, generously</li>
+<li>Be as clear as possible about what your assumptions are, what your conclusion is, and how your assumptions are meant to justify that conclusion</li>
+</ul>
+<div class="tip" role="note">
+<span aria-hidden="true" class="tip-icon">📖</span>
+<span>If you're feeling lost, I will point you to Martinich's <em>Philosophical Writing</em>. That's probably overkill for what you need to do here, but it is a good resource.</span>
+</div>
+<div class="callout" role="note" style="margin-top:.75rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span><strong>The paper should be as good as you can make it on your own.</strong> Do not think of this as a rough or incomplete draft. That will undermine the value of the comments you receive in the peer review.</span>
+</div>
+<div class="part-arrows">
+<a class="part-arrow-btn" href="#part-2" onclick="navTo('part-2', this); return false;">‹ Previous: Part 2 — Outline Peer Review</a>
+<a class="part-arrow-btn next" href="#part-4" onclick="navTo('part-4', this); return false;">Next: Part 4 — Paper Peer Review ›</a>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 4
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-4" role="main" aria-label="Part 4: Paper Peer Review">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 4 — Paper Peer Review</h2>
-    </div>
-    <p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class, so we will need to utilize them as much as possible. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
-    <div class="format-toggle" role="group" aria-label="Select your class format">
-      <button class="active" onclick="toggleFormat(this, 'p4-online', 'p4-inperson')" id="p4-online-btn">For Online Classes</button>
-      <button onclick="toggleFormat(this, 'p4-inperson', 'p4-online')" id="p4-inperson-btn">For In Person Classes</button>
-    </div>
-
-    <div class="format-panel active" id="p4-online">
-      <div class="format-panel-label" aria-hidden="true">For Online Classes</div>
-      <p>You will be placed into new groups of three within D2L. Go to the peer review discussion for this assignment and post your completed paper there. Read your group members' papers and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
-      <div class="callout" role="note" style="margin-top:.75rem;">
-        <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own. Do not treat this as a rough draft.</span>
-      </div>
-    </div>
-
-    <div class="format-panel" id="p4-inperson">
-      <div class="format-panel-label" aria-hidden="true">For In Person Classes</div>
-      <p>Print off two copies of your paper and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
-      <div class="callout" role="note" style="margin-top:.75rem;">
-        <span class="callout-icon" aria-hidden="true">⚠️</span>
-        <span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own. Do not treat this as a rough draft. You also need your printed copies.</span>
-      </div>
-    </div>
-
-    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
-    <p>When reading your partner's paper, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
-    <ul class="review-qs">
-      <li>Is the case explained clearly and in the writer's own words, or does it feel like a paraphrase of the prompt?</li>
-      <li>Is the philosophical question clearly identified, and does the paper explain why it's genuinely difficult?</li>
-      <li>Are the relevant concepts explained accurately and in enough detail that someone unfamiliar with the course would understand them?</li>
-      <li>Does the analysis actually apply the theory to the case, or does it just describe the theory in the abstract?</li>
-      <li>Is a clear position taken and defended with argument, or is the paper just presenting views without committing?</li>
-      <li>Are the objections genuine and well-stated? Does the response to them actually engage with the challenge, or just restate the original argument?</li>
-      <li>What is the single most important thing the writer could do to make this paper stronger?</li>
-    </ul>
-
-    <h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
-    <p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
-    <ul class="review-qs">
-      <li>What worked well? What did the reviewers seem to like?</li>
-      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
-      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
-    </ul>
-    <div class="part-arrows">
-      <a class="part-arrow-btn" href="#" onclick="navTo('part-3', this); return false;">‹ Previous: Part 3 — Paper</a>
-      <a class="part-arrow-btn next" href="#" onclick="navTo('part-5', this); return false;">Next: Part 5 — Revision ›</a>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<div aria-label="Part 4: Paper Peer Review" class="page" id="page-part-4" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 4 — Paper Peer Review</h2>
+</div>
+<p>A professional writing process involves many iterations of revisions, feedback, revisions, feedback, and so on. When it comes down to it, the art of writing becomes the art of revising: incorporating and reconciling new ideas into the way you're trying to articulate things. It becomes an externalized form of thinking. We only get two iterations in this class, so we will need to utilize them as much as possible. Take the peer review discussions seriously. They can have long-lasting impacts on your skills as a writer.</p>
+<h3 style="margin-top:1.5rem; margin-bottom:.75rem;">What to do</h3>
+<div aria-label="Select your class format" class="format-toggle" role="group">
+<button class="active" id="p4-online-btn" onclick="toggleFormat(this, 'p4-online', 'p4-inperson')">For Online Classes</button>
+<button id="p4-inperson-btn" onclick="toggleFormat(this, 'p4-inperson', 'p4-online')">For In Person Classes</button>
+</div>
+<div class="format-panel active" id="p4-online">
+<div aria-hidden="true" class="format-panel-label">For Online Classes</div>
+<p>You will be placed into new groups of three within D2L. Go to the peer review discussion for this assignment and post your completed paper there. Read your group members' papers and leave feedback for each of them. Be sure to stay up to date with the schedule in D2L.</p>
+<div class="callout" role="note" style="margin-top:.75rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>There will be an automatic deduction for being under-prepared for the peer review discussion. The paper should be as good as you can make it on your own. Do not treat this as a rough draft.</span>
+</div>
+</div>
+<div class="format-panel" id="p4-inperson">
+<div aria-hidden="true" class="format-panel-label">For In Person Classes</div>
+<p>Print off two copies of your paper and bring them to class on the designated peer review day (check your syllabus). You will exchange copies with a partner and review each other's work in class.</p>
+<div class="callout" role="note" style="margin-top:.75rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>There will be an automatic deduction for being under-prepared or late to class on the peer review day. The paper should be as good as you can make it on your own. Do not treat this as a rough draft. You also need your printed copies.</span>
+</div>
+</div>
+<h3 style="margin-top:1.75rem; margin-bottom:.5rem;">How to conduct the review</h3>
+<p>When reading your partner's paper, use these questions to guide your feedback. Be specific. Vague comments aren't useful.</p>
+<ul class="review-qs">
+<li>Is the case explained clearly and in the writer's own words, or does it feel like a paraphrase of the prompt?</li>
+<li>Is the philosophical question clearly identified, and does the paper explain why it's genuinely difficult?</li>
+<li>Are the relevant concepts explained accurately and in enough detail that someone unfamiliar with the course would understand them?</li>
+<li>Does the analysis actually apply the theory to the case, or does it just describe the theory in the abstract?</li>
+<li>Is a clear position taken and defended with argument, or is the paper just presenting views without committing?</li>
+<li>Are the objections genuine and well-stated? Does the response to them actually engage with the challenge, or just restate the original argument?</li>
+<li>What is the single most important thing the writer could do to make this paper stronger?</li>
+</ul>
+<h3 style="margin-top:1.75rem; margin-bottom:.5rem;">What to do with the feedback</h3>
+<p>Be sure to take notes during the session. When reviewing the feedback you received, ask yourself:</p>
+<ul class="review-qs">
+<li>What worked well? What did the reviewers seem to like?</li>
+<li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+<li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+</ul>
+<div class="part-arrows">
+<a class="part-arrow-btn" href="#part-3" onclick="navTo('part-3', this); return false;">‹ Previous: Part 3 — Paper</a>
+<a class="part-arrow-btn next" href="#part-5" onclick="navTo('part-5', this); return false;">Next: Part 5 — Revision ›</a>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: PART 5
   ══════════════════════════════════════ -->
-  <div class="page" id="page-part-5" role="main" aria-label="Part 5: Revision">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">3</div>
-      <h2>Part 5 — Revision</h2>
-    </div>
-    <div class="callout" role="note" style="margin-bottom:1.25rem;">
-      <span class="callout-icon" aria-hidden="true">✍️</span>
-      <span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
-    </div>
-    <p>Based on the feedback received from the peer review discussions, revise your paper so that it's better than before.</p>
-
-    <h3 style="margin-top:1.25rem; margin-bottom:.5rem;">How to use your feedback</h3>
-    <p>There is not much new information to give you here. The point is to utilize the feedback you received and continue to use the rubric and the tips in these instructions.</p>
-    <p>When reviewing the feedback you received, ask yourself the same questions from the peer review stages:</p>
-    <ul class="review-qs" style="margin-top:.5rem;">
-      <li>What worked well? What did the reviewers seem to like?</li>
-      <li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
-      <li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
-    </ul>
-
-    <h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Checking your work</h3>
-    <p>Your grade comes down to the rubric. If you're ever feeling lost, you can always turn to the rubric to see if you're satisfying the necessary criteria. And of course, don't hesitate to reach out for help.</p>
-    <div class="part-arrows">
-      <a class="part-arrow-btn" href="#" onclick="navTo('part-4', this); return false;">‹ Previous: Part 4 — Paper Peer Review</a>
-      <span class="part-arrow-spacer"></span>
-    </div>
-  </div>
-  <!-- ══════════════════════════════════════
+<div aria-label="Part 5: Revision" class="page" id="page-part-5" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">3</div>
+<h2>Part 5 — Revision</h2>
+</div>
+<div class="callout" role="note" style="margin-bottom:1.25rem;">
+<span aria-hidden="true" class="callout-icon">✍️</span>
+<span>Everything must be written in <strong>Personify.ai</strong>. The link is in the D2L assignment. No large portions of text should be pasted in from anywhere else.</span>
+</div>
+<p>Based on the feedback received from the peer review discussions, revise your paper so that it's better than before.</p>
+<h3 style="margin-top:1.25rem; margin-bottom:.5rem;">How to use your feedback</h3>
+<p>There is not much new information to give you here. The point is to utilize the feedback you received and continue to use the rubric and the tips in these instructions.</p>
+<p>When reviewing the feedback you received, ask yourself the same questions from the peer review stages:</p>
+<ul class="review-qs" style="margin-top:.5rem;">
+<li>What worked well? What did the reviewers seem to like?</li>
+<li>What didn't work so well? Where could there be room for improvement and in what ways?</li>
+<li>What are some completely new ideas you and/or one of the reviewers thought up for your paper? What is something that your paper will include that wouldn't have been included without this discussion?</li>
+</ul>
+<h3 style="margin-top:1.5rem; margin-bottom:.5rem;">Checking your work</h3>
+<p>Your grade comes down to the rubric. If you're ever feeling lost, you can always turn to the rubric to see if you're satisfying the necessary criteria. And of course, don't hesitate to reach out for help.</p>
+<div class="part-arrows">
+<a class="part-arrow-btn" href="#part-4" onclick="navTo('part-4', this); return false;">‹ Previous: Part 4 — Paper Peer Review</a>
+<span class="part-arrow-spacer"></span>
+</div>
+</div>
+<!-- ══════════════════════════════════════
        PAGE: EVALUATION
   ══════════════════════════════════════ -->
-  <div class="page" id="page-evaluation" role="main" aria-label="Evaluation">
-    <div class="page-heading">
-      <div class="page-num" aria-hidden="true">4</div>
-      <h2>Evaluation Rubric</h2>
-    </div>
-    <p style="margin-bottom:1rem;">Your paper will be evaluated on the following criteria. When in doubt about whether your paper is on track, return here.</p>
-
-    <div class="callout" role="note" style="margin-bottom:1.25rem;">
-      <span class="callout-icon" aria-hidden="true">⚠️</span>
-      <span>Being under-prepared for a peer review discussion carries up to a <strong>30% deduction</strong>. There are two peer review days, and each one is evaluated independently.</span>
-    </div>
-
-    <div class="rubric-wrap">
-      <table>
-        <caption class="sr-only">Grading rubric: seven criteria each evaluated as Strong, Adequate, or Inadequate</caption>
-        <thead>
-          <tr>
-            <th scope="col">Criterion</th>
-            <th scope="col">✓ Strong</th>
-            <th scope="col">~ Adequate</th>
-            <th scope="col">✗ Inadequate</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Accuracy of Understanding</td>
-            <td>Explains concepts with sufficient detail and accuracy. A proponent of the view would recognize the explanation as fair and substantive.</td>
-            <td>Explains concepts with the general idea present but lacks some detail or contains minor inaccuracies that don't fundamentally misrepresent the view.</td>
-            <td>Significantly misrepresents concepts, provides only superficial description, or demonstrates fundamental misunderstanding.</td>
-          </tr>
-          <tr>
-            <td>Capturing the Issue</td>
-            <td>Accurately and fully represents the case being analyzed. Shows clear understanding of what is at stake.</td>
-            <td>Represents the case adequately but may miss some nuances or details. General understanding is present.</td>
-            <td>Misrepresents or misunderstands key aspects of the case being analyzed.</td>
-          </tr>
-          <tr>
-            <td>Application / Connection</td>
-            <td>Uses philosophical concepts to analyze specific cases, scenarios, or content. The concepts do genuine work in the analysis rather than being merely described in abstract terms.</td>
-            <td>Applies concepts but the connection may be somewhat general or underdeveloped. Some genuine application is present but could go deeper.</td>
-            <td>Describes concepts in abstract without real application, or connections are vague and forced.</td>
-          </tr>
-          <tr>
-            <td>Depth of Engagement</td>
-            <td>Engages with complications, tensions, or nuances. Goes beyond obvious observations to reveal something philosophically interesting.</td>
-            <td>Shows some engagement with the material but remains somewhat surface-level. May acknowledge complications without fully exploring them.</td>
-            <td>Stays entirely at surface level. Treats complex issues as simple or obvious. No recognition of philosophical difficulty.</td>
-          </tr>
-          <tr>
-            <td>Reasoning / Argumentation</td>
-            <td>Provides clear reasons for claims. Positions are supported by argument rather than mere assertion. Avoids circular reasoning.</td>
-            <td>Provides some reasoning though it may be underdeveloped. May occasionally assert without argument or reason somewhat circularly.</td>
-            <td>Assertions without reasoning, or reasoning that is circular or question-begging throughout.</td>
-          </tr>
-          <tr>
-            <td>Argumentative Awareness</td>
-            <td>Clearly articulates what has been established by the reasoning and why. Simultaneously acknowledges genuine limitations, assumptions, or unresolved questions without undermining the argument's force.</td>
-            <td>Shows some awareness of what the argument accomplishes, though may either overstate certainty or retreat too much from conclusions reached. Some acknowledgment of limitations.</td>
-            <td>Either presents conclusions as obvious with no acknowledgment of limitations, or undermines the entire argument by treating everything as equally uncertain or relative.</td>
-          </tr>
-          <tr>
-            <td>Writing &amp; Organization</td>
-            <td>Well-organized with clear transitions. Minimal grammatical errors.</td>
-            <td>Adequate organization. Some grammatical issues but meaning is clear.</td>
-            <td>Disorganized or difficult to follow. Frequent grammatical problems.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
+<div aria-label="Evaluation" class="page" id="page-evaluation" role="main">
+<div class="page-heading">
+<div aria-hidden="true" class="page-num">4</div>
+<h2>Evaluation Rubric</h2>
+</div>
+<p style="margin-bottom:1rem;">Your paper will be evaluated on the following criteria. When in doubt about whether your paper is on track, return here.</p>
+<div class="callout" role="note" style="margin-bottom:1.25rem;">
+<span aria-hidden="true" class="callout-icon">⚠️</span>
+<span>Being under-prepared for a peer review discussion carries up to a <strong>30% deduction</strong>. There are two peer review days, and each one is evaluated independently.</span>
+</div>
+<div class="rubric-wrap">
+<table>
+<caption class="sr-only">Grading rubric: four criteria each evaluated across four proficiency levels</caption>
+<thead>
+<tr>
+<th scope="col">Criterion</th>
+<th scope="col">Highly Proficient</th>
+<th scope="col">Proficient</th>
+<th scope="col">Partially Proficient</th>
+<th scope="col">Not Yet Proficient</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="criterion-label">Accuracy</span><div aria-label="Related learning outcomes" class="lo-chip-row"><span class="lo-chip" data-tooltip-body="&lt;em&gt;Accuracy&lt;/em&gt; supports LO 1 because the paper must define ethical concepts precisely, distinguish them from nearby ideas, and use them correctly in the case." data-tooltip-title="LO 1: Explain major ethical concepts and describe the problems and/or issues in clarifying them that are used to comprehend and express moral or ethical problems." tabindex="0">LO 1</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Accuracy&lt;/em&gt; supports LO 3 because the paper must explain the chosen theory the way a follower would state it, not as a caricature or shortcut." data-tooltip-title="LO 3: Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory." tabindex="0">LO 3</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Accuracy&lt;/em&gt; supports LO 2 because careful definitions give the paper a usable account of the theory before it begins analyzing the case." data-tooltip-title="LO 2: Analyze major ethical theories." tabindex="0">LO 2</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Accuracy&lt;/em&gt; supports LO 6 because the paper must name the case facts, stakes, and concepts clearly enough for a reader to follow the analysis." data-tooltip-title="LO 6: Demonstrate philosophical and/or logical thinking through writing." tabindex="0">LO 6</span></div><ul aria-label="Accuracy learning outcomes" class="a11y-tooltip-list"><li><span class="a11y-tooltip-title">LO 1: Explain major ethical concepts and describe the problems and/or issues in clarifying them that are used to comprehend and express moral or ethical problems.</span><span class="a11y-tooltip-body"><em>Accuracy</em> supports LO 1 because the paper must define ethical concepts precisely, distinguish them from nearby ideas, and use them correctly in the case.</span></li><li><span class="a11y-tooltip-title">LO 3: Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory.</span><span class="a11y-tooltip-body"><em>Accuracy</em> supports LO 3 because the paper must explain the chosen theory the way a follower would state it, not as a caricature or shortcut.</span></li><li><span class="a11y-tooltip-title">LO 2: Analyze major ethical theories.</span><span class="a11y-tooltip-body"><em>Accuracy</em> supports LO 2 because careful definitions give the paper a usable account of the theory before it begins analyzing the case.</span></li><li><span class="a11y-tooltip-title">LO 6: Demonstrate philosophical and/or logical thinking through writing.</span><span class="a11y-tooltip-body"><em>Accuracy</em> supports LO 6 because the paper must name the case facts, stakes, and concepts clearly enough for a reader to follow the analysis.</span></li></ul></td>
+<td>Defines the central concepts precisely, states the key facts of the case accurately, identifies the main moral conflict, and names what is at stake for the people involved. Presents the chosen theory in terms a knowledgeable proponent would recognize as fair, careful, and complete.</td>
+<td>Defines the main concepts correctly, states the central facts of the case clearly, and identifies the basic moral conflict. Presents the chosen theory fairly, though it leaves out a key distinction, compresses an important point, or describes the stakes only briefly.</td>
+<td>Names the relevant concepts and facts but defines some terms loosely, blurs an important distinction, or leaves out a key part of the case. Presents the theory in a partly recognizable way, but the explanation flattens the view or misstates some of what is at stake.</td>
+<td>Misdefines central concepts, confuses or omits major facts of the case, or misidentifies the main moral conflict. Presents the theory or the case in a distorted way that makes the later analysis unreliable.</td>
+</tr>
+<tr>
+<td><span class="criterion-label">Application &amp; Depth</span><div aria-label="Related learning outcomes" class="lo-chip-row"><span class="lo-chip" data-tooltip-body="&lt;em&gt;Application and depth&lt;/em&gt; support LO 2 because the paper must put the theory to work on the case instead of merely summarizing it." data-tooltip-title="LO 2: Analyze major ethical theories." tabindex="0">LO 2</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Application and depth&lt;/em&gt; support LO 3 because the paper must show what a follower of the theory would notice, prioritize, and treat as morally significant in this situation." data-tooltip-title="LO 3: Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory." tabindex="0">LO 3</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Application and depth&lt;/em&gt; support LO 4 because the paper must use the theory's concepts to move toward a justified recommendation about what should be done." data-tooltip-title="LO 4: Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems." tabindex="0">LO 4</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Application and depth&lt;/em&gt; support LO 5 because the paper must examine tensions, tradeoffs, and implications rather than stopping at the first obvious answer." data-tooltip-title="LO 5: Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches." tabindex="0">LO 5</span></div><ul aria-label="Application &amp; Depth learning outcomes" class="a11y-tooltip-list"><li><span class="a11y-tooltip-title">LO 2: Analyze major ethical theories.</span><span class="a11y-tooltip-body"><em>Application and depth</em> support LO 2 because the paper must put the theory to work on the case instead of merely summarizing it.</span></li><li><span class="a11y-tooltip-title">LO 3: Explain each major ethical theory from the perspective of a follower to identify what is significant in a particular situation or context for that theory.</span><span class="a11y-tooltip-body"><em>Application and depth</em> support LO 3 because the paper must show what a follower of the theory would notice, prioritize, and treat as morally significant in this situation.</span></li><li><span class="a11y-tooltip-title">LO 4: Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems.</span><span class="a11y-tooltip-body"><em>Application and depth</em> support LO 4 because the paper must use the theory's concepts to move toward a justified recommendation about what should be done.</span></li><li><span class="a11y-tooltip-title">LO 5: Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches.</span><span class="a11y-tooltip-body"><em>Application and depth</em> support LO 5 because the paper must examine tensions, tradeoffs, and implications rather than stopping at the first obvious answer.</span></li></ul></td>
+<td>Applies the theory directly to the specific facts of the case, shows how the concepts change the student's first reaction, and traces multiple tensions, tradeoffs, or pressure points inside the case. Tests the view against complications or counterexamples and develops a line of analysis that moves beyond summary into sustained philosophical work.</td>
+<td>Applies the theory to the main facts of the case and traces at least one genuine tension, tradeoff, or complication. Moves beyond summary in several places, though some parts stay general, stop too soon, or leave the strongest pressure point underdeveloped.</td>
+<td>Connects the theory to the case in scattered or uneven ways but spends most of the paper summarizing the view, restating the prompt, or listing considerations without developing them. Mentions complications or tensions briefly, but does not trace how they affect the conclusion.</td>
+<td>Repeats the theory in the abstract, restates the case without analysis, or makes forced connections that do not actually guide the discussion. Treats a difficult moral problem as simple, obvious, or settled without examining competing pressures inside the case.</td>
+</tr>
+<tr>
+<td><span class="criterion-label">Reasoning</span><div aria-label="Related learning outcomes" class="lo-chip-row"><span class="lo-chip" data-tooltip-body="&lt;em&gt;Reasoning&lt;/em&gt; supports LO 4 because the paper must build a justified conclusion by linking claims, reasons, and evidence from the case step by step." data-tooltip-title="LO 4: Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems." tabindex="0">LO 4</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Reasoning&lt;/em&gt; supports LO 5 because the paper must show what follows from its position, where the argument is vulnerable, and how objections change or sharpen the conclusion." data-tooltip-title="LO 5: Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches." tabindex="0">LO 5</span><span class="lo-chip" data-tooltip-body="&lt;em&gt;Reasoning&lt;/em&gt; supports LO 6 because philosophical writing must make inferential steps explicit rather than asking the reader to guess how the conclusion was reached." data-tooltip-title="LO 6: Demonstrate philosophical and/or logical thinking through writing." tabindex="0">LO 6</span></div><ul aria-label="Reasoning learning outcomes" class="a11y-tooltip-list"><li><span class="a11y-tooltip-title">LO 4: Justify how each ethical theory reaches conclusions about what should be done regarding specific moral problems.</span><span class="a11y-tooltip-body"><em>Reasoning</em> supports LO 4 because the paper must build a justified conclusion by linking claims, reasons, and evidence from the case step by step.</span></li><li><span class="a11y-tooltip-title">LO 5: Reflect on the logical implications and consequences of the conclusions that each ethical theory reaches.</span><span class="a11y-tooltip-body"><em>Reasoning</em> supports LO 5 because the paper must show what follows from its position, where the argument is vulnerable, and how objections change or sharpen the conclusion.</span></li><li><span class="a11y-tooltip-title">LO 6: Demonstrate philosophical and/or logical thinking through writing.</span><span class="a11y-tooltip-body"><em>Reasoning</em> supports LO 6 because philosophical writing must make inferential steps explicit rather than asking the reader to guess how the conclusion was reached.</span></li></ul></td>
+<td>States a clear conclusion, gives connected reasons for each major claim, explains why those reasons support the conclusion, and addresses a serious objection or limitation without abandoning the argument. Shows exactly what has been established, what assumptions the argument uses, and where uncertainty remains.</td>
+<td>States a clear conclusion and gives reasons for the main claims, with most inferential steps made explicit. Addresses an objection, assumption, or limitation in a relevant way, though one part of the argument still needs fuller support, clearer links, or more careful qualification.</td>
+<td>States a conclusion and offers some reasons, but several important claims rest on assertion, quick leaps, or unexplained transitions. Mentions an objection, assumption, or limitation, but handles it briefly or in a way that does not significantly test the argument.</td>
+<td>Asserts conclusions without supporting reasons, relies on circular or question-begging claims, or leaves the main inferential steps unstated. Either ignores objections and limits entirely or dissolves the argument by treating every position as equally unsupported.</td>
+</tr>
+<tr>
+<td><span class="criterion-label">Writing &amp; Organization</span><div aria-label="Related learning outcomes" class="lo-chip-row"><span class="lo-chip" data-tooltip-body="&lt;em&gt;Writing and organization&lt;/em&gt; support LO 6 because the paper must present philosophical thinking in a readable structure with clear claims, paragraphs, and transitions." data-tooltip-title="LO 6: Demonstrate philosophical and/or logical thinking through writing." tabindex="0">LO 6</span></div><ul aria-label="Writing &amp; Organization learning outcomes" class="a11y-tooltip-list"><li><span class="a11y-tooltip-title">LO 6: Demonstrate philosophical and/or logical thinking through writing.</span><span class="a11y-tooltip-body"><em>Writing and organization</em> support LO 6 because the paper must present philosophical thinking in a readable structure with clear claims, paragraphs, and transitions.</span></li></ul></td>
+<td>Uses a clear introduction, purposeful body sections, focused paragraphs, and transitions that show how each part advances the argument. Uses precise sentences and clean grammar so the reader can follow the paper's line of thought without stopping to decode the prose.</td>
+<td>Uses a recognizable structure with an introduction, body, and conclusion, and most paragraphs stay focused on one task. Uses generally clear sentences and mostly clean grammar, though a few transitions, paragraph breaks, or sentence-level problems interrupt the flow.</td>
+<td>Uses a loose or uneven structure in which paragraphs drift, transitions rely on generic signals, or sections do not build cleanly on one another. Includes repeated sentence-level problems that slow the reader down or make some claims harder to track.</td>
+<td>Lacks a workable structure, groups unrelated points in the same paragraph, or omits transitions that would show how the discussion fits together. Includes persistent sentence-level errors or confusing phrasing that makes the argument difficult to follow.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </main>
-
 <footer>
-  Introduction to Ethics &nbsp;·&nbsp; Ethics Paper Instructions &nbsp;·&nbsp; Refer to your syllabus for all due dates
+  Introduction to Ethics  ·  Ethics Paper Instructions  ·  Refer to your syllabus for all due dates
 </footer>
-
-<button id="a11y-btn" aria-pressed="false" onclick="toggleA11y()">
-  <span aria-hidden="true">⚑</span>
-  <span id="a11y-label">Accessibility Mode</span>
+<button aria-pressed="false" id="a11y-btn" onclick="toggleA11y()">
+<span aria-hidden="true">⚑</span>
+<span id="a11y-label">Accessibility Mode</span>
 </button>
-
+<div aria-hidden="true" class="chip-tooltip" id="chip-tooltip" role="tooltip"></div>
 <script>
   // ── PAGE MAP ──
   const PAGE_MAP = {
@@ -1385,7 +1373,9 @@
 
   const CASE_PAGES = new Set(['case-a','case-b','case-c','case-d']);
 
-  function navTo(pageId, triggerEl) {
+  function navTo(pageId, triggerEl, options = {}) {
+    if (!PAGE_MAP[pageId]) return;
+    const { updateHash = true, scrollTop = true } = options;
     const wasCasePage = CASE_PAGES.has(currentPage);
     const isCasePage  = CASE_PAGES.has(pageId);
 
@@ -1413,6 +1403,14 @@
     if (activeSwitcher) activeSwitcher.classList.add('active');
 
     currentPage = pageId;
+
+    if (updateHash) {
+      const desiredHash = `#${pageId}`;
+      if (window.location.hash !== desiredHash) {
+        history.pushState(null, '', desiredHash);
+      }
+    }
+
     // in a11y mode, show all cases when on a case page, hide extras when leaving
     if (a11yOn) {
       document.querySelectorAll('[id^="page-case-"]').forEach(pg => {
@@ -1422,7 +1420,7 @@
       if (isCasePage) target.classList.add('active');
     }
     // only reset scroll when navigating between top-level sections, not between cases
-    if (!(wasCasePage && isCasePage)) window.scrollTo(0, 0);
+    if (scrollTop && !(wasCasePage && isCasePage)) window.scrollTo(0, 0);
   }
 
   function mobileNavTo(pageId) {
@@ -1492,9 +1490,76 @@
     });
   }
 
-  // set initial active state on load
-  navTo('overview', null);
-</script>
 
+  // ── CHIP TOOLTIPS ──
+  const chipTooltip = document.getElementById('chip-tooltip');
+  let activeTooltipChip = null;
+
+  function positionChipTooltip(chip) {
+    if (!chip || !chipTooltip.classList.contains('visible')) return;
+    const rect = chip.getBoundingClientRect();
+    const margin = 12;
+    const tooltipWidth = chipTooltip.offsetWidth;
+    const tooltipHeight = chipTooltip.offsetHeight;
+
+    let left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+    left = Math.max(margin, Math.min(left, window.innerWidth - tooltipWidth - margin));
+
+    let top = rect.top - tooltipHeight - 12;
+    if (top < margin) top = rect.bottom + 12;
+
+    chipTooltip.style.left = `${left + window.scrollX}px`;
+    chipTooltip.style.top = `${top + window.scrollY}px`;
+  }
+
+  function showChipTooltip(chip) {
+    const title = chip.getAttribute('data-tooltip-title');
+    const body = chip.getAttribute('data-tooltip-body');
+    if (!title || !body) return;
+    chipTooltip.innerHTML = `<span class="chip-tooltip-title">${title}</span><span class="chip-tooltip-body">${body}</span>`;
+    chipTooltip.classList.add('visible');
+    chipTooltip.setAttribute('aria-hidden', 'false');
+    activeTooltipChip = chip;
+    positionChipTooltip(chip);
+  }
+
+  function hideChipTooltip(chip) {
+    if (!chip || chip === activeTooltipChip) {
+      chipTooltip.classList.remove('visible');
+      chipTooltip.setAttribute('aria-hidden', 'true');
+      activeTooltipChip = null;
+    }
+  }
+
+  document.querySelectorAll('.lo-chip').forEach(chip => {
+    chip.addEventListener('mouseenter', () => showChipTooltip(chip));
+    chip.addEventListener('mouseleave', () => hideChipTooltip(chip));
+    chip.addEventListener('focus', () => showChipTooltip(chip));
+    chip.addEventListener('blur', () => hideChipTooltip(chip));
+  });
+
+  window.addEventListener('scroll', () => {
+    if (activeTooltipChip) positionChipTooltip(activeTooltipChip);
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    if (activeTooltipChip) positionChipTooltip(activeTooltipChip);
+  });
+
+  function getPageIdFromHash() {
+    const rawHash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+    return PAGE_MAP[rawHash] ? rawHash : 'overview';
+  }
+
+  // set initial active state on load and support direct links to pages
+  navTo(getPageIdFromHash(), null, { updateHash: false, scrollTop: false });
+
+  window.addEventListener('hashchange', () => {
+    const pageId = getPageIdFromHash();
+    if (pageId !== currentPage) {
+      navTo(pageId, null, { updateHash: false, scrollTop: false });
+    }
+  });
+</script>
 </body>
 </html>
