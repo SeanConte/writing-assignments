@@ -70,7 +70,9 @@
   body.a11y [id^="page-case-b"] .page-heading,
   body.a11y [id^="page-case-b"] > p,
   body.a11y [id^="page-case-c"] .page-heading,
-  body.a11y [id^="page-case-c"] > p { display: none; }
+  body.a11y [id^="page-case-c"] > p,
+  body.a11y [id^="page-case-d"] .page-heading,
+  body.a11y [id^="page-case-d"] > p { display: none; }
   body.a11y .case-header { background: #000; }
   body.a11y .case-header h3 { color: #fff; }
   body.a11y .scenario-block { background: #f2f2f2; border-color: #000; border-left-color: #000; }
@@ -564,6 +566,7 @@
         <a href="#" role="menuitem" onclick="navTo('case-a', this); return false;" id="nav-case-a">Case A — Landlord &amp; Eviction</a>
         <a href="#" role="menuitem" onclick="navTo('case-b', this); return false;" id="nav-case-b">Case B — AI &amp; Free Will</a>
         <a href="#" role="menuitem" onclick="navTo('case-c', this); return false;" id="nav-case-c">Case C — Collective Responsibility</a>
+        <a href="#" role="menuitem" onclick="navTo('case-d', this); return false;" id="nav-case-d">Case D — Medical Priority &amp; Responsibility</a>
       </div>
     </div>
 
@@ -600,6 +603,7 @@
   <a href="#" id="mnav-case-a" onclick="mobileNavTo('case-a'); return false;">Case A — Landlord &amp; Eviction</a>
   <a href="#" id="mnav-case-b" onclick="mobileNavTo('case-b'); return false;">Case B — AI &amp; Free Will</a>
   <a href="#" id="mnav-case-c" onclick="mobileNavTo('case-c'); return false;">Case C — Collective Responsibility</a>
+  <a href="#" id="mnav-case-d" onclick="mobileNavTo('case-d'); return false;">Case D — Medical Priority &amp; Responsibility</a>
 
   <div class="mobile-nav-section">Parts</div>
   <a href="#" id="mnav-part-0" onclick="mobileNavTo('part-0'); return false;">Part 0 — Take Notes</a>
@@ -644,7 +648,7 @@
 
     <div class="card">
       <p>This assignment asks you to demonstrate your philosophical understanding and reasoning by analyzing a situation using the concepts and tools from class. Your goal is to demonstrate that you have developed your understanding of issues, honed skills, and are able to do more than regurgitate ideas.</p>
-      <p>You will choose one of three cases and analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. This assignment is known as a scaffolded assignment, which means it has multiple parts which build upon each other. A major part of the process is two peer review sessions, one on your outline and another on a completed version of the paper. Be aware: if you only have a small sketch with a few lines for your outline, or only an incomplete draft before the peer review discussions, that will count against your grade.</p>
+      <p>You will choose one of four cases and analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. This assignment is known as a scaffolded assignment, which means it has multiple parts which build upon each other. A major part of the process is two peer review sessions, one on your outline and another on a completed version of the paper. Be aware: if you only have a small sketch with a few lines for your outline, or only an incomplete draft before the peer review discussions, that will count against your grade.</p>
     </div>
 
     <p class="section-lede">Learning Outcomes</p>
@@ -690,6 +694,7 @@
       <button class="case-switch-btn active" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
       <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
       <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
+      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
     </div>
     <div class="case-card">
       <div class="case-header"><h3>Case A: Landlord &amp; Eviction</h3></div>
@@ -718,6 +723,7 @@
       <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
       <button class="case-switch-btn active" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
       <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
+      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
     </div>
     <div class="case-card">
       <div class="case-header"><h3>Case B: AI &amp; Free Will</h3></div>
@@ -745,6 +751,7 @@
       <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
       <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
       <button class="case-switch-btn active" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
+      <button class="case-switch-btn" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
     </div>
     <div class="case-card">
       <div class="case-header"><h3>Case C: Collective Responsibility</h3></div>
@@ -755,6 +762,35 @@
           <p><strong>Scenario 2:</strong> A nation committed war crimes and human rights violations in 2015. Over the next decade, through natural demographic change, every government official who was in power during those violations has left office or died. The current government consists entirely of people who were not in positions of authority during the violations. In 2025, the international community is considering whether the nation still owes reparations.</p>
         </div>
         <p style="margin-top:1rem;"><strong>Your question:</strong> Does the fraternity still bear responsibility for the 2015 hazing? Does the nation still bear responsibility for the 2015 violations? If you treat these cases differently, what principle distinguishes them? If you think both are responsible or that neither is, would you think the same holds true for any similar situation, or is there something about these cases that makes them special?</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════
+       PAGE: CASE D
+  ══════════════════════════════════════ -->
+  <div class="page" id="page-case-d" role="main" aria-label="Case D">
+    <div class="page-heading">
+      <div class="page-num" aria-hidden="true">2</div>
+      <h2>Cases</h2>
+    </div>
+    <p style="margin-bottom:.75rem;">Your entire paper will be built around the case you choose. You will analyze it using either <strong>consequentialism</strong> or <strong>Kantian ethics</strong>. Your goal is to navigate the internal complications and tensions in applying one of these theories and also respond to objections of those that might disagree with the view.</p>
+    <div class="case-switcher" role="group" aria-label="Choose a case">
+      <button class="case-switch-btn" onclick="navTo('case-a', this)">Case A — Landlord &amp; Eviction</button>
+      <button class="case-switch-btn" onclick="navTo('case-b', this)">Case B — AI &amp; Free Will</button>
+      <button class="case-switch-btn" onclick="navTo('case-c', this)">Case C — Collective Responsibility</button>
+      <button class="case-switch-btn active" onclick="navTo('case-d', this)">Case D — Medical Priority &amp; Responsibility</button>
+    </div>
+    <div class="case-card">
+      <div class="case-header"><h3>Case D: Medical Priority &amp; Responsibility</h3></div>
+      <div class="case-body">
+        <div class="scenario-block">
+          <p>Consider these two scenarios.</p>
+          <p><strong>Scenario 1:</strong> A hospital has one donor liver available. Two patients are eligible for transplant. <strong>Patient A</strong> has liver failure partly caused by years of heavy drinking. However, Patient A has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. <strong>Patient B</strong> has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. The transplant team believes that either patient would likely benefit from the transplant, and another compatible liver is likely to become available soon enough that both patients can probably survive until then with current treatment.</p>
+          <p><strong>Scenario 2:</strong> The same hospital again has one donor liver available, and the same two patients are eligible for transplant. Patient A again has liver failure partly caused by years of heavy drinking, but has now been sober for six years, completed treatment, followed every medical recommendation, and remained on the transplant waiting list for eighteen months. Patient B again has liver failure caused by a rare and unforeseeable medical complication and was added to the waiting list only recently. This time, however, no additional compatible liver is likely to become available soon, and both patients are deteriorating rapidly. If one of them does not receive the liver now, that patient will likely die before another becomes available.</p>
+        </div>
+        <p style="margin-top:1rem;"><strong>Your question:</strong> In either scenario, who should get the liver that is available now? Should these two cases be treated the same way, or is there a relevant moral difference between them? If you think they should be treated differently, what principle explains the difference? To what extent should Patient A's responsibility for their illness matter? To what extent should their responsibility for their recovery matter? To what extent should Patient B's not being responsible for her illness matter? How does the time constraint difference in the two scenarios change or not change these considerations?</p>
       </div>
     </div>
   </div>
@@ -1327,6 +1363,7 @@
     'case-a':     'page-case-a',
     'case-b':     'page-case-b',
     'case-c':     'page-case-c',
+    'case-d':     'page-case-d',
     'part-0':     'page-part-0',
     'part-1':     'page-part-1',
     'part-2':     'page-part-2',
@@ -1338,7 +1375,7 @@
 
   const NAV_PARENT = {
     'overview':   'nav-overview',
-    'case-a':     'nav-cases',  'case-b': 'nav-cases',  'case-c': 'nav-cases',
+    'case-a':     'nav-cases',  'case-b': 'nav-cases',  'case-c': 'nav-cases',  'case-d': 'nav-cases',
     'part-0':     'nav-parts',  'part-1': 'nav-parts',  'part-2': 'nav-parts',
     'part-3':     'nav-parts',  'part-4': 'nav-parts',  'part-5': 'nav-parts',
     'evaluation': 'nav-evaluation',
@@ -1346,7 +1383,7 @@
 
   let currentPage = 'overview';
 
-  const CASE_PAGES = new Set(['case-a','case-b','case-c']);
+  const CASE_PAGES = new Set(['case-a','case-b','case-c','case-d']);
 
   function navTo(pageId, triggerEl) {
     const wasCasePage = CASE_PAGES.has(currentPage);
